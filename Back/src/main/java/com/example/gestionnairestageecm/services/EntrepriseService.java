@@ -18,32 +18,31 @@ public class EntrepriseService {
         return entrepriseRepository.findAll();
     }
 
-    public Entreprise getEntrepriseById(Long numero_siret) {
-        return entrepriseRepository.findById(numero_siret).get();
+    public Entreprise getEntrepriseById(Long siretNumber) {
+        return entrepriseRepository.findById(siretNumber).get();
     }
 
-
-    public Entreprise saveEntreprise(Entreprise  entreprise) {
+    public Entreprise saveEntreprise(Entreprise entreprise) {
         return entrepriseRepository.save(entreprise);
     }
 
-    public Entreprise updateEntreprise(Long numero_siret, Entreprise newEntreprise) {
-        Entreprise entreprise =  entrepriseRepository.findById(numero_siret).get();
-        entreprise.setLegalform(newEntreprise.getLegalform());
-        entreprise.setBusiness_name((newEntreprise.getBusiness_name()));
+    public Entreprise updateEntreprise(Long siretNumber, Entreprise newEntreprise) {
+        Entreprise entreprise =  entrepriseRepository.findById(siretNumber).get();
+        entreprise.setLegalForm(newEntreprise.getLegalForm());
+        entreprise.setBusinessName((newEntreprise.getBusinessName()));
         entreprise.setAddress(newEntreprise.getAddress());
         entreprise.setCity(newEntreprise.getCity());
         entreprise.setPostalCode(newEntreprise.getPostalCode());
         entreprise.setFax(newEntreprise.getFax());
-        entreprise.setPhoneNumber(newEntreprise.getPhoneNumber());
+        entreprise.setTutorPhoneNumber(newEntreprise.getTutorPhoneNumber());
         entreprise.setFax(newEntreprise.getFax());
         entreprise.setContact(newEntreprise.getContact());
-        entreprise.setPhoneContact(newEntreprise.getPhoneContact());
+        entreprise.setContactPhoneNumber(newEntreprise.getContactPhoneNumber());
         entreprise.setEmail(newEntreprise.getEmail());
         return entrepriseRepository.save(entreprise);
     }
 
-    public void deleteEntreprise(Long numero_siret) {
-        entrepriseRepository.deleteById(numero_siret);
+    public void deleteEntreprise(Long siretNumber) {
+        entrepriseRepository.deleteById(siretNumber);
     }
 }
