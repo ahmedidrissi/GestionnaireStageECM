@@ -20,68 +20,57 @@ public class Entreprise {
     @Column(name = "numero_siret", nullable = false)
     private Long numeroSiret;
 
+    @Column(name = "forme_juridique", nullable = false)
+    private String legalForm;
     
-    @Column(name = "legalform", nullable = false)
-    private String legalform;
-    
-    @Column(name = "business_name", nullable = false)
-    private String business_name;
+    @Column(name = "raison_sociale", nullable = false)
+    private String businessName;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "addresse", nullable = false)
     private String address;
 
-    
-    @Column(name = "city", nullable = false)
+    @Column(name = "ville", nullable = false)
     private String  city;
 
+    @Column(name = "code_postal", nullable = false)
+    private int postalCode;
 
-    @Column(name = "postalCode", nullable = false)
-    private Integer postalCode;
-
-    // Le téléphone du tuteur de l'étudiant dans l’entreprise
-
-    @Column(name = "phoneNumber", nullable = false)
-    private String phoneNumber;
-
+    @Column(name = "telephone_tuteur", nullable = false)
+    private String tutorPhoneNumber;
     
     @Column(name = "fax", nullable = false)
     private String fax;
-
-    // Le numéro de téléphone de l’entreprise
     
     @Column(name = "contact", nullable = false)
     private String contact;
-
-    // La personne joignable de l’entreprise
     
-    @Column(name = "phoneContact", nullable = false)
-    private String phoneContact;
+    @Column(name = "telephone_contact", nullable = false)
+    private String contactPhoneNumber;
 
-   
     @Column(name = "email", nullable = false)
     private String email;
 
     public Entreprise(
-            String legalform,
-            String business_name,
-            String address,
-            String city,
-            Integer postalCode,
-            String phoneNumber,
-            String fax,
-            String contact,
-            String phoneContact,
-            String email
+        String legalForm,
+        String businessName,
+        String address,
+        String city,
+        int postalCode,
+        String tutorPhoneNumber,
+        String fax,
+        String contact,
+        String contactPhoneNumber,
+        String email
     ) {
-        this.legalform = legalform;
-        this.business_name = business_name;
+        this.legalForm = legalForm;
+        this.businessName = businessName;
         this.address = address;
         this.city = city;
         this.postalCode = postalCode;
-        this.phoneNumber = phoneNumber;
+        this.tutorPhoneNumber = tutorPhoneNumber;
         this.fax = fax;
         this.contact = contact;
-        this.phoneContact = phoneContact;
+        this.contactPhoneNumber = contactPhoneNumber;
         this.email = email;
     }
 }

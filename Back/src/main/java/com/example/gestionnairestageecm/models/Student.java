@@ -1,5 +1,7 @@
 package com.example.gestionnairestageecm.models;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,10 +22,10 @@ public class Student {
     @Column(name = "student_id", nullable = false)
     private Long studentId;
 
-    @Column(name = "nom", nullable = false)
+    @Column(name = "prenom", nullable = false)
     private String firstName;
 
-    @Column(name = "prenom", nullable = false)
+    @Column(name = "nom", nullable = false)
     private String lastName;
 
     @Column(nullable = false)
@@ -33,7 +35,7 @@ public class Student {
     private String gender;
 
     @Column(name = "date_naissance", nullable = false)
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name = "adresse", nullable = false)
     private String address;
@@ -42,13 +44,13 @@ public class Student {
     private String city;
 
     @Column(name = "code_postal", nullable = false)
-    private String postalCode;
+    private int postalCode;
 
     @Column(name = "telephone", nullable = false)
     private String phoneNumber;
 
     @Column(name = "promo", nullable = false)
-    private String promo;
+    private int promo;
 
     @Column(name = "numero_promo", nullable = false)
     private String promoNumber;
@@ -61,12 +63,12 @@ public class Student {
         String lastName,
         String email,
         String gender,
-        String dateOfBirth,
+        LocalDate dateOfBirth,
         String address,
         String city,
-        String postalCode,
+        int postalCode,
         String phoneNumber,
-        String promo,
+        int promo,
         String promoNumber,
         String mention
     ) {
