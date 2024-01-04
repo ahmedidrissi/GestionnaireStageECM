@@ -53,7 +53,7 @@ public class Student {
     @Column(name = "numero_promo", nullable = false)
     private String promoNumber;
 
-    @Column(name = "mention", nullable = false)
+    @Column(name = "mention")
     private String mention;
     
     public Student(
