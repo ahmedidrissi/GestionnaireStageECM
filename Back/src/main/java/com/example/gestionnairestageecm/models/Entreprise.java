@@ -1,10 +1,13 @@
-import jakarta.persistence.*;
+package com.example.gestionnairestageecm.models;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -18,28 +21,27 @@ public class Entreprise {
     private Long numeroSiret;
 
     
-    @Column(name = "forme_juridique", nullable = false)
-    private String formeJuridique;
+    @Column(name = "legalform", nullable = false)
+    private String legalform;
+    
+    @Column(name = "business_name", nullable = false)
+    private String business_name;
+
+    @Column(name = "address", nullable = false)
+    private String address;
 
     
-    @Column(name = "raison_sociale", nullable = false)
-    private String raisonSociale;
-
-    @Column(name = "adresse", nullable = false)
-    private String adresse;
-
-    
-    @Column(name = "ville", nullable = false)
-    private String ville;
+    @Column(name = "city", nullable = false)
+    private String  city;
 
 
-    @Column(name = "code_postal", nullable = false)
-    private Integer codePostal;
+    @Column(name = "postalCode", nullable = false)
+    private Integer postalCode;
 
     // Le téléphone du tuteur de l'étudiant dans l’entreprise
 
-    @Column(name = "telephone", nullable = false)
-    private String telephone;
+    @Column(name = "phoneNumber", nullable = false)
+    private String phoneNumber;
 
     
     @Column(name = "fax", nullable = false)
@@ -52,34 +54,34 @@ public class Entreprise {
 
     // La personne joignable de l’entreprise
     
-    @Column(name = "telephone_contact", nullable = false)
-    private String telephoneContact;
+    @Column(name = "phoneContact", nullable = false)
+    private String phoneContact;
 
    
     @Column(name = "email", nullable = false)
     private String email;
 
     public Entreprise(
-            String formeJuridique,
-            String raisonSociale,
-            String adresse,
-            String ville,
-            Integer codePostal,
-            String telephone,
+            String legalform,
+            String business_name,
+            String address,
+            String city,
+            Integer postalCode,
+            String phoneNumber,
             String fax,
             String contact,
-            String telephoneContact,
+            String phoneContact,
             String email
     ) {
-        this.formeJuridique = formeJuridique;
-        this.raisonSociale = raisonSociale;
-        this.adresse = adresse;
-        this.ville = ville;
-        this.codePostal = codePostal;
-        this.telephone = telephone;
+        this.legalform = legalform;
+        this.business_name = business_name;
+        this.address = address;
+        this.city = city;
+        this.postalCode = postalCode;
+        this.phoneNumber = phoneNumber;
         this.fax = fax;
         this.contact = contact;
-        this.telephoneContact = telephoneContact;
+        this.phoneContact = phoneContact;
         this.email = email;
     }
 }

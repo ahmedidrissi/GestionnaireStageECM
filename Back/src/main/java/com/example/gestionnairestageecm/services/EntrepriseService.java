@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.gestionnairestageecm.models.Student;
-import com.example.gestionnairestageecm.repositories.StudentRepository;
+import com.example.gestionnairestageecm.models.Entreprise;
+import com.example.gestionnairestageecm.repositories.EntrepriseRepository;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class EntrepriseService {
-    private EntrepriseRepository EntrepriseRepository; 
+    private EntrepriseRepository entrepriseRepository; 
     
-    public List<Student> getAllEntreprises() {
+    public List<Entreprise> getAllEntreprises() {
         return entrepriseRepository.findAll();
     }
 
@@ -27,8 +27,20 @@ public class EntrepriseService {
         return entrepriseRepository.save(entreprise);
     }
 
-    public Entreprise updateEntreprise(Entreprise newEntreprise) {
-        return entrepriseRepository.save(newEntreprise);
+    public Entreprise updateEntreprise(Long numero_siret, Entreprise newEntreprise) {
+        Entreprise entreprise =  entrepriseRepository.findById(numero_siret).get();
+        entreprise.setLegalform(newEntreprise.getLegalform());
+        entreprise.setBusiness_name((newEntreprise.getBusiness_name()));
+        entreprise.setAddress(newEntreprise.getAddress());
+        entreprise.setCity(newEntreprise.getCity());
+        entreprise.setPostalCode(newEntreprise.getPostalCode());
+        entreprise.setFax(newEntreprise.getFax());
+        entreprise.setPhoneNumber(newEntreprise.getPhoneNumber());
+        entreprise.setFax(newEntreprise.getFax());
+        entreprise.setContact(newEntreprise.getContact());
+        entreprise.setPhoneContact(newEntreprise.getPhoneContact());
+        entreprise.setEmail(newEntreprise.getEmail());
+        return entrepriseRepository.save(entreprise);
     }
 
     public void deleteEntreprise(Long numero_siret) {
