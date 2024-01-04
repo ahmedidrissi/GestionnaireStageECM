@@ -22,20 +22,33 @@ public class StudentService {
         return studentRepository.findById(studentId).get();
     }
 
-    // public Student getStudentByEmail(String email) {
-    //     return studentRepository.findByEmail(email).get();
-    // }
+    public Student getStudentByEmail(String email) {
+        return studentRepository.findByEmail(email).get();
+    }
 
-    // public Student getStudentByName(String firstName, String lastName) {
-    //     return studentRepository.findByName(firstName, lastName).get();
-    // }
+    public Student getStudentByFirstNameAndLastName(String firstName, String lastName) {
+        return studentRepository.findByFirstNameAndLastName(firstName, lastName).get();
+    }
 
     public Student saveStudent(Student student) {
         return studentRepository.save(student);
     }
 
-    public Student updateStudent(Student newStudent) {
-        return studentRepository.save(newStudent);
+    public Student updateStudent(Long studentId, Student newStudent) {
+        Student student = studentRepository.findById(studentId).get();
+        student.setFirstName(newStudent.getFirstName());
+        student.setLastName(newStudent.getLastName());
+        student.setEmail(newStudent.getEmail());
+        student.setGender(newStudent.getGender());
+        student.setDateOfBirth(newStudent.getDateOfBirth());
+        student.setAddress(newStudent.getAddress());
+        student.setCity(newStudent.getCity());
+        student.setPostalCode(newStudent.getPostalCode());
+        student.setPhoneNumber(newStudent.getPhoneNumber());
+        student.setPromo(newStudent.getPromo());
+        student.setPromoNumber(newStudent.getPromoNumber());
+        student.setMention(newStudent.getMention());
+        return studentRepository.save(student);
     }
 
     public void deleteStudent(Long studentId) {
