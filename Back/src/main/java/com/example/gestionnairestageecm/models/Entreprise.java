@@ -18,7 +18,7 @@ public class Entreprise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numero_siret", nullable = false)
-    private Long numeroSiret;
+    private Long siretNumber;
 
     @Column(name = "forme_juridique", nullable = false)
     private String legalForm;
