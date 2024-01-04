@@ -4,7 +4,6 @@ import com.example.gestionnairestageecm.models.Prof;
 import com.example.gestionnairestageecm.models.ResponseMsg;
 import com.example.gestionnairestageecm.services.ProfServices;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
