@@ -18,7 +18,20 @@ public class GestionnaireStageEcmApplication {
 	// @Bean
 	// CommandLineRunner run(StudentRepository studentRepository) {
 	// 	return args -> {
-	// 		studentRepository.save(new Student("ahmed", "idrissi", "idrissiahmed2002@gmail.com"));
+	// 		studentRepository.save(new Student(
+	// 			"John",
+	// 			"Doe",
+	// 			"john.doe@gmail.com",
+	// 			"Male",
+	// 			"01/01/2000",
+	// 			"1234 rue de la rue",
+	// 			"Montreal",
+	// 			"H1H 1H1",
+	// 			"514-123-4567",
+	// 			"2020",
+	// 			"01",
+	// 			"Passable"
+	// 		));
 	// 	};
 	// }
 
