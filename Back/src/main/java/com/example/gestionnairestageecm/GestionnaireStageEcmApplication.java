@@ -1,14 +1,15 @@
 package com.example.gestionnairestageecm;
 
-import org.springframework.boot.CommandLineRunner;
+// import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Bean;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-import com.example.gestionnairestageecm.models.Student;
-import com.example.gestionnairestageecm.repositories.StudentRepository;
+// import com.example.gestionnairestageecm.models.Student;
+// import com.example.gestionnairestageecm.repositories.StudentRepository;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class GestionnaireStageEcmApplication {
 
 	public static void main(String[] args) {
