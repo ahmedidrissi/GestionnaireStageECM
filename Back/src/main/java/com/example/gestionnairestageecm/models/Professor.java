@@ -49,7 +49,7 @@ public class Professor {
 
     @Column(name = "date_embauche", nullable = false)
     private LocalDate hiringDate;
-    @Column(name = "date_depart", nullable = false)
+    @Column(name = "date_depart")
     private LocalDate leavingDate;
 
     public Professor(
