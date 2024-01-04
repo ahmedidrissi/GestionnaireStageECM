@@ -1,28 +1,39 @@
 package com.example.gestionnairestageecm;
 
-import com.example.gestionnairestageecm.models.Prof;
-import com.example.gestionnairestageecm.repositories.ProfReposetory;
-import org.springframework.boot.CommandLineRunner;
+// import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Bean;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-import java.time.LocalDate;
+// import com.example.gestionnairestageecm.models.Student;
+// import com.example.gestionnairestageecm.repositories.StudentRepository;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class GestionnaireStageEcmApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GestionnaireStageEcmApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner run(ProfReposetory profReposetory) {
-		return args -> {
-			profReposetory.save(new Prof("Mandili", "Adnane", "Male", "123 Main St", "Rabat",
-					12345, "123-456-7890", "987-654-3210", LocalDate.of(2022, 1, 1), LocalDate.of(2023, 12, 31)));
-			profReposetory.save(new Prof("Doe", "John", "Male", "123 Main St", "Rabat",
-					12345, "123-456-7890", "987-654-3210", LocalDate.of(2022, 1, 1), LocalDate.of(2023, 12, 31)));
-		};
-	}
+	// @Bean
+	// CommandLineRunner run(StudentRepository studentRepository) {
+	// 	return args -> {
+	// 		studentRepository.save(new Student(
+	// 			"John",
+	// 			"Doe",
+	// 			"john.doe@gmail.com",
+	// 			"Male",
+	// 			"01/01/2000",
+	// 			"1234 rue de la rue",
+	// 			"Montreal",
+	// 			"H1H 1H1",
+	// 			"514-123-4567",
+	// 			"2020",
+	// 			"01",
+	// 			"Passable"
+	// 		));
+	// 	};
+	// }
+
 }
