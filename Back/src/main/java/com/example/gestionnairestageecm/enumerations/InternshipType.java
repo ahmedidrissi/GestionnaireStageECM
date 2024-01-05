@@ -1,4 +1,4 @@
-package com.example.gestionnairestageecm.models;
+package com.example.gestionnairestageecm.enumerations;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
