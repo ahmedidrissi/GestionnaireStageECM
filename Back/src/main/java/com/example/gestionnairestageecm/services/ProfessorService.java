@@ -2,6 +2,7 @@ package com.example.gestionnairestageecm.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.gestionnairestageecm.models.Professor;
@@ -12,6 +13,8 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class ProfessorService {
+    
+    @Autowired
     private final ProfessorRepository professorRepository;
 
     public List<Professor> getAllProfessors() {
