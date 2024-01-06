@@ -2,6 +2,7 @@ package com.example.gestionnairestageecm.controllers;
 
 import java.util.List;
 
+import com.example.gestionnairestageecm.models.Student;
 import lombok.AllArgsConstructor;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,7 +35,12 @@ public class ProfessorController {
     public Professor getProfessorById(@PathVariable Long professorId) {
         return professorService.getProfessorById(professorId);
     }
-    
+
+    @GetMapping("/email={email}")
+    public Professor getStudentByEmail(@PathVariable String email) {
+        return professorService.getStudentByEmail(email);
+    }
+
     @GetMapping("/name={firstName}+{lastName}")
     public Professor getProfessorByName(@PathVariable String firstName, @PathVariable String lastName) {
         return professorService.getProfessorByFirstNameAndLastName(firstName, lastName);
