@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "professeur")
+@Entity(name = "professeurs")
 public class Professor {
 
     @Id
