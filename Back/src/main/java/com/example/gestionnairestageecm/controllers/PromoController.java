@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/promos")
+@RequestMapping("/api/v1/promos")
 public class PromoController {
     
     @Autowired

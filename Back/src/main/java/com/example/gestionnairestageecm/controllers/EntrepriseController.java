@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 
-@RequestMapping("/entreprises")
+@RequestMapping("/api/v1/entreprises")
 @RestController
 @AllArgsConstructor
 public class EntrepriseController {
