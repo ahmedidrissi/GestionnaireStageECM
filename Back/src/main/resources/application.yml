@@ -2,7 +2,8 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/ecm
     username: postgres
-    password: password
+    password: 193725
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
