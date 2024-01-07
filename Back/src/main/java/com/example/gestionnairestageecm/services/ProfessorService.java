@@ -2,6 +2,7 @@ package com.example.gestionnairestageecm.services;
 
 import java.util.List;
 
+import com.example.gestionnairestageecm.models.Student;
 import org.springframework.stereotype.Service;
 
 import com.example.gestionnairestageecm.models.Professor;
@@ -20,6 +21,10 @@ public class ProfessorService {
 
     public Professor getProfessorById(Long professorId) {
         return professorRepository.findById(professorId).get();
+    }
+
+    public Professor getStudentByEmail(String email) {
+        return professorRepository.findByEmail(email).get();
     }
 
     public Professor getProfessorByFirstNameAndLastName(String firstName, String lastName) {
