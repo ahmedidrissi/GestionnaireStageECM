@@ -38,13 +38,13 @@ public class EntrepriseController {
     }
 
     @PostMapping("/new")
-    public void saveEntreprise(@RequestBody Entreprise entreprise) {
-        entrepriseService.saveEntreprise(entreprise);
+    public Entreprise saveEntreprise(@RequestBody Entreprise entreprise) {
+        return entrepriseService.saveEntreprise(entreprise);
     }
 
     @PutMapping("/update/id={numero_siret}")
-    public void updateEntreprise(@PathVariable Long numero_siret, @RequestBody Entreprise newEntreprise) {
-        entrepriseService.updateEntreprise(numero_siret, newEntreprise);
+    public Entreprise updateEntreprise(@PathVariable Long numero_siret, @RequestBody Entreprise newEntreprise) {
+        return entrepriseService.updateEntreprise(numero_siret, newEntreprise);
     }
 
     @DeleteMapping("/delete/id={numero_siret}")
