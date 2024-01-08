@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { EntreprisesService } from '../../services/entreprises.service';
 
 @Component({
   selector: 'app-entreprises',
@@ -64,14 +65,18 @@ export class EntreprisesComponent implements OnInit {
     },
   ];
   
-  constructor() {}
+  constructor(private entreprisesService: EntreprisesService) {}
 
   ngOnInit(): void {
-    this.entreprisesList = this.getEntreprisesList();
+    this.getEntreprises();
   }
 
-  getEntreprisesList() {
-    return this.entreprisesList;
+  getEntreprises() {
+    return this.entreprisesService.getEntreprises()
+      .subscribe((data: any) => {
+        console.log(data);
+        return data;
+      });
   }
 
   updateEntreprise(siretNumber: string) {
