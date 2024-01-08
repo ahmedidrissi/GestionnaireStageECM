@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div class="container p-lg-5 p-2">
+  <div class="entreprises d-flex justify-content-center align-items-center">
+    <!-- table of entreprises -->
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th *ngFor="let column of displayedColumns">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entreprise of entreprisesList">
+          <td>{{ entreprise.siretNumber }}</td>
+          <td>{{ entreprise.legalForm }}</td>
+          <td>{{ entreprise.businessName }}</td>
+          <td>{{ entreprise.address }}</td>
+          <td>{{ entreprise.city }}</td>
+          <td>{{ entreprise.postalCode }}</td>
+          <td>{{ entreprise.tutorPhoneNumber }}</td>
+          <td>{{ entreprise.fax }}</td>
+          <td>{{ entreprise.contact }}</td>
+          <td>{{ entreprise.email }}</td>
+          <td>
+            <!-- edit and delete icons -->
+            <div class="d-flex justify-content-around">
+              <i
+                class="bi bi-pencil-square text-success"
+                (click)="updateEntreprise(entreprise.siretNumber)"
+              ></i>
+              <i
+                class="bi bi-trash text-danger"
+                (click)="deleteEntreprise(entreprise.siretNumber)"
+              ></i>
+            </div>
+          </td>
+          <!-- <td>{{ entreprise.createdAt }}</td>
+          <td>{{ entreprise.updatedAt }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
