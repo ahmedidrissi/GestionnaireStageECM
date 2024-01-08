@@ -13,16 +13,17 @@ import { EntreprisesService } from '../../services/entreprises.service';
 })
 export class EntreprisesComponent implements OnInit {
   entrepriseForm = new FormGroup({
-    siretNumber: new FormControl(''),
-    legalForm: new FormControl(''),
-    businessName: new FormControl(''),
-    address: new FormControl(''),
-    city: new FormControl(''),
-    postalCode: new FormControl(''),
-    tutorPhoneNumber: new FormControl(''),
-    fax: new FormControl(''),
-    contact: new FormControl(''),
-    email: new FormControl(''),
+    siretNumber: new FormControl(123456789),
+    legalForm: new FormControl('SARL'),
+    businessName: new FormControl('Test'),
+    address: new FormControl('1 rue du test'),
+    city: new FormControl('Test'),
+    postalCode: new FormControl(12345),
+    tutorPhoneNumber: new FormControl('0654321098'),
+    fax: new FormControl('0543210987'),
+    contact: new FormControl('Omar'),
+    contactPhoneNumber: new FormControl('0765432109'),
+    email: new FormControl('test@gmail.com'),
   });
 
   displayedColumns: string[] = [
@@ -32,38 +33,14 @@ export class EntreprisesComponent implements OnInit {
     'Adresse',
     'Ville',
     'Code Postal',
-    'Téléphone Tuteur',
+    'Téléphone du Tuteur',
     'Fax',
     'Contact',
+    'Téléphone du Contact',
     'Email',
     'Actions'
   ];
-  entreprisesList: any[] = [
-    {
-      siretNumber: '123456789',
-      legalForm: 'SAS 1',
-      businessName: 'Test 1',
-      address: '1 rue du test 1',
-      city: 'Test 1',
-      postalCode: '12345',
-      tutorPhoneNumber: '0123456789',
-      fax: '0123456789',
-      contact: 'Test 1',
-      email: 'test1@gmail.com'
-    },
-    {
-      siretNumber: '987654321',
-      legalForm: 'SAS 2',
-      businessName: 'Test 2',
-      address: '2 rue du test 2',
-      city: 'Test 2',
-      postalCode: '54321',
-      tutorPhoneNumber: '9876543210',
-      fax: '9876543210',
-      contact: 'Test 2',
-      email: 'test2@gmail.com'
-    },
-  ];
+  entreprisesList: any[] = [];
   
   constructor(private entreprisesService: EntreprisesService) {}
 
@@ -74,15 +51,16 @@ export class EntreprisesComponent implements OnInit {
   getEntreprises() {
     return this.entreprisesService.getEntreprises()
       .subscribe((data: any) => {
-        console.log(data);
-        return data;
+        this.entreprisesList = data;
       });
   }
 
   addEntreprise() {
     if (this.entrepriseForm.valid) {
-      // this.entreprisesService.addEntreprise(this.entrepriseForm.value)
-      console.log(this.entrepriseForm.value);
+      this.entreprisesService.addEntreprise(this.entrepriseForm.value)
+        .subscribe((data: any) => {
+          this.entreprisesList.push(data);
+        });
     } else {
       console.log('invalid form');
     }
