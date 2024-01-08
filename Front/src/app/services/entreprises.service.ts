@@ -10,7 +10,7 @@ export class EntreprisesService {
   private baseUrl = AppComponent.baseUrl + '/entreprises';
   private httpOptions = {
     headers: new HttpHeaders({
-      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+      Authorization: 'Bearer ' + this.tokenStorageService.getToken(),
     }),
   };
 
@@ -20,31 +20,31 @@ export class EntreprisesService {
   ) {}
 
   getEntreprises() {
-    return this.http.get(this.baseUrl + '/list', this.httpOptions);
+    return this.http.get(`${this.baseUrl}/list`, this.httpOptions);
   }
 
   getEntrepriseById(entrepriseId: number) {
     return this.http.get(
-      this.baseUrl + '/id=' + entrepriseId,
+      `${this.baseUrl}/id=${entrepriseId}`,
       this.httpOptions
     );
   }
 
   addEntreprise(entreprise: any) {
-    return this.http.post(this.baseUrl + '/new', entreprise, this.httpOptions);
+    return this.http.post(`${this.baseUrl}/new`, entreprise, this.httpOptions);
   }
 
-  updateEntreprise(entrepriseId: number, newEntreprise: any) {
+  updateEntreprise(siretNumber: number, newEntreprise: any) {
     return this.http.put(
-      this.baseUrl + '/update/id=' + entrepriseId,
+      `${this.baseUrl}/update/id=${siretNumber}`,
       newEntreprise,
       this.httpOptions
     );
   }
 
-  deleteEntreprise(entrepriseId: number) {
+  deleteEntreprise(siretNumber: number) {
     return this.http.delete(
-      this.baseUrl + '/delete/id=' + entrepriseId,
+      `${this.baseUrl}/delete/id=${siretNumber}`,
       this.httpOptions
     );
   }
