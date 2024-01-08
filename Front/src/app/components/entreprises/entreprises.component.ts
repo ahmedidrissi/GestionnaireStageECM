@@ -41,6 +41,8 @@ export class EntreprisesComponent implements OnInit {
     'Actions'
   ];
   entreprisesList: any[] = [];
+  editMode = false;
+  currentSiretNumber: number = 0;
   
   constructor(private entreprisesService: EntreprisesService) {}
 
@@ -55,8 +57,29 @@ export class EntreprisesComponent implements OnInit {
       });
   }
 
+  getEntrepriseById(siretNumber: number) {
+    return this.entreprisesService.getEntrepriseById(siretNumber)
+      .subscribe((data: any) => {
+        console.log(data);
+      });
+  }
+
+  handleEntrepriseForm() {
+    if (this.editMode) {
+      this.updateEntreprise();
+    } else {
+      this.addEntreprise();
+    }
+  }
+
+  handleUpdateEntreprise(entreprise: any) {
+    this.editMode = true;
+    this.currentSiretNumber = entreprise.siretNumber;
+    this.entrepriseForm.patchValue(entreprise);
+  }
+
   addEntreprise() {
-    if (this.entrepriseForm.valid) {
+    if (this.entrepriseForm.valid) {      
       this.entreprisesService.addEntreprise(this.entrepriseForm.value)
         .subscribe((data: any) => {
           this.entreprisesList.push(data);
@@ -66,12 +89,24 @@ export class EntreprisesComponent implements OnInit {
     }
   }
 
-  updateEntreprise(siretNumber: string) {
-    console.log('update');
+  updateEntreprise() {
+    console.log(this.entrepriseForm.value);
+    console.log(this.currentSiretNumber);
+    
+    this.entreprisesService.updateEntreprise(this.currentSiretNumber, this.entrepriseForm.value).
+      subscribe((data: any) => {
+        this.getEntreprises();
+        this.editMode = false;
+      });
   }
 
-  deleteEntreprise(siretNumber: string) {
-    console.log('delete');
+  deleteEntreprise(siretNumber: number) {    
+    this.entreprisesService.deleteEntreprise(siretNumber)
+      .subscribe(() => {
+        this.entreprisesList = this.entreprisesList.filter((entreprise: any) => {
+          return entreprise.siretNumber !== siretNumber;
+        });
+      });
   }
 
 }
