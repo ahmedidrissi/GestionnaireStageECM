@@ -8,6 +8,11 @@ import { TokenStorageService } from './token-storage.service';
 })
 export class EntreprisesService {
   private baseUrl = AppComponent.baseUrl + '/entreprises';
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
+    }),
+  };
 
   constructor(
     private http: HttpClient,
@@ -15,10 +20,32 @@ export class EntreprisesService {
   ) {}
 
   getEntreprises() {
-    return this.http.get(this.baseUrl + '/list', {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + this.tokenStorageService.getToken(),
-      }),
-    });
+    return this.http.get(this.baseUrl + '/list', this.httpOptions);
+  }
+
+  getEntrepriseById(entrepriseId: number) {
+    return this.http.get(
+      this.baseUrl + '/id=' + entrepriseId,
+      this.httpOptions
+    );
+  }
+
+  addEntreprise(entreprise: any) {
+    return this.http.post(this.baseUrl + '/new', entreprise, this.httpOptions);
+  }
+
+  updateEntreprise(entrepriseId: number, newEntreprise: any) {
+    return this.http.put(
+      this.baseUrl + '/update/id=' + entrepriseId,
+      newEntreprise,
+      this.httpOptions
+    );
+  }
+
+  deleteEntreprise(entrepriseId: number) {
+    return this.http.delete(
+      this.baseUrl + '/delete/id=' + entrepriseId,
+      this.httpOptions
+    );
   }
 }
