@@ -27,7 +27,7 @@ export class EntreprisesComponent implements OnInit {
 
   displayedColumns: string[] = [
     'Numéro SIRET',
-    'Forme Légale',
+    'Forme Juridique',
     'Raison Sociale',
     'Adresse',
     'Ville',
@@ -77,6 +77,15 @@ export class EntreprisesComponent implements OnInit {
         console.log(data);
         return data;
       });
+  }
+
+  addEntreprise() {
+    if (this.entrepriseForm.valid) {
+      // this.entreprisesService.addEntreprise(this.entrepriseForm.value)
+      console.log(this.entrepriseForm.value);
+    } else {
+      console.log('invalid form');
+    }
   }
 
   updateEntreprise(siretNumber: string) {
