@@ -1,7 +1,18 @@
 <app-navbar></app-navbar>
 <div class="container p-lg-5 p-2">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>Liste des entreprises</h1>
+    <!-- button for popup -->
+    <button
+      type="button"
+      class="btn btn-success"
+      data-bs-toggle="modal"
+      data-bs-target="#addEntrepriseModal"
+    >
+      Ajouter une entreprise
+    </button>
+  </div>
   <div class="entreprises d-flex justify-content-center align-items-center">
-    <!-- table of entreprises -->
     <table class="table table-striped table-hover">
       <thead>
         <tr>
@@ -21,10 +32,9 @@
           <td>{{ entreprise.contact }}</td>
           <td>{{ entreprise.email }}</td>
           <td>
-            <!-- edit and delete icons -->
             <div class="d-flex justify-content-around">
               <i
-                class="bi bi-pencil-square text-success"
+                class="bi bi-pencil-square text-primary"
                 (click)="updateEntreprise(entreprise.siretNumber)"
               ></i>
               <i
@@ -38,5 +48,142 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="addEntrepriseModal"
+  tabindex="-1"
+  aria-labelledby="addEntrepriseModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title" id="addEntrepriseModalLabel">
+          Ajouter une entreprise
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="entrepriseForm" (ngSubmit)="addEntreprise()">
+          <div class="row">
+            <div class="col-lg-6 col-12">
+              <div class="form-group mb-3">
+                <label for="siretNumber">Numéro de SIRET</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="siretNumber"
+                  placeholder="Numéro de SIRET"
+                  formControlName="siretNumber"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="legalForm">Forme Juridique</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="legalForm"
+                  placeholder="Forme Juridique"
+                  formControlName="legalForm"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="businessName">Raison Sociale</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="businessName"
+                  placeholder="Raison Sociale"
+                  formControlName="businessName"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="address">Adresse</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  placeholder="Adresse"
+                  formControlName="address"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="city">Ville</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  placeholder="Ville"
+                  formControlName="city"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="form-group mb-3">
+                <label for="postalCode">Code Postal</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="postalCode"
+                  placeholder="Code Postal"
+                  formControlName="postalCode"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="tutorPhoneNumber"
+                  >Numéro de téléphone du tuteur</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="tutorPhoneNumber"
+                  placeholder="Numéro de téléphone du tuteur"
+                  formControlName="tutorPhoneNumber"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="fax">Fax</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fax"
+                  placeholder="Fax"
+                  formControlName="fax"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="contact">Contact</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="contact"
+                  placeholder="Contact"
+                  formControlName="contact"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="email">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">Ajouter</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
