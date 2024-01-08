@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,13 +12,15 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
   authenticate(email: string, password: string) {
-    this.http
+    return this.http
       .post(this.baseUrl, {
         email: email,
         password: password,
       })
-      .subscribe((response: any) => {
-        console.log(response);
-      });
+      .pipe(
+        map((res: any) => {
+          sessionStorage.setItem('token', res.token);
+        })
+      );
   }
 }

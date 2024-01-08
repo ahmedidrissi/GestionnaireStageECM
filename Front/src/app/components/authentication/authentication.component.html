@@ -31,5 +31,12 @@
         Submit
       </button>
     </form>
+    <div class="alert alert-danger" *ngIf="loginFailed">
+      {{ errorMessage }}
+    </div>
+    <!-- success -->
+    <div class="alert alert-success" *ngIf="loginSucceded">
+      {{ successMessage }}
+    </div>
   </div>
 </div>
