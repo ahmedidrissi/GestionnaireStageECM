@@ -37,11 +37,6 @@ public class ProfessorController {
         return professorService.getProfessorById(professorId);
     }
 
-    @GetMapping("/email={email}")
-    public Professor getStudentByEmail(@PathVariable String email) {
-        return professorService.getStudentByEmail(email);
-    }
-
     @GetMapping("/name={firstName}+{lastName}")
     public Professor getProfessorByName(@PathVariable String firstName, @PathVariable String lastName) {
         return professorService.getProfessorByFirstNameAndLastName(firstName, lastName);
