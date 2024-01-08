@@ -40,8 +40,8 @@ export class AuthenticationComponent implements OnInit {
           this.loginSucceded = true;
           this.successMessage = 'Login successful. Redirecting...';
           setTimeout(() => {
-            this.router.navigate(['/']);
-          }, 2000);
+            this.router.navigate(['/entreprises']);
+          }, 4000);
         },
         error => {
           this.loginFailed = true;
