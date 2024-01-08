@@ -28,7 +28,8 @@
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" type="button" (click)="navigate('/authenticate')">Login</a>
+          <a *ngIf="!isLogged" class="nav-link" type="button" (click)="navigate('/authenticate')">Login</a>
+          <a *ngIf="isLogged" class="nav-link" type="button" (click)="logout()">Logout</a>
         </li>
       </ul>
     </div>
