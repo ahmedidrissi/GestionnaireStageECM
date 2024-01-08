@@ -7,7 +7,7 @@
       type="button"
       class="btn btn-success"
       data-bs-toggle="modal"
-      data-bs-target="#addEntrepriseModal"
+      data-bs-target="#entrepriseModal"
     >
       Ajouter une entreprise
     </button>
@@ -34,18 +34,22 @@
           <td>{{ entreprise.email }}</td>
           <td>
             <div class="d-flex justify-content-around">
-              <i
-                class="bi bi-pencil-square text-primary"
-                (click)="updateEntreprise(entreprise.siretNumber)"
-              ></i>
-              <i
-                class="bi bi-trash text-danger"
+              <a
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#entrepriseModal"
+                (click)="handleUpdateEntreprise(entreprise)"
+              >
+                <i class="bi bi-pencil-square text-primary"></i>
+              </a>
+              <a
+                type="button"
                 (click)="deleteEntreprise(entreprise.siretNumber)"
-              ></i>
+              >
+                <i class="bi bi-trash text-danger"></i>
+              </a>
             </div>
           </td>
-          <!-- <td>{{ entreprise.createdAt }}</td>
-          <td>{{ entreprise.updatedAt }}</td> -->
         </tr>
       </tbody>
     </table>
@@ -54,15 +58,15 @@
 
 <div
   class="modal fade"
-  id="addEntrepriseModal"
+  id="entrepriseModal"
   tabindex="-1"
-  aria-labelledby="addEntrepriseModalLabel"
+  aria-labelledby="entrepriseModalLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-secondary text-white">
-        <h5 class="modal-title" id="addEntrepriseModalLabel">
+        <h5 class="modal-title" id="entrepriseModalLabel">
           Ajouter une entreprise
         </h5>
         <button
@@ -73,7 +77,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="entrepriseForm" (ngSubmit)="addEntreprise()">
+        <form [formGroup]="entrepriseForm" (ngSubmit)="handleEntrepriseForm()">
           <div class="row">
             <div class="col-lg-6 col-12">
               <div class="form-group mb-3">
@@ -190,7 +194,24 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-success">Ajouter</button>
+          <button
+            *ngIf="!editMode"
+            type="submit"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            Ajouter
+          </button>
+          <button
+            *ngIf="editMode"
+            type="submit"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            Modifier
+          </button>
         </form>
       </div>
     </div>
