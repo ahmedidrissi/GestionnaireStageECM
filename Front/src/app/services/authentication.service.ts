@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { TokenStorageService } from './token-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,10 @@ import { map } from 'rxjs';
 export class AuthenticationService {
   private baseUrl = AppComponent.baseUrl + '/auth/authenticate';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private tokenStorageService: TokenStorageService
+  ) {}
 
   authenticate(email: string, password: string) {
     return this.http
@@ -19,7 +23,7 @@ export class AuthenticationService {
       })
       .pipe(
         map((res: any) => {
-          sessionStorage.setItem('token', res.token);
+          this.tokenStorageService.saveToken(res.token);
         })
       );
   }
