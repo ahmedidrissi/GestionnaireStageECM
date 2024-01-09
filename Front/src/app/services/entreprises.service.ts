@@ -23,9 +23,16 @@ export class EntreprisesService {
     return this.http.get(`${this.baseUrl}/list`, this.httpOptions);
   }
 
-  getEntrepriseById(entrepriseId: number) {
+  getEntrepriseBySiretNumber(siretNumber: number) {
     return this.http.get(
-      `${this.baseUrl}/id=${entrepriseId}`,
+      `${this.baseUrl}/siret=${siretNumber}`,
+      this.httpOptions
+    );
+  }
+
+  getEntrepriseByBusinessName(businessName: string) {
+    return this.http.get(
+      `${this.baseUrl}/name=${businessName}`,
       this.httpOptions
     );
   }
@@ -36,7 +43,7 @@ export class EntreprisesService {
 
   updateEntreprise(siretNumber: number, newEntreprise: any) {
     return this.http.put(
-      `${this.baseUrl}/update/id=${siretNumber}`,
+      `${this.baseUrl}/update/siret=${siretNumber}`,
       newEntreprise,
       this.httpOptions
     );
@@ -44,7 +51,7 @@ export class EntreprisesService {
 
   deleteEntreprise(siretNumber: number) {
     return this.http.delete(
-      `${this.baseUrl}/delete/id=${siretNumber}`,
+      `${this.baseUrl}/delete/siret=${siretNumber}`,
       this.httpOptions
     );
   }
