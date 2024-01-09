@@ -21,8 +21,12 @@ public class EntrepriseService {
         return entrepriseRepository.findAll();
     }
 
-    public Entreprise getEntrepriseById(Long siretNumber) {
-        return entrepriseRepository.findById(siretNumber).get();
+    public Entreprise getEntrepriseBySiretNumber(Long siretNumber) {
+        return entrepriseRepository.findBySiretNumber(siretNumber).get();
+    }
+
+    public Entreprise getEntrepriseByBusinessName(String businessName) {
+        return entrepriseRepository.findByBusinessName(businessName).get();
     }
 
     public Entreprise saveEntreprise(Entreprise entreprise) {
