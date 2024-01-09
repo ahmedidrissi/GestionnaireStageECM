@@ -69,8 +69,30 @@ export class EntreprisesComponent implements OnInit {
     });
   }
 
-  getEntrepriseById(siretNumber: number) {
-    return this.entreprisesService.getEntrepriseById(siretNumber).subscribe({
+  handleSearch(event: any) {
+    const keyWord = event.target.value.toLowerCase();
+    if (keyWord) {
+      this.entreprisesList = this.entreprisesList.filter((entreprise: any) => {
+        return entreprise.businessName.toLowerCase().includes(keyWord);
+      });
+    } else {
+      this.getEntreprises();
+    }
+  }
+
+  getEntrepriseBySiretNumber(siretNumber: number) {
+    return this.entreprisesService.getEntrepriseBySiretNumber(siretNumber).subscribe({
+      next: (data) => console.log(data),
+      error: (e) => {
+        if (e.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
+  }
+
+  getEntrepriseByBusinessName(businessName: string) {
+    return this.entreprisesService.getEntrepriseByBusinessName(businessName).subscribe({
       next: (data) => console.log(data),
       error: (e) => {
         if (e.status === 403) {
