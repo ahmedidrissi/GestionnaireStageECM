@@ -3,6 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { EntreprisesService } from '../../services/entreprises.service';
+import { TokenStorageService } from '../../services/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-entreprises',
@@ -38,30 +40,44 @@ export class EntreprisesComponent implements OnInit {
     'Contact',
     'Téléphone du Contact',
     'Email',
-    'Actions'
+    'Actions',
   ];
   entreprisesList: any[] = [];
   editMode = false;
   currentSiretNumber: number = 0;
-  
-  constructor(private entreprisesService: EntreprisesService) {}
+
+  constructor(
+    private entreprisesService: EntreprisesService,
+    private tokenStorageService: TokenStorageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getEntreprises();
   }
 
   getEntreprises() {
-    return this.entreprisesService.getEntreprises()
-      .subscribe((data: any) => {
+    return this.entreprisesService.getEntreprises().subscribe({
+      next: (data: any) => {
         this.entreprisesList = data;
-      });
+      },
+      error: (e) => {
+        if (e.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
   }
 
   getEntrepriseById(siretNumber: number) {
-    return this.entreprisesService.getEntrepriseById(siretNumber)
-      .subscribe((data: any) => {
-        console.log(data);
-      });
+    return this.entreprisesService.getEntrepriseById(siretNumber).subscribe({
+      next: (data) => console.log(data),
+      error: (e) => {
+        if (e.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
   }
 
   handleEntrepriseForm() {
@@ -79,10 +95,16 @@ export class EntreprisesComponent implements OnInit {
   }
 
   addEntreprise() {
-    if (this.entrepriseForm.valid) {      
-      this.entreprisesService.addEntreprise(this.entrepriseForm.value)
-        .subscribe((data: any) => {
-          this.entreprisesList.push(data);
+    if (this.entrepriseForm.valid) {
+      this.entreprisesService
+        .addEntreprise(this.entrepriseForm.value)
+        .subscribe({
+          next: (data) => this.entreprisesList.push(data),
+          error: (e) => {
+            if (e.status === 403) {
+              this.tokenStorageService.logout();
+            }
+          },
         });
     } else {
       console.log('invalid form');
@@ -90,23 +112,35 @@ export class EntreprisesComponent implements OnInit {
   }
 
   updateEntreprise() {
-    console.log(this.entrepriseForm.value);
-    console.log(this.currentSiretNumber);
-    
-    this.entreprisesService.updateEntreprise(this.currentSiretNumber, this.entrepriseForm.value).
-      subscribe((data: any) => {
-        this.getEntreprises();
-        this.editMode = false;
+    this.entreprisesService
+      .updateEntreprise(this.currentSiretNumber, this.entrepriseForm.value)
+      .subscribe({
+        next: (data) => {
+          this.getEntreprises();
+          this.editMode = false;
+        },
+        error: (e) => {
+          if (e.status === 403) {
+            this.tokenStorageService.logout();
+          }
+        },
       });
   }
 
-  deleteEntreprise(siretNumber: number) {    
-    this.entreprisesService.deleteEntreprise(siretNumber)
-      .subscribe(() => {
-        this.entreprisesList = this.entreprisesList.filter((entreprise: any) => {
-          return entreprise.siretNumber !== siretNumber;
-        });
-      });
+  deleteEntreprise(siretNumber: number) {
+    this.entreprisesService.deleteEntreprise(siretNumber).subscribe({
+      next: (data) => {
+        this.entreprisesList = this.entreprisesList.filter(
+          (entreprise: any) => {
+            return entreprise.siretNumber !== siretNumber;
+          }
+        );
+      },
+      error: (e) => {
+        if (e.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
   }
-
 }
