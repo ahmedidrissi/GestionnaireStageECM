@@ -2,6 +2,7 @@ package com.example.gestionnairestageecm.controllers;
 
 import java.util.List;
 
+import com.example.gestionnairestageecm.models.ProfessorRequest;
 import com.example.gestionnairestageecm.models.Student;
 import lombok.AllArgsConstructor;
 
@@ -48,7 +49,18 @@ public class ProfessorController {
     }
     
     @PostMapping("/new")
-    public void saveProfessor(@RequestBody Professor professor) {
+    public void saveProfessor(@RequestBody ProfessorRequest professorRequest) {
+        Professor professor=new Professor(professorRequest.getFirstName(),
+                professorRequest.getLastName(),
+                professorRequest.getEmail(),
+                professorRequest.getGender(),
+                professorRequest.getAddress(),
+                professorRequest.getCity(),
+                professorRequest.getPostalCode(),
+                professorRequest.getSchoolPhoneNumber(),
+                professorRequest.getPhoneNumber(),
+                professorRequest.getHiringDate(),
+                professorRequest.getLeavingDate());
         professorService.saveProfessor(professor);
     }
 
