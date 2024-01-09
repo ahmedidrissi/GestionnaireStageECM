@@ -41,7 +41,7 @@ public class PromoController {
     }
 
     @GetMapping("/delete/year={year}")
-    public void deletePromo(int year) {
-        promoService.deletePromo(year);
+    public void deletePromo(Long promoId) {
+        promoService.deletePromo(promoId);
     }
 }

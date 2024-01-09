@@ -86,7 +86,7 @@
     <div class="modal-content">
       <div class="modal-header bg-secondary text-white">
         <h5 class="modal-title" id="entrepriseModalLabel">
-          Ajouter une entreprise
+          {{ editMode ? "Modifier une entreprise" : "Ajouter une entreprise" }}
         </h5>
         <button
           type="button"

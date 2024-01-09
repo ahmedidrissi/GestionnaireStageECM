@@ -3,10 +3,12 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 import { HomeComponent } from './components/home/home.component';
 import { EntreprisesComponent } from './components/entreprises/entreprises.component';
 import { ProfessorsComponent } from './components/professors/professors.component';
+import { TutorsComponent } from './components/tutors/tutors.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'authenticate', component: AuthenticationComponent },
-    { path: 'entreprises', component: EntreprisesComponent },
-    { path: 'professors', component: ProfessorsComponent}
+  { path: '', component: HomeComponent },
+  { path: 'authenticate', component: AuthenticationComponent },
+  { path: 'entreprises', component: EntreprisesComponent },
+  { path: 'professors', component: ProfessorsComponent},
+  { path: 'tutors', component: TutorsComponent },
 ];
