@@ -1,1 +1,153 @@
-<p>tutors works!</p>
+<app-navbar></app-navbar>
+<div class="container p-lg-5 p-2">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Liste des tuteurs</h1>
+    <button
+      type="button"
+      class="btn btn-success"
+      data-bs-toggle="modal"
+      data-bs-target="#tutorModal"
+    >
+      Ajouter un tuteur
+    </button>
+  </div>
+  <div class="d-flex justify-content-end align-items-center">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Rechercher un tuteur"
+        aria-label="Rechercher un tuteur"
+        aria-describedby="button-addon2"
+        (change)="handleSearch($event)"
+        onchange="console.log('change')"
+      />
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        id="button-addon2"
+      >
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </div>
+  <div class="tuteurs d-flex justify-content-center align-items-center">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th *ngFor="let column of displayedColumns">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tutor of tutorsList">
+          <td>{{ tutor.tutorNumber }}</td>
+          <td>{{ tutor.firstName }}</td>
+          <td>{{ tutor.lastName }}</td>
+          <td>{{ tutor.gender }}</td>
+          <td>{{ tutor.tutorPhoneNumber }}</td>
+          <td>
+            <div class="d-flex justify-content-around">
+              <a
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#tutorModal"
+                (click)="handleUpdateTutor(tutor)"
+              >
+                <i class="bi bi-pencil-square text-primary"></i>
+              </a>
+              <a type="button" (click)="deleteTutor(tutor.tutorNumber)">
+                <i class="bi bi-trash text-danger"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="tutorModal"
+  tabindex="-1"
+  aria-labelledby="tutorModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title" id="tutorModalLabel">
+          {{ editMode ? "Modifier un tuteur" : "Ajouter un tuteur" }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="tutorForm" (ngSubmit)="handleTutorForm()">
+          <div class="form-group mb-3">
+            <label for="firstName">Prénom</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              formControlName="firstName"
+              placeholder="Prénom"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="lastName">Nom</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              formControlName="lastName"
+              placeholder="Nom"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="gender">Sexe</label>
+            <input
+              type="text"
+              class="form-control"
+              id="gender"
+              formControlName="gender"
+              placeholder="Sexe"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="tutorPhoneNumber">Numéro de téléphone</label>
+            <input
+              type="text"
+              class="form-control"
+              id="tutorPhoneNumber"
+              formControlName="tutorPhoneNumber"
+              placeholder="Numéro de téléphone du tuteur"
+            />
+          </div>
+          <button
+            *ngIf="!editMode"
+            type="submit"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            Ajouter
+          </button>
+          <button
+            *ngIf="editMode"
+            type="submit"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            Modifier
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
