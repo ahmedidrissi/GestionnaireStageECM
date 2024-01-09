@@ -1,6 +1,7 @@
 package com.example.gestionnairestageecm.controllers;
 
 import com.example.gestionnairestageecm.models.Tutor;
+import com.example.gestionnairestageecm.models.TutorRequest;
 import com.example.gestionnairestageecm.services.TutorService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RequestMapping("/api/v1/Tutors")
+@RequestMapping("/api/v1/tutors")
 @RestController
 @AllArgsConstructor
 public class TutorController {
@@ -33,9 +34,16 @@ public class TutorController {
     }
 
     @PostMapping("/new")
-    public void saveTutor(@RequestBody Tutor Tutor) {
-        tutorService.saveTutor(Tutor);
+    public void saveTutor(@RequestBody TutorRequest tutorRequest) {
+        Tutor tutor = new Tutor(
+                tutorRequest.getFirstName(),
+                tutorRequest.getLastName(),
+                tutorRequest.getGender(),
+                tutorRequest.getTutorPhoneNumber()
+        );
+        tutorService.saveTutor(tutor);
     }
+
 
 
     @PutMapping("/update/number={tutorNumber}")
