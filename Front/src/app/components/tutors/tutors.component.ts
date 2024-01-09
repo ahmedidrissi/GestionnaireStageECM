@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 })
 export class TutorsComponent implements OnInit {
   tutorForm = new FormGroup({
-    // tutorNumber: new FormControl(1),
     firstName: new FormControl('Ahmed'),
     lastName: new FormControl('Idrissi'),
     gender: new FormControl('M'),
@@ -28,6 +27,7 @@ export class TutorsComponent implements OnInit {
     'Nom',
     'Sexe',
     'Téléphone du Tuteur',
+    'Actions'
   ];
 
   tutorsList: any[] = [];
@@ -66,6 +66,8 @@ export class TutorsComponent implements OnInit {
           tutor.lastName.toLowerCase().includes(keyWord)
         );
       });
+    } else {
+      this.getTutors();
     }
   }
 
