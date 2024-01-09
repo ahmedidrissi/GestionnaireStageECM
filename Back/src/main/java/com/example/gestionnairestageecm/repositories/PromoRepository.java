@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.gestionnairestageecm.models.Promo;
 
-public interface PromoRepository extends JpaRepository<Promo, Integer> {
+    public interface PromoRepository extends JpaRepository<Promo, Long> {
 
     Optional<Promo> findByYear(int year);
     
