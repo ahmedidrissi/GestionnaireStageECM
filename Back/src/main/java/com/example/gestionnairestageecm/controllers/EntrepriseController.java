@@ -32,24 +32,29 @@ public class EntrepriseController {
         return entrepriseService.getAllEntreprises();
     }
 
-    @GetMapping("/id={numero_siret}")
-    public Entreprise getEntrepriseById(@PathVariable Long numero_siret) {
-        return entrepriseService.getEntrepriseById(numero_siret);
+    @GetMapping("/siret={siretNumber}")
+    public Entreprise getEntrepriseBySiretNumber(@PathVariable Long siretNumber) {
+        return entrepriseService.getEntrepriseBySiretNumber(siretNumber);
+    }
+
+    @GetMapping("/name={businessName}")
+    public Entreprise getEntrepriseByBusinessName(@PathVariable String businessName) {
+        return entrepriseService.getEntrepriseByBusinessName(businessName);
     }
 
     @PostMapping("/new")
-    public void saveEntreprise(@RequestBody Entreprise entreprise) {
-        entrepriseService.saveEntreprise(entreprise);
+    public Entreprise saveEntreprise(@RequestBody Entreprise entreprise) {
+        return entrepriseService.saveEntreprise(entreprise);
     }
 
-    @PutMapping("/update/id={numero_siret}")
-    public void updateEntreprise(@PathVariable Long numero_siret, @RequestBody Entreprise newEntreprise) {
-        entrepriseService.updateEntreprise(numero_siret, newEntreprise);
+    @PutMapping("/update/siret={siretNumber}")
+    public Entreprise updateEntreprise(@PathVariable Long siretNumber, @RequestBody Entreprise newEntreprise) {
+        return entrepriseService.updateEntreprise(siretNumber, newEntreprise);
     }
 
-    @DeleteMapping("/delete/id={numero_siret}")
-    public void deleteEntreprise(@PathVariable Long numero_siret) {
-        entrepriseService.deleteEntreprise(numero_siret);
+    @DeleteMapping("/delete/siret={siretNumber}")
+    public void deleteEntreprise(@PathVariable Long siretNumber) {
+        entrepriseService.deleteEntreprise(siretNumber);
     }
     
 }

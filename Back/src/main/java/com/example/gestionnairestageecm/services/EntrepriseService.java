@@ -21,8 +21,12 @@ public class EntrepriseService {
         return entrepriseRepository.findAll();
     }
 
-    public Entreprise getEntrepriseById(Long siretNumber) {
-        return entrepriseRepository.findById(siretNumber).get();
+    public Entreprise getEntrepriseBySiretNumber(Long siretNumber) {
+        return entrepriseRepository.findBySiretNumber(siretNumber).get();
+    }
+
+    public Entreprise getEntrepriseByBusinessName(String businessName) {
+        return entrepriseRepository.findByBusinessName(businessName).get();
     }
 
     public Entreprise saveEntreprise(Entreprise entreprise) {
@@ -30,19 +34,8 @@ public class EntrepriseService {
     }
 
     public Entreprise updateEntreprise(Long siretNumber, Entreprise newEntreprise) {
-        Entreprise entreprise =  entrepriseRepository.findById(siretNumber).get();
-        entreprise.setLegalForm(newEntreprise.getLegalForm());
-        entreprise.setBusinessName((newEntreprise.getBusinessName()));
-        entreprise.setAddress(newEntreprise.getAddress());
-        entreprise.setCity(newEntreprise.getCity());
-        entreprise.setPostalCode(newEntreprise.getPostalCode());
-        entreprise.setFax(newEntreprise.getFax());
-        entreprise.setTutorPhoneNumber(newEntreprise.getTutorPhoneNumber());
-        entreprise.setFax(newEntreprise.getFax());
-        entreprise.setContact(newEntreprise.getContact());
-        entreprise.setContactPhoneNumber(newEntreprise.getContactPhoneNumber());
-        entreprise.setEmail(newEntreprise.getEmail());
-        return entrepriseRepository.save(entreprise);
+        entrepriseRepository.deleteById(siretNumber);
+        return entrepriseRepository.save(newEntreprise);
     }
 
     public void deleteEntreprise(Long siretNumber) {

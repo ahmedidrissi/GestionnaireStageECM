@@ -1,9 +1,10 @@
 <app-navbar></app-navbar>
-<!-- login page -->
 <div class="container p-lg-5 p-2">
-  <div class="login d-flex justify-content-center align-items-center flex-column p-5">
+  <div
+    class="login d-flex justify-content-center align-items-center flex-column p-5"
+  >
     <h1 class="mb-5">Login</h1>
-    <form>
+    <form [formGroup]="authenticationForm" (ngSubmit)="handleLogin()">
       <div class="form-group mb-3">
         <label for="email"><i class="bi bi-envelope-at"></i></label>
         <input
@@ -12,6 +13,7 @@
           formControlName="email"
           id="email"
           placeholder="email"
+          formControlName="email"
         />
       </div>
       <div class="form-group mb-3">
@@ -22,9 +24,19 @@
           formControlName="password"
           id="password"
           placeholder="Password"
+          formControlName="password"
         />
       </div>
-      <button type="submit" class="btn btn-dark mb-3">Submit</button>
+      <button type="submit" class="btn btn-dark mb-3">
+        Submit
+      </button>
     </form>
+    <div class="alert alert-danger" *ngIf="loginFailed">
+      {{ errorMessage }}
+    </div>
+    <!-- success -->
+    <div class="alert alert-success" *ngIf="loginSucceded">
+      {{ successMessage }}
+    </div>
   </div>
 </div>

@@ -1,22 +1,35 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from '../../../services/token-storage.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+
+  isLogged: boolean = false;
 
   constructor(
     private router: Router, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private tokenStorageService: TokenStorageService
   ) {}
+
+  ngOnInit(): void {
+    this.isLogged = !!this.tokenStorageService.getToken();
+  }
 
   navigate(route: string): void {
     this.router.navigate([route], { relativeTo: this.route });
+  }
+
+  logout(): void {
+    this.tokenStorageService.logout();
   }
   
 }

@@ -5,18 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "entreprises")
 public class Entreprise {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numero_siret", nullable = false)
     private Long siretNumber;
 
@@ -49,28 +46,4 @@ public class Entreprise {
 
     @Column(name = "email", nullable = false)
     private String email;
-
-    public Entreprise(
-        String legalForm,
-        String businessName,
-        String address,
-        String city,
-        int postalCode,
-        String tutorPhoneNumber,
-        String fax,
-        String contact,
-        String contactPhoneNumber,
-        String email
-    ) {
-        this.legalForm = legalForm;
-        this.businessName = businessName;
-        this.address = address;
-        this.city = city;
-        this.postalCode = postalCode;
-        this.tutorPhoneNumber = tutorPhoneNumber;
-        this.fax = fax;
-        this.contact = contact;
-        this.contactPhoneNumber = contactPhoneNumber;
-        this.email = email;
-    }
 }
