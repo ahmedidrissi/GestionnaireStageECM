@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+<div class="container p-lg-5 p-2">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Liste des stages</h1>
+    <button
+      type="button"
+      class="btn btn-success"
+      data-bs-toggle="modal"
+      data-bs-target="#internshipModal"
+    >
+      Ajouter un stage
+    </button>
+  </div>
+  <div class="d-flex justify-content-end align-items-center">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Rechercher un stage"
+        aria-label="Rechercher un stage"
+        aria-describedby="button-addon2"
+        (change)="handleSearch($event)"
+        onchange="console.log('change')"
+      />
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        id="button-addon2"
+      >
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </div>
+  <div class="stages d-flex justify-content-center align-items-center">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th *ngFor="let column of displayedColumns">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let internship of internshipsList">
+          <td>{{ internship.internshipNumber }}</td>
+            <td>{{ internship.promo }}</td>
+            <td>{{ internship.promoNumber }}</td>
+            <td>{{ internship.professor }}</td>
+            <td>{{ internship.tutor }}</td>
+            <td>{{ internship.enterprise }}</td>
+            <td>{{ internship.type }}</td>
+            <td>{{ internship.year }}</td>
+            <td>{{ internship.appreciation }}</td>
+          <td>
+            <div class="d-flex justify-content-around">
+              <a
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#internshipModal"
+                (click)="handleUpdateInternship(internship)"
+              >
+                <i class="bi bi-pencil-square text-primary"></i>
+              </a>
+              <a
+                type="button"
+                (click)="deleteInternship(internship.internshipNumber)"
+              >
+                <i class="bi bi-trash text-danger"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-entreprises></app-entreprises>
+  <app-tutors></app-tutors>
+</div>
