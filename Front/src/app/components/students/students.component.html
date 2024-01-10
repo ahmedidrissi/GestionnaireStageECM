@@ -130,14 +130,11 @@
               </div>
               <div class="form-group mb-3">
                 <label for="gender">Sexe</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="gender"
-                  placeholder="Sexe"
-                  formControlName="gender"
-                />
-              </div>
+                <select class="form-control" id="gender" formControlName="gender">
+                    <option value="masculin">Masculin</option>
+                    <option value="féminin">Féminin</option>
+                </select>
+            </div>
               <div class="form-group mb-3">
                 <label for="dateOfBirth">Date de naissance</label>
                 <input
@@ -202,14 +199,13 @@
               </div>
               <div class="form-group mb-3">
                 <label for="mention">Mention</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="mention"
-                  placeholder="mention"
-                  formControlName="mention"
-                />
-              </div>
+                <select class="form-control" id="mention" formControlName="mention">
+                    <option value="passable">Passable</option>
+                    <option value="assez_bien">Assez bien</option>
+                    <option value="bien">Bien</option>
+                    <option value="tres_bien">Très bien</option>
+                </select>
+            </div>            
             </div>
           </div>
           <button
