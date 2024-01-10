@@ -32,17 +32,15 @@ public class InternshipService {
     }
 
     public Internship updateInternship(Long internshipId, InternshipRequest newInternship) {
-        internshipRepository.deleteById(internshipId);
-        Internship internship = new Internship(
-                newInternship.getInternshipType(),
-                newInternship.getPromoNumber(),
-                newInternship.getProfessorId(),
-                newInternship.getTutorId(),
-                newInternship.getSiretNumber(),
-                newInternship.getInternshipType(),
-                newInternship.getYear(),
-                newInternship.getAppreciation()
-        );
+        Internship internship = internshipRepository.findById(internshipId).get();
+        internship.setInternshipType(newInternship.getInternshipType());
+        internship.setPromoNumber(newInternship.getPromoNumber());
+        internship.setPromo(newInternship.getPromo());
+        internship.setProfessorId(newInternship.getProfessorId());
+        internship.setSiretNumber(newInternship.getSiretNumber());
+        internship.setTutorId(newInternship.getTutorId());
+        internship.setAppreciation(newInternship.getAppreciation());
+        internship.setYear(newInternship.getYear());
         return internshipRepository.save(internship);
     }
 

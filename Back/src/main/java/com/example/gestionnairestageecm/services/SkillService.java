@@ -37,12 +37,10 @@ public class SkillService {
     }
 
     public Skill updateSkill(Long skillNumber, SkillRequest newSkill) {
-        skillRepository.deleteById(skillNumber);
-        Skill skill = new Skill(
-                newSkill.getCode(),
-                newSkill.getLabel(),
-                newSkill.getDescription()
-        );
+        Skill skill = skillRepository.findById(skillNumber).get();
+        skill.setCode(newSkill.getCode());
+        skill.setLabel(newSkill.getLabel());
+        skill.setDescription(newSkill.getDescription());
         return skillRepository.save(skill);
     }
 

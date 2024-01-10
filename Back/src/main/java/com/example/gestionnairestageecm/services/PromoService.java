@@ -2,6 +2,7 @@ package com.example.gestionnairestageecm.services;
 
 import java.util.List;
 
+import com.example.gestionnairestageecm.models.PromoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,10 @@ public class PromoService {
         return promoRepository.findAll();
     }
 
+    public Promo getPromoById(Long promoId) {
+        return promoRepository.findById(promoId).get();
+    }
+
     public Promo getPromoByYear(int year) {
         return promoRepository.findByYear(year).get();
     }
@@ -29,8 +34,9 @@ public class PromoService {
         return promoRepository.save(promo);
     }
 
-    public Promo updatePromo(int year, Promo newPromo) {
-        Promo promo = promoRepository.findByYear(year).get();
+    public Promo updatePromo(Long promoId, PromoRequest newPromo) {
+        Promo promo = promoRepository.findById(promoId).get();
+        promo.setYear(newPromo.getYear());
         promo.setProfessorId(newPromo.getProfessorId());
         promo.setRegistredNumber(newPromo.getRegistredNumber());
         promo.setReceiptsNumber(newPromo.getReceiptsNumber());

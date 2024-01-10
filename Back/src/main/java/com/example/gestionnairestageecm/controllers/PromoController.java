@@ -2,6 +2,7 @@ package com.example.gestionnairestageecm.controllers;
 
 import java.util.List;
 
+import com.example.gestionnairestageecm.models.PromoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,11 @@ public class PromoController {
         return promoService.getAllPromos();
     }
 
+    @GetMapping("/id={promoId}")
+    public Promo getPromoById(Long promoId) {
+        return promoService.getPromoById(promoId);
+    }
+
     @GetMapping("/year={year}")
     public Promo getPromoByYear(int year) {
         return promoService.getPromoByYear(year);
@@ -33,12 +39,12 @@ public class PromoController {
         return promoService.savePromo(promo);
     }
 
-    @PutMapping("/update/year={year}")
-    public Promo updatePromo(int year, Promo newPromo) {
-        return promoService.updatePromo(year, newPromo);
+    @PutMapping("/update/id={promoId}")
+    public Promo updatePromo(Long promoId, PromoRequest newPromo) {
+        return promoService.updatePromo(promoId, newPromo);
     }
 
-    @DeleteMapping("/delete/year={year}")
+    @DeleteMapping("/delete/id={promoId}")
     public void deletePromo(Long promoId) {
         promoService.deletePromo(promoId);
     }

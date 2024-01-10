@@ -44,7 +44,7 @@ public class ProfessorController {
     }
 
     @PutMapping("/update/id={professorId}")
-    public void updateProfessor(@PathVariable Long professorId, @RequestBody Professor newProfessor) {
+    public void updateProfessor(@PathVariable Long professorId, @RequestBody ProfessorRequest newProfessor) {
         professorService.updateProfessor(professorId, newProfessor);
     }
     

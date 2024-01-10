@@ -33,13 +33,11 @@ public class TutorService {
     }
 
     public Tutor updateTutor(Long tutorNumber, TutorRequest newTutor) {
-        tutorRepository.deleteById(tutorNumber);
-        Tutor tutor = new Tutor(
-                newTutor.getFirstName(),
-                newTutor.getLastName(),
-                newTutor.getGender(),
-                newTutor.getTutorPhoneNumber()
-        );
+        Tutor tutor = tutorRepository.findById(tutorNumber).get();
+        tutor.setFirstName(newTutor.getFirstName());
+        tutor.setLastName(newTutor.getLastName());
+        tutor.setGender(newTutor.getGender());
+        tutor.setTutorPhoneNumber(newTutor.getTutorPhoneNumber());
         return tutorRepository.save(tutor);
     }
 

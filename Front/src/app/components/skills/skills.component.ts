@@ -38,20 +38,20 @@ export class SkillsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getSkills();
+    this.getSkills();
   }
 
   getSkills() {
-    // return this.skillsService.getSkills().subscribe({
-    //   next: (data: any) => {
-    //     this.skillsList = data;
-    //   },
-    //   error: (err) => {
-    //     if (err.status === 403) {
-    //       this.tokenStorageService.logout();
-    //     }
-    //   },
-    // });
+    return this.skillsService.getSkills().subscribe({
+      next: (data: any) => {
+        this.skillsList = data;
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
   }
 
   handleSearch(event: any) {
@@ -80,53 +80,53 @@ export class SkillsComponent implements OnInit {
   }
 
   addSkill() {
-    // if (this.skillForm.valid) {
-    //   this.skillsService.addSkill(this.skillForm.value).subscribe({
-    //     next: (data: any) => {
-    //       this.getSkills();
-    //     },
-    //     error: (err) => {
-    //       if (err.status === 403) {
-    //         this.tokenStorageService.logout();
-    //       }
-    //     },
-    //   });
-    // } else {
-    //   console.log('Invalid form');
-    // }
+    if (this.skillForm.valid) {
+      this.skillsService.addSkill(this.skillForm.value).subscribe({
+        next: (data: any) => {
+          this.getSkills();
+        },
+        error: (err) => {
+          if (err.status === 403) {
+            this.tokenStorageService.logout();
+          }
+        },
+      });
+    } else {
+      console.log('Invalid form');
+    }
   }
 
   updateSkill() {
-    // if (this.skillForm.valid) {
-    //   this.skillsService
-    //     .updateSkill(this.skillForm.value, this.currentSkillNumber)
-    //     .subscribe({
-    //       next: (data: any) => {
-    //         this.getSkills();
-    //         this.skillForm.reset();
-    //         this.editMode = false;
-    //       },
-    //       error: (err) => {
-    //         if (err.status === 403) {
-    //           this.tokenStorageService.logout();
-    //         }
-    //       },
-    //     });
-    // } else {
-    //   console.log('Invalid form');
-    // }
+    if (this.skillForm.valid) {
+      this.skillsService
+        .updateSkill(this.currentSkillNumber, this.skillForm.value)
+        .subscribe({
+          next: (data: any) => {
+            this.getSkills();
+            this.skillForm.reset();
+            this.editMode = false;
+          },
+          error: (err) => {
+            if (err.status === 403) {
+              this.tokenStorageService.logout();
+            }
+          },
+        });
+    } else {
+      console.log('Invalid form');
+    }
   }
 
   deleteSkill(skillNumber: number) {
-    // this.skillsService.deleteSkill(skillNumber).subscribe({
-    //   next: (data: any) => {
-    //     this.getSkills();
-    //   },
-    //   error: (err) => {
-    //     if (err.status === 403) {
-    //       this.tokenStorageService.logout();
-    //     }
-    //   },
-    // });
+    this.skillsService.deleteSkill(skillNumber).subscribe({
+      next: (data: any) => {
+        this.getSkills();
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
   }
 }
