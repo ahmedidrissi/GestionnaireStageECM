@@ -41,14 +41,14 @@
       <tbody>
         <tr *ngFor="let internship of internshipsList">
           <td>{{ internship.internshipNumber }}</td>
-            <td>{{ internship.promo }}</td>
-            <td>{{ internship.promoNumber }}</td>
-            <td>{{ internship.professor }}</td>
-            <td>{{ internship.tutor }}</td>
-            <td>{{ internship.enterprise }}</td>
-            <td>{{ internship.type }}</td>
-            <td>{{ internship.year }}</td>
-            <td>{{ internship.appreciation }}</td>
+          <td>{{ internship.promo }}</td>
+          <td>{{ internship.promoNumber }}</td>
+          <td>{{ internship.professor }}</td>
+          <td>{{ internship.tutor }}</td>
+          <td>{{ internship.enterprise }}</td>
+          <td>{{ internship.internshipType }}</td>
+          <td>{{ internship.year }}</td>
+          <td>{{ internship.appreciation }}</td>
           <td>
             <div class="d-flex justify-content-around">
               <a
@@ -71,7 +71,39 @@
       </tbody>
     </table>
   </div>
+  <app-internships-dates></app-internships-dates>
   <app-entreprises></app-entreprises>
   <app-tutors></app-tutors>
   <app-skills></app-skills>
+</div>
+
+<div
+  class="modal fade"
+  id="internshipModal"
+  tabindex="-1"
+  aria-labelledby="internshipModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="internshipModalLabel">
+          {{ editMode ? "Modifier un stage" : "Ajouter un stage" }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          class="row g-3"
+          [formGroup]="internshipForm"
+          (ngSubmit)="handleInternshipForm()"
+        ></form>
+      </div>
+    </div>
+  </div>
 </div>

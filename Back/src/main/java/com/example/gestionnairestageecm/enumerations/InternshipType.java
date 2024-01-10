@@ -9,7 +9,7 @@ public enum InternshipType {
 
     FIRST_YEAR(11, 4),
     SECOND_YEAR_1ST(21, 4),
-    SECOND_YEAR_2ND(21, 8),
+    SECOND_YEAR_2ND(22, 8),
     THIRD_YEAR_1ST(31, 2),
     THIRD_YEAR_2ND(32, 12);
 

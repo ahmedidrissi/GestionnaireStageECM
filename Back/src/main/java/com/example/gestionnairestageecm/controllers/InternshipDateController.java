@@ -10,7 +10,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/internships-dates")
+@RequestMapping("/api/v1/internships-dates")
 public class InternshipDateController {
 
     private InternshipDateService internshipDateService;

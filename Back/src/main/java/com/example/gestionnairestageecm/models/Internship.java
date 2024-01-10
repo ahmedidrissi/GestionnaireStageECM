@@ -1,5 +1,6 @@
 package com.example.gestionnairestageecm.models;
 
+import com.example.gestionnairestageecm.enumerations.InternshipType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Stage")
+@Table(name = "stages")
 public class Internship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,13 +27,14 @@ public class Internship {
     @Column(name = "numero_de_siret",nullable = false)
     private Long siretNumber;
     @Column(name = "type_stage",nullable = false)
-    private int internshipType;
+    @Enumerated(EnumType.STRING)
+    private InternshipType internshipType;
     @Column(name = "annee_stage",nullable = false)
     private int year;
     @Column(name = "appreciation")
     private String appreciation;
 
-    public Internship(int promo, String promoNumber, Long professorId, Long tutorId, Long siretNumber, int internshipType, int year, String appreciation) {
+    public Internship(int promo, String promoNumber, Long professorId, Long tutorId, Long siretNumber, InternshipType internshipType, int year, String appreciation) {
         this.promo = promo;
         this.promoNumber = promoNumber;
         this.professorId = professorId;

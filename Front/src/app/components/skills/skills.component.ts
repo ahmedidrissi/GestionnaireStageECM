@@ -20,7 +20,7 @@ export class SkillsComponent implements OnInit {
   });
 
   displayedColumns: string[] = [
-    'Numéro de la Compétence',
+    'ID',
     'Code',
     'Libellé',
     'Description',

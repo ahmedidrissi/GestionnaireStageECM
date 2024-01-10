@@ -8,12 +8,14 @@ import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
 import { InternshipsService } from '../../services/internships.service';
 import { SkillsComponent } from '../skills/skills.component';
+import { InternshipsDatesComponent } from '../internships-dates/internships-dates.component';
 
 @Component({
   selector: 'app-internships',
   standalone: true,
   imports: [
     NavbarComponent,
+    InternshipsDatesComponent,
     EntreprisesComponent,
     TutorsComponent,
     SkillsComponent,
@@ -26,23 +28,23 @@ import { SkillsComponent } from '../skills/skills.component';
 export class InternshipsComponent implements OnInit {
   internshipForm = new FormGroup({
     promo: new FormControl(2020),
-    promoNumber: new FormControl(20),
+    promoNumber: new FormControl('20'),
     professor: new FormControl(''),
     tutor: new FormControl(''),
     enterprise: new FormControl(''),
-    type: new FormControl(''),
+    internshipType: new FormControl(''),
     year: new FormControl(2020),
     appreciation: new FormControl(''),
   });
 
   displayedColumns: string[] = [
-    'Numéro du Stage',
+    'ID',
     'Promotion',
     "Numéro d'Étudiant",
     'Professeur',
     'Tuteur',
     'Entreprise',
-    'Type',
+    'Type de Stage',
     'Année',
     'Appréciation',
     'Actions',
@@ -63,16 +65,16 @@ export class InternshipsComponent implements OnInit {
   }
 
   getInternships() {
-    // return this.internshipsService.getInternships().subscribe({
-    //   next: (data: any) => {
-    //     this.internshipsList = data;
-    //   },
-    //   error: (err) => {
-    //     if (err.status === 403) {
-    //       this.tokenStorageService.logout();
-    //     }
-    //   },
-    // });
+    this.internshipsService.getInternships().subscribe({
+      next: (data: any) => {
+        this.internshipsList = data;
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
   }
 
   handleSearch(event: any) {
@@ -104,30 +106,48 @@ export class InternshipsComponent implements OnInit {
   }
 
   addInternship() {
-    // this.internshipsService
-    //   .addInternship(this.internshipForm.value)
-    //   .subscribe((data) => {
-    //     this.getInternships();
-    //     this.internshipForm.reset();
-    //   });
+    this.internshipsService.addInternship(this.internshipForm.value).subscribe({
+      next: (data) => {
+        this.getInternships();
+        this.internshipForm.reset();
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
   }
 
   updateInternship() {
-    // this.internshipsService
-    //   .updateInternship(this.internshipForm.value, this.currentInternshipNumber)
-    //   .subscribe((data) => {
-    //     this.getInternships();
-    //     this.internshipForm.reset();
-    //     this.editMode = false;
-    //   });
+    this.internshipsService
+      .updateInternship(this.currentInternshipNumber, this.internshipForm.value)
+      .subscribe({
+        next: (data) => {
+          this.getInternships();
+          this.internshipForm.reset();
+          this.editMode = false;
+        },
+        error: (err) => {
+          if (err.status === 403) {
+            this.tokenStorageService.logout();
+          }
+        },
+      });
   }
 
   deleteInternship(internshipNumber: number) {
-    // this.internshipsService
-    //   .deleteInternship(internshipNumber)
-    //   .subscribe((data) => {
-    //     this.getInternships();
-    //   });
+    this.internshipsService
+      .deleteInternship(internshipNumber)
+      .subscribe({
+        next: (data) => {
+          this.getInternships();
+        },
+        error: (err) => {
+          if (err.status === 403) {
+            this.tokenStorageService.logout();
+          }
+        },
+      });
   }
-
 }

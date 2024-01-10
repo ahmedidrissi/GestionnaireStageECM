@@ -21,7 +21,7 @@ export class TutorsComponent implements OnInit {
   });
 
   displayedColumns: string[] = [
-    'Numéro du Tuteur',
+    'ID',
     'Prénom',
     'Nom',
     'Sexe',

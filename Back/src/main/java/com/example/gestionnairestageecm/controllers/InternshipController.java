@@ -10,13 +10,13 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/internships")
+@RequestMapping("/api/v1/internships")
 public class InternshipController{
 
     private InternshipService internshipService;
 
     @GetMapping("/list")
-    public List<Internship> getAllInterships() {
+    public List<Internship> getAllInternships() {
         return internshipService.getAllInternships();
     }
 
