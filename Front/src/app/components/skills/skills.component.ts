@@ -84,6 +84,7 @@ export class SkillsComponent implements OnInit {
       this.skillsService.addSkill(this.skillForm.value).subscribe({
         next: (data: any) => {
           this.getSkills();
+          this.skillForm.reset();
         },
         error: (err) => {
           if (err.status === 403) {
