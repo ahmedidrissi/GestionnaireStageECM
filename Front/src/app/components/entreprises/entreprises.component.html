@@ -101,11 +101,12 @@
               <div class="form-group mb-3">
                 <label for="siretNumber">Numéro de SIRET</label>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="siretNumber"
                   placeholder="Numéro de SIRET"
                   formControlName="siretNumber"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -116,6 +117,7 @@
                   id="legalForm"
                   placeholder="Forme Juridique"
                   formControlName="legalForm"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -126,6 +128,7 @@
                   id="businessName"
                   placeholder="Raison Sociale"
                   formControlName="businessName"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -136,6 +139,7 @@
                   id="address"
                   placeholder="Adresse"
                   formControlName="address"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -146,16 +150,18 @@
                   id="city"
                   placeholder="Ville"
                   formControlName="city"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
                 <label for="postalCode">Code Postal</label>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="postalCode"
                   placeholder="Code Postal"
                   formControlName="postalCode"
+                  required
                 />
               </div>
             </div>
@@ -168,6 +174,7 @@
                   id="tutorPhoneNumber"
                   placeholder="Numéro de téléphone du tuteur"
                   formControlName="tutorPhoneNumber"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -178,6 +185,7 @@
                   id="fax"
                   placeholder="Fax"
                   formControlName="fax"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -188,6 +196,7 @@
                   id="contact"
                   placeholder="Numéro de téléphone du contact"
                   formControlName="contactPhoneNumber"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -198,16 +207,18 @@
                   id="contact"
                   placeholder="Contact"
                   formControlName="contact"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
                 <label for="email">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   id="email"
                   placeholder="Email"
                   formControlName="email"
+                  required
                 />
               </div>
             </div>
@@ -216,6 +227,7 @@
             *ngIf="!editMode"
             type="submit"
             class="btn btn-success"
+            [disabled]="entrepriseForm.invalid"
             data-bs-dismiss="modal"
             aria-label="Close"
           >
@@ -225,6 +237,7 @@
             *ngIf="editMode"
             type="submit"
             class="btn btn-success"
+            [disabled]="entrepriseForm.invalid"
             data-bs-dismiss="modal"
             aria-label="Close"
           >

@@ -73,7 +73,7 @@
 >
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
+      <div class="modal-header bg-secondary text-white">
         <h5 class="modal-title" id="skillModalLabel">
           {{ editMode ? "Modifier" : "Ajouter" }} une compétence
         </h5>
@@ -97,6 +97,7 @@
               class="form-control"
               id="code"
               formControlName="code"
+              placeholder="Code"
               required
             />
           </div>
@@ -107,6 +108,7 @@
               class="form-control"
               id="label"
               formControlName="label"
+              placeholder="Libellé"
               required
             />
           </div>
@@ -116,6 +118,7 @@
               class="form-control"
               id="description"
               formControlName="description"
+              placeholder="Description"
               required
             ></textarea>
           </div>
@@ -123,7 +126,7 @@
             <button
               *ngIf="!editMode"
               type="submit"
-              class="btn btn-primary"
+              class="btn btn-success"
               [disabled]="skillForm.invalid"
               data-bs-dismiss="modal"
               aria-label="Close"
@@ -133,7 +136,7 @@
             <button
               *ngIf="editMode"
               type="submit"
-              class="btn btn-primary"
+              class="btn btn-success"
               [disabled]="skillForm.invalid"
               data-bs-dismiss="modal"
               aria-label="Close"

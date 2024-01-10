@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class InternshipsDatesComponent implements OnInit {
   internshipsDatesForm = new FormGroup({
     internshipType: new FormControl(''),
-    year: new FormControl(''),
+    year: new FormControl(),
     startDate: new FormControl(''),
     endDate: new FormControl(''),
   });

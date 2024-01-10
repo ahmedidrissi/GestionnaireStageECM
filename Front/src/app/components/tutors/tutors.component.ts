@@ -14,10 +14,10 @@ import { Router } from '@angular/router';
 })
 export class TutorsComponent implements OnInit {
   tutorForm = new FormGroup({
-    firstName: new FormControl('Ahmed'),
-    lastName: new FormControl('Idrissi'),
-    gender: new FormControl('M'),
-    tutorPhoneNumber: new FormControl('0654321098'),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    gender: new FormControl(''),
+    tutorPhoneNumber: new FormControl(''),
   });
 
   displayedColumns: string[] = [
@@ -89,6 +89,7 @@ export class TutorsComponent implements OnInit {
       this.tutorsService.addTutor(this.tutorForm.value).subscribe({
         next: (data) => {
           this.getTutors();
+          this.tutorForm.reset();
         },
         error: (err) => {
           if (err.status === 403) {
@@ -109,7 +110,7 @@ export class TutorsComponent implements OnInit {
           next: (data) => {
             this.getTutors();
             this.editMode = false;
-
+            this.tutorForm.reset();
           },
           error: (err) => {
             if (err.status === 403) {

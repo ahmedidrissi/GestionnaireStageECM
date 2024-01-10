@@ -39,7 +39,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let internshipDate of internshipsDatesList">
-          <td>{{ internshipDate.internshipDateNumber }}</td>
+          <td>{{ internshipDate.internshipDateId }}</td>
           <td>{{ internshipDate.internshipType }}</td>
           <td>{{ internshipDate.year }}</td>
           <td>{{ internshipDate.startDate }}</td>
@@ -79,7 +79,7 @@
 >
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
+      <div class="modal-header bg-secondary text-white">
         <h5 class="modal-title" id="internshipDateModalLabel">
           {{ editMode ? "Modifier" : "Ajouter" }} une date de stage
         </h5>
@@ -101,13 +101,15 @@
             <select
               id="internshipType"
               class="form-select"
+              aria-label="Type de stage"
               formControlName="internshipType"
+              required
             >
-              <option value="11">Stage de 1A</option>
-              <option value="21">1er Stage de 2A</option>
-              <option value="22">2ème Stage de 2A</option>
-              <option value="31">1er Stage de 3A</option>
-              <option value="32">2ème Stage de 3A</option>
+              <option value="FIRST_YEAR">Stage de 1A</option>
+              <option value="SECOND_YEAR_1ST">1er Stage de 2A</option>
+              <option value="SECOND_YEAR_2ND">2ème Stage de 2A</option>
+              <option value="THIRD_YEAR_1ST">1er Stage de 3A</option>
+              <option value="THIRD_YEAR_2ND">2ème Stage de 3A</option>
             </select>
           </div>
           <div class="col-md-6">
@@ -117,6 +119,7 @@
               class="form-control"
               id="year"
               formControlName="year"
+              required
             />
           </div>
           <div class="col-md-6">
@@ -126,6 +129,7 @@
               class="form-control"
               id="startDate"
               formControlName="startDate"
+              required
             />
           </div>
           <div class="col-md-6">
@@ -135,6 +139,7 @@
               class="form-control"
               id="endDate"
               formControlName="endDate"
+              required
             />
           </div>
           <div class="col-12">
