@@ -6,7 +6,7 @@
       type="button"
       class="btn btn-success"
       data-bs-toggle="modal"
-      data-bs-target="#etudiantModal"
+      data-bs-target="#studentModal"
     >
       Ajouter un etudiant
     </button>
@@ -39,31 +39,31 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let etudiant of etudiantsList">
-          <td>{{ etudiant.studentId }}</td>
-          <td>{{ etudiant.firstName }}</td>
-          <td>{{ etudiant.lastName }}</td>
-          <td>{{ etudiant.email }}</td>
-          <td>{{ etudiant.gender }}</td>
-          <td>{{ etudiant.dateOfBirth }}</td>
-          <td>{{ etudiant.address }}</td>
-          <td>{{ etudiant.city }}</td>
-          <td>{{ etudiant.postalCode }}</td>
-          <td>{{ etudiant.phoneNumber }}</td>
-          <td>{{ etudiant.promo }}</td>
-          <td>{{ etudiant.promoNumber }}</td>
-          <td>{{ etudiant.mention }}</td>
+        <tr *ngFor="let student of studentsList">
+          <td>{{ student.studentId }}</td>
+          <td>{{ student.firstName }}</td>
+          <td>{{ student.lastName }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.gender }}</td>
+          <td>{{ student.dateOfBirth }}</td>
+          <td>{{ student.address }}</td>
+          <td>{{ student.city }}</td>
+          <td>{{ student.postalCode }}</td>
+          <td>{{ student.phoneNumber }}</td>
+          <td>{{ student.promo }}</td>
+          <td>{{ student.promoNumber }}</td>
+          <td>{{ student.mention }}</td>
           <td>
             <div class="d-flex justify-content-around">
               <a
                 type="button"
                 data-bs-toggle="modal"
-                data-bs-target="#etudiantModal"
-                (click)="handleUpdateEtudiant(etudiant)"
+                data-bs-target="#studentModal"
+                (click)="handleUpdateStudent(student)"
               >
                 <i class="bi bi-pencil-square text-primary"></i>
               </a>
-              <a type="button" (click)="deleteEtudiant(etudiant.studentId)">
+              <a type="button" (click)="deleteStudent(student.studentId)">
                 <i class="bi bi-trash text-danger"></i>
               </a>
             </div>
@@ -76,15 +76,15 @@
 
 <div
   class="modal fade"
-  id="etudiantModal"
+  id="studentModal"
   tabindex="-1"
-  aria-labelledby="etudiantModalLabel"
+  aria-labelledby="studentModalLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-secondary text-white">
-        <h5 class="modal-title" id="etudiantModalLabel">
+        <h5 class="modal-title" id="studentModalLabel">
           {{ editMode ? "Modifier un etudiant" : "Ajouter un etudiant" }}
         </h5>
         <button
@@ -95,17 +95,17 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="etudiantForm" (ngSubmit)="handleEtudiantForm()">
+        <form [formGroup]="studentForm" (ngSubmit)="handleStudentForm()">
           <div class="row">
             <div class="col-lg-6 col-12">
               <div class="form-group mb-3">
-                <label for="firstName ">Prenom</label>
+                <label for="firstName">Prenom</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="firstName "
+                  id="firstName"
                   placeholder="Prenom"
-                  formControlName="firstName "
+                  formControlName="firstName"
                 />
               </div>
               <div class="form-group mb-3">
