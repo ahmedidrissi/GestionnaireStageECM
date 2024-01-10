@@ -32,7 +32,7 @@ export class StudentsComponent implements OnInit {
   });
 
   displayedColumns: string[] = [
-    'studentId',
+    'ID',
     'Prenom',
     'nom',
     'Email',
