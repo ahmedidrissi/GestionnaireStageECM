@@ -11,18 +11,16 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "dates_stages")
 public class InternshipDate {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     @Column(name = "date_stage_id", nullable = false)
     private Long internshipDateId;
 
@@ -38,4 +36,11 @@ public class InternshipDate {
 
     @Column(name = "date_fin", nullable = false)
     private LocalDate endDate;
+
+    public InternshipDate(InternshipType internshipType, int year, LocalDate startDate, LocalDate endDate) {
+        this.internshipType = internshipType;
+        this.year = year;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 }
