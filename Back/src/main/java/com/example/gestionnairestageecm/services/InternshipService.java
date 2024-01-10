@@ -1,6 +1,7 @@
 package com.example.gestionnairestageecm.services;
 
 import com.example.gestionnairestageecm.models.Internship;
+import com.example.gestionnairestageecm.models.InternshipRequest;
 import com.example.gestionnairestageecm.models.Professor;
 import com.example.gestionnairestageecm.repositories.InternshipRepository;
 import lombok.AllArgsConstructor;
@@ -30,16 +31,18 @@ public class InternshipService {
         return internshipRepository.save(internship);
     }
 
-    public Internship updateInternship(Long internshipId, Internship newInternship) {
-        Internship internship = internshipRepository.findById(internshipId).get();
-        internship.setInternshipType(newInternship.getInternshipType());
-        internship.setAppreciation(newInternship.getAppreciation());
-        internship.setPromo(newInternship.getPromo());
-        internship.setPromoNumber(newInternship.getPromoNumber());
-        internship.setYear(newInternship.getYear());
-        internship.setProfessorId(newInternship.getProfessorId());
-        internship.setSiretNumber(newInternship.getSiretNumber());
-        internship.setTutorId(newInternship.getTutorId());
+    public Internship updateInternship(Long internshipId, InternshipRequest newInternship) {
+        internshipRepository.deleteById(internshipId);
+        Internship internship = new Internship(
+                newInternship.getInternshipType(),
+                newInternship.getPromoNumber(),
+                newInternship.getProfessorId(),
+                newInternship.getTutorId(),
+                newInternship.getSiretNumber(),
+                newInternship.getInternshipType(),
+                newInternship.getYear(),
+                newInternship.getAppreciation()
+        );
         return internshipRepository.save(internship);
     }
 

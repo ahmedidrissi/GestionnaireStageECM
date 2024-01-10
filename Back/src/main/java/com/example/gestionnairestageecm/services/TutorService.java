@@ -1,6 +1,7 @@
 package com.example.gestionnairestageecm.services;
 
 import com.example.gestionnairestageecm.models.Tutor;
+import com.example.gestionnairestageecm.models.TutorRequest;
 import com.example.gestionnairestageecm.repositories.TutorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,14 @@ public class TutorService {
         return tutorRepository.save(Tutor);
     }
 
-    public Tutor updateTutor(Long tutorNumber, Tutor newTutor) {
-        Tutor tutor = tutorRepository.findById(tutorNumber).get();
-        tutor.setFirstName(newTutor.getFirstName());
-        tutor.setLastName(newTutor.getLastName());
-        tutor.setGender(newTutor.getGender());
-        tutor.setTutorPhoneNumber(newTutor.getTutorPhoneNumber());
+    public Tutor updateTutor(Long tutorNumber, TutorRequest newTutor) {
+        tutorRepository.deleteById(tutorNumber);
+        Tutor tutor = new Tutor(
+                newTutor.getFirstName(),
+                newTutor.getLastName(),
+                newTutor.getGender(),
+                newTutor.getTutorPhoneNumber()
+        );
         return tutorRepository.save(tutor);
     }
 
