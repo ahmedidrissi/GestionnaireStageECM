@@ -1,0 +1,237 @@
+<app-navbar></app-navbar>
+<div class="container p-lg-5 p-2">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Liste des etudiants</h1>
+    <button
+      type="button"
+      class="btn btn-success"
+      data-bs-toggle="modal"
+      data-bs-target="#etudiantModal"
+    >
+      Ajouter un etudiant
+    </button>
+  </div>
+  <div class="d-flex justify-content-end align-items-center">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Rechercher un etudiant"
+        aria-label="Rechercher un etudiant"
+        aria-describedby="button-addon2"
+        (change)="handleSearch($event)"
+        onchange="console.log('change')"
+      />
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        id="button-addon2"
+      >
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </div>
+  <div class="etudiants d-flex justify-content-center align-items-center">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th *ngFor="let column of displayedColumns">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let etudiant of etudiantsList">
+          <td>{{ etudiant.studentId }}</td>
+          <td>{{ etudiant.firstName }}</td>
+          <td>{{ etudiant.lastName }}</td>
+          <td>{{ etudiant.email }}</td>
+          <td>{{ etudiant.gender }}</td>
+          <td>{{ etudiant.dateOfBirth }}</td>
+          <td>{{ etudiant.address }}</td>
+          <td>{{ etudiant.city }}</td>
+          <td>{{ etudiant.postalCode }}</td>
+          <td>{{ etudiant.phoneNumber }}</td>
+          <td>{{ etudiant.promo }}</td>
+          <td>{{ etudiant.promoNumber }}</td>
+          <td>{{ etudiant.mention }}</td>
+          <td>
+            <div class="d-flex justify-content-around">
+              <a
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#etudiantModal"
+                (click)="handleUpdateEtudiant(etudiant)"
+              >
+                <i class="bi bi-pencil-square text-primary"></i>
+              </a>
+              <a type="button" (click)="deleteEtudiant(etudiant.studentId)">
+                <i class="bi bi-trash text-danger"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="etudiantModal"
+  tabindex="-1"
+  aria-labelledby="etudiantModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title" id="etudiantModalLabel">
+          {{ editMode ? "Modifier un etudiant" : "Ajouter un etudiant" }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="etudiantForm" (ngSubmit)="handleEtudiantForm()">
+          <div class="row">
+            <div class="col-lg-6 col-12">
+              <div class="form-group mb-3">
+                <label for="firstName ">Prenom</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName "
+                  placeholder="Prenom"
+                  formControlName="firstName "
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="lastName">Nom</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastName"
+                  placeholder="Nom"
+                  formControlName="lastName"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="email">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="gender">Sexe</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="gender"
+                  placeholder="Sexe"
+                  formControlName="gender"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="dateOfBirth">Date de naissance</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="dateOfBirth"
+                  placeholder="date de naissance"
+                  formControlName="dateOfBirth"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="form-group mb-3">
+                <label for="address">Adresse</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="address"
+                  placeholder="Adresse"
+                  formControlName="address"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="city">Ville</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  placeholder="Ville"
+                  formControlName="city"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="postalCode">Code Postal</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="postalCode"
+                  placeholder="Code Postal"
+                  formControlName="postalCode"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="phoneNumber">Téléphone de l'étudiant</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phoneNumber"
+                  placeholder="téléphone de l'étudiant"
+                  formControlName="phoneNumber"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="promoNumber">Numéro promo</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="promoNumber"
+                  placeholder="Numéro promo"
+                  formControlName="promoNumber"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="mention">Mention</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="mention"
+                  placeholder="mention"
+                  formControlName="mention"
+                />
+              </div>
+            </div>
+          </div>
+          <button
+            *ngIf="!editMode"
+            type="submit"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            Ajouter
+          </button>
+          <button
+            *ngIf="editMode"
+            type="submit"
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            Modifier
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
