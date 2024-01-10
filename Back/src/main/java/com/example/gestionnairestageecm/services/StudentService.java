@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.gestionnairestageecm.models.Student;
+import com.example.gestionnairestageecm.models.StudentRequest;
 import com.example.gestionnairestageecm.repositories.StudentRepository;
 
 import lombok.AllArgsConstructor;
@@ -56,5 +57,8 @@ public class StudentService {
 
     public void deleteStudent(Long studentId) {
         studentRepository.deleteById(studentId);
+    }
+
+    public void saveStudent(StudentRequest studentRequest) {
     }
 }
