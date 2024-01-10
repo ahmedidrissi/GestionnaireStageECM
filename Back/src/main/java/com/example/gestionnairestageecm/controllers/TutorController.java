@@ -47,7 +47,7 @@ public class TutorController {
 
 
     @PutMapping("/update/number={tutorNumber}")
-    public void updateTutor(@PathVariable Long tutorNumber, @RequestBody Tutor newTutor) {
+    public void updateTutor(@PathVariable Long tutorNumber, @RequestBody TutorRequest newTutor) {
         tutorService.updateTutor(tutorNumber, newTutor);
     }
 
