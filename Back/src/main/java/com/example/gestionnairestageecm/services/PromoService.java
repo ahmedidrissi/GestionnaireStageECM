@@ -37,8 +37,8 @@ public class PromoService {
         return promoRepository.save(promo);
     }
 
-    public void deletePromo(int year) {
-        promoRepository.deleteById(year);
+    public void deletePromo(Long promoId) {
+        promoRepository.deleteById(promoId);
     }
 
 }
