@@ -6,7 +6,7 @@ import { TokenStorageService } from './token-storage.service';
 @Injectable({
   providedIn: 'root',
 })
-export class EtudiantsService {
+export class StudentsService {
   private baseUrl = AppComponent.baseUrl + '/students';
   private httpOptions = {
     headers: new HttpHeaders({
@@ -19,31 +19,31 @@ export class EtudiantsService {
     private tokenStorageService: TokenStorageService
   ) {}
 
-  getEtudiantName(lastName: string) {
+  getStudentByName(lastName: string) {
     return this.http.get(`${this.baseUrl}/name=${lastName}`, this.httpOptions);
   }
 
-  getEtudiants() {
+  getStudents() {
     return this.http.get(`${this.baseUrl}/list`, this.httpOptions);
   }
 
-  getEtudiantsById(StudentId: String) {
+  getStudentById(StudentId: String) {
     return this.http.get(this.baseUrl + '/id=' + StudentId, this.httpOptions);
   }
 
-  addEtudiants(etudiant: any) {
-    return this.http.post(this.baseUrl + '/new', etudiant, this.httpOptions);
+  addStudent(student: any) {
+    return this.http.post(this.baseUrl + '/new', student, this.httpOptions);
   }
 
-  updateEtudiants(StudentId: number, newEtudiants: any) {
+  updateStudent(StudentId: number, newStudent: any) {
     return this.http.put(
       this.baseUrl + '/update/id=' + StudentId,
-      newEtudiants,
+      newStudent,
       this.httpOptions
     );
   }
 
-  deleteEtudiant(StudentId: number) {
+  deleteStudent(StudentId: number) {
     return this.http.delete(
       `${this.baseUrl}/delete/id= ${StudentId}`,
       this.httpOptions
