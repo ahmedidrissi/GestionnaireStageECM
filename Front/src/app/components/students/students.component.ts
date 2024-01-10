@@ -2,19 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../components/shared/navbar/navbar.component';
-import { EtudiantsService } from '../services/etudiants.service';
-import { TokenStorageService } from '../services/token-storage.service';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { TokenStorageService } from '../../services/token-storage.service';
+import { StudentsService } from '../../services/students.service';
+
 
 @Component({
-  selector: 'app-etudiants',
+  selector: 'app-students',
   standalone: true,
   imports: [NavbarComponent, ReactiveFormsModule, CommonModule],
-  templateUrl: './etudiants.component.html',
-  styleUrls: ['./etudiants.component.css'],
+  templateUrl: './students.component.html',
+  styleUrls: ['./students.component.css'],
 })
-export class EtudiantsComponent implements OnInit {
-  etudiantForm = new FormGroup({
+export class StudentsComponent implements OnInit {
+  studentForm = new FormGroup({
     studentId: new FormControl(1234),
     firstName: new FormControl('Emy'),
     lastName: new FormControl('Di'),
@@ -46,25 +47,24 @@ export class EtudiantsComponent implements OnInit {
     'Mention',
     'Actions',
   ];
-  etudiantsList: any[] = [];
+  studentsList: any[] = [];
   currentstudentId = 0;
   editMode = false;
-  etudiant: any;
-  etudiantsService: any;
+  student: any;
 
   constructor(
-    private etudiantService: EtudiantsService,
+    private studentsService: StudentsService,
     private tokenStorageService: TokenStorageService
   ) {}
 
   ngOnInit(): void {
-    this.getEtudiants();
+    this.getStudents();
   }
 
-  getEtudiants() {
-    return this.etudiantsService.getEtudiants().subscribe({
+  getStudents() {
+    return this.studentsService.getStudents().subscribe({
       next: (data: any) => {
-        this.etudiantsList = data;
+        this.studentsList = data;
       },
       error: (e: { status: number }) => {
         if (e.status === 403) {
@@ -77,17 +77,17 @@ export class EtudiantsComponent implements OnInit {
   handleSearch(event: any) {
     const keyWord = event.target.value.toLowerCase();
     if (keyWord) {
-      this.etudiantsList = this.etudiantsList.filter((etudiant: any) => {
-        const fullName = `${etudiant.firstName.toLowerCase()} ${etudiant.lastName.toLowerCase()}`;
+      this.studentsList = this.studentsList.filter((student: any) => {
+        const fullName = `${student.firstName.toLowerCase()} ${student.lastName.toLowerCase()}`;
         return fullName.includes(keyWord);
       });
     } else {
-      this.getEtudiants();
+      this.getStudents();
     }
   }
 
-  getEtudiantName(lastName: string) {
-    return this.etudiantsService.getEtudiantName(lastName).subscribe({
+  getStudentByName(lastName: string) {
+    return this.studentsService.getStudentByName(lastName).subscribe({
       next: (data: any) => console.log(data),
       error: (e: { status: number }) => {
         if (e.status === 403) {
@@ -97,25 +97,25 @@ export class EtudiantsComponent implements OnInit {
     });
   }
 
-  handleEtudiantForm() {
+  handleStudentForm() {
     if (this.editMode) {
-      this.updateEtudiant();
+      this.updateStudent();
     } else {
-      this.addEtudiant();
+      this.addStudent();
     }
   }
 
-  handleUpdateEtudiant(etudiant: any) {
+  handleUpdateStudent(student: any) {
     this.editMode = true;
-    this.currentstudentId = etudiant.studentId;
-    this.etudiantForm.patchValue(etudiant);
+    this.currentstudentId = student.studentId;
+    this.studentForm.patchValue(student);
   }
 
-  addEtudiant() {
-    if (this.etudiantForm.valid) {
-      this.etudiantsService.addEtudiants(this.etudiantForm.value).subscribe({
+  addStudent() {
+    if (this.studentForm.valid) {
+      this.studentsService.addStudent(this.studentForm.value).subscribe({
         next: (data: any) => {
-          this.getEtudiants();
+          this.getStudents();
         },
         error: (e: { status: number; }) => {
           if (e.status === 403) {
@@ -127,13 +127,13 @@ export class EtudiantsComponent implements OnInit {
       console.log('invalid form');
     }
   }
-
-  updateEtudiant() {
-    this.etudiantsService
-      .updateEtudiants(this.currentstudentId, this.etudiantForm.value)
+ 
+  updateStudent() {
+    this.studentsService
+      .updateStudent(this.currentstudentId, this.studentForm.value)
       .subscribe({
         next: (data: any) => {
-          this.getEtudiants();
+          this.getStudents();
           this.editMode = false;
         },
         error: (e: { status: number; }) => {
@@ -144,11 +144,11 @@ export class EtudiantsComponent implements OnInit {
       });
   }
 
-  deleteEtudiant(studentId: number) {
-    this.etudiantsService.deleteEtudiant(studentId).subscribe({
+  deleteStudent(studentId: number) {
+    this.studentsService.deleteStudent(studentId).subscribe({
       next: (data: any) => {
-        this.etudiantsList = this.etudiantsList.filter((etudiant: any) => {
-          return etudiant.studentId !== studentId;
+        this.studentsList = this.studentsList.filter((student: any) => {
+          return student.studentId !== studentId;
         });
       },
       error: (e: { status: number; }) => {
