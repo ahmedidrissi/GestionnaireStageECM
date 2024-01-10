@@ -15,7 +15,6 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfessorsComponent implements OnInit{
   professorForm = new FormGroup({
-    professorId: new FormControl(1),
     firstName: new FormControl('SARL'),
     lastName: new FormControl('Test'),
     email: new FormControl('test@gmail.com'),
@@ -112,7 +111,7 @@ export class ProfessorsComponent implements OnInit{
       this.professorService
         .addProfessor(this.professorForm.value)
         .subscribe({
-          next: (data) => this.professorsList.push(data),
+          next: (data) => this.getProfessors(),
           error: (e) => {
             if (e.status === 403) {
               this.tokenStorageService.logout();
