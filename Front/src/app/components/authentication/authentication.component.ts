@@ -10,13 +10,12 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [NavbarComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './authentication.component.html',
-  styleUrl: './authentication.component.css'
+  styleUrl: './authentication.component.css',
 })
 export class AuthenticationComponent implements OnInit {
-
   authenticationForm = new FormGroup({
     email: new FormControl(''),
-    password: new FormControl('')
+    password: new FormControl(''),
   });
   loginFailed: boolean = false;
   errorMessage: string = '';
@@ -26,31 +25,35 @@ export class AuthenticationComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
-  ) { 
-  }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   handleLogin() {
-    if (this.authenticationForm.value.email && this.authenticationForm.value.password) {
-      this.authenticationService.authenticate(this.authenticationForm.value.email, this.authenticationForm.value.password)
-      .subscribe(
-        data => {
-          this.loginSucceded = true;
-          this.successMessage = 'Login successful. Redirecting...';
-          setTimeout(() => {
-            this.router.navigate(['/entreprises']);
-          }, 4000);
-        },
-        error => {
-          this.loginFailed = true;
-          this.errorMessage = 'Login failed. Please try again.';
-        }
-      )
+    if (
+      this.authenticationForm.value.email &&
+      this.authenticationForm.value.password
+    ) {
+      this.authenticationService
+        .authenticate(
+          this.authenticationForm.value.email,
+          this.authenticationForm.value.password
+        )
+        .subscribe({
+          next: (data) => {
+            this.loginSucceded = true;
+            this.successMessage = 'Login successful. Redirecting...';
+            setTimeout(() => {
+              this.router.navigate(['/dashboard']);
+            }, 4000);
+          },
+          error: (err) => {
+            this.loginFailed = true;
+            this.errorMessage = 'Login failed. Please try again.';
+          },
+        });
     } else {
       console.log('Please enter a valid email and password.');
     }
   }
-
 }

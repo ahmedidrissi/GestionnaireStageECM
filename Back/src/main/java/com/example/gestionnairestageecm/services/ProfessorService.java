@@ -2,6 +2,7 @@ package com.example.gestionnairestageecm.services;
 
 import java.util.List;
 
+import com.example.gestionnairestageecm.models.ProfessorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class ProfessorService {
         return professorRepository.save(professor);
     }
 
-    public Professor updateProfessor(Long professorId, Professor newProfessor) {
+    public Professor updateProfessor(Long professorId, ProfessorRequest newProfessor) {
         Professor professor = professorRepository.findById(professorId).get();
         professor.setFirstName(newProfessor.getFirstName());
         professor.setLastName(newProfessor.getLastName());

@@ -1,6 +1,7 @@
 package com.example.gestionnairestageecm.controllers;
 
 import com.example.gestionnairestageecm.models.Internship;
+import com.example.gestionnairestageecm.models.InternshipRequest;
 import com.example.gestionnairestageecm.services.InternshipService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class InternshipController{
     }
 
     @GetMapping("/id={profId}&{tutorId}")
-    public Internship getInternshipByProfIdAndTutorId(@PathVariable Long profId,@PathVariable Long tutorId ){
+    public Internship getInternshipByProfIdAndTutorId(@PathVariable Long profId, @PathVariable Long tutorId ){
         return internshipService.getBeyProfIdAndTutorId(profId, tutorId);
     }
 
@@ -34,7 +35,7 @@ public class InternshipController{
         return internshipService.getBySiretNumber(siretNumber);
     }
     @PutMapping("/update/id={internshipId}")
-    public void updateInternship(@PathVariable Long internshipId, @RequestBody Internship newInternship) {
+    public void updateInternship(@PathVariable Long internshipId, @RequestBody InternshipRequest newInternship) {
         internshipService.updateInternship(internshipId, newInternship);
     }
 

@@ -14,13 +14,11 @@ public class Internship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_stage",nullable = false)
-    private Long internshipID;
+    private Long internshipId;
     @Column(name = "promo",nullable = false)
     private int promo;
     @Column(name = "numero_promo",nullable = false)
     private String promoNumber;
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "numero_professeur")
     @Column(name = "id_professeur",nullable = false)
     private Long professorId;
     @Column(name = "id_tuteur",nullable = false)
@@ -34,14 +32,14 @@ public class Internship {
     @Column(name = "appreciation")
     private String appreciation;
 
-
-    public Internship(int promo, String promoNumber, Long tutorId, Long siretNumber, int internshipType,int year,String appreciation) {
+    public Internship(int promo, String promoNumber, Long professorId, Long tutorId, Long siretNumber, int internshipType, int year, String appreciation) {
         this.promo = promo;
         this.promoNumber = promoNumber;
+        this.professorId = professorId;
         this.tutorId = tutorId;
         this.siretNumber = siretNumber;
         this.internshipType = internshipType;
-        this.year=year;
-        this.appreciation=appreciation;
+        this.year = year;
+        this.appreciation = appreciation;
     }
 }
