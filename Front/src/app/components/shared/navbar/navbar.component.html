@@ -1,35 +1,35 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid px-lg-5">
     <a class="navbar-brand" type="button" (click)="navigate('/')">
-      <h2>ECM</h2>
+      <h3 style="margin-top: 8px;">ECM</h3> 
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" type="button" (click)="navigate('/')">Home</a>
+          <a *ngIf="isLogged" class="nav-link" type="button" (click)="navigate('/dashboard')">Tableau de bord</a>
+          <a *ngIf="!isLogged" class="nav-link" type="button" (click)="navigate('/')">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" type="button" (click)="navigate('/link')">Link</a>
+        <li *ngIf="isLogged" class="nav-item">
+          <a class="nav-link" type="button" (click)="navigate('/students')">Etudiants</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+        <li *ngIf="isLogged" class="nav-item">
+          <a class="nav-link" type="button" (click)="navigate('/professors')">Professeurs</a>
+        </li>
+        <li *ngIf="isLogged" class="nav-item">
+          <a class="nav-link" type="button" (click)="navigate('/internships')">Stages</a>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a *ngIf="!isLogged" class="nav-link" type="button" (click)="navigate('/authenticate')">Login</a>
-          <a *ngIf="isLogged" class="nav-link" type="button" (click)="logout()">Logout</a>
+          <a *ngIf="!isLogged" class="nav-link" type="button" (click)="navigate('/authenticate')">
+          <i class="bi bi-box-arrow-in-right me-1"></i> Connexion
+          </a>
+          <a *ngIf="isLogged" class="nav-link" type="button" (click)="logout()">
+          <i class="bi bi-box-arrow-in-left me-1"></i> Déconnexion
+          </a>
         </li>
       </ul>
     </div>

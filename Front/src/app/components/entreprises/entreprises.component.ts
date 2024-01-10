@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { EntreprisesService } from '../../services/entreprises.service';
 import { TokenStorageService } from '../../services/token-storage.service';
@@ -9,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-entreprises',
   standalone: true,
-  imports: [NavbarComponent, ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './entreprises.component.html',
   styleUrl: './entreprises.component.css',
 })
@@ -81,25 +80,29 @@ export class EntreprisesComponent implements OnInit {
   }
 
   getEntrepriseBySiretNumber(siretNumber: number) {
-    return this.entreprisesService.getEntrepriseBySiretNumber(siretNumber).subscribe({
-      next: (data) => console.log(data),
-      error: (e) => {
-        if (e.status === 403) {
-          this.tokenStorageService.logout();
-        }
-      },
-    });
+    return this.entreprisesService
+      .getEntrepriseBySiretNumber(siretNumber)
+      .subscribe({
+        next: (data) => console.log(data),
+        error: (e) => {
+          if (e.status === 403) {
+            this.tokenStorageService.logout();
+          }
+        },
+      });
   }
 
   getEntrepriseByBusinessName(businessName: string) {
-    return this.entreprisesService.getEntrepriseByBusinessName(businessName).subscribe({
-      next: (data) => console.log(data),
-      error: (e) => {
-        if (e.status === 403) {
-          this.tokenStorageService.logout();
-        }
-      },
-    });
+    return this.entreprisesService
+      .getEntrepriseByBusinessName(businessName)
+      .subscribe({
+        next: (data) => console.log(data),
+        error: (e) => {
+          if (e.status === 403) {
+            this.tokenStorageService.logout();
+          }
+        },
+      });
   }
 
   handleEntrepriseForm() {
