@@ -7,6 +7,7 @@ import { TutorsComponent } from '../tutors/tutors.component';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
 import { InternshipsService } from '../../services/internships.service';
+import { SkillsComponent } from '../skills/skills.component';
 
 @Component({
   selector: 'app-internships',
@@ -15,6 +16,7 @@ import { InternshipsService } from '../../services/internships.service';
     NavbarComponent,
     EntreprisesComponent,
     TutorsComponent,
+    SkillsComponent,
     CommonModule,
     ReactiveFormsModule,
   ],

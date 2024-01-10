@@ -131,6 +131,7 @@
             *ngIf="!editMode"
             type="submit"
             class="btn btn-success"
+            [disabled]="tutorForm.invalid"
             data-bs-dismiss="modal"
             aria-label="Close"
           >
@@ -140,6 +141,7 @@
             *ngIf="editMode"
             type="submit"
             class="btn btn-success"
+            [disabled]="tutorForm.invalid"
             data-bs-dismiss="modal"
             aria-label="Close"
           >
