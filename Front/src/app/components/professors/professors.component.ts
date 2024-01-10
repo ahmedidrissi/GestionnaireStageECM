@@ -15,7 +15,6 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfessorsComponent implements OnInit{
   professorForm = new FormGroup({
-    professorId: new FormControl(1),
     firstName: new FormControl('SARL'),
     lastName: new FormControl('Test'),
     email: new FormControl('test@gmail.com'),
@@ -47,6 +46,7 @@ export class ProfessorsComponent implements OnInit{
   professorsList: any[] = [];
   editMode = false;
   currentprofessorId: number = 0;
+  // professor: any;
 
   constructor(
     private professorService: ProfessorService,
@@ -74,13 +74,27 @@ export class ProfessorsComponent implements OnInit{
   handleSearch(event: any) {
     const keyWord = event.target.value.toLowerCase();
     if (keyWord) {
-      this.professorsList = this.professorsList.filter((entreprise: any) => {
-        return entreprise.businessName.toLowerCase().includes(keyWord);
+      this.professorsList = this.professorsList.filter((professor: any) => {
+        const fullName = `${professor.firstName.toLowerCase()} ${professor.lastName.toLowerCase()}`;
+        return fullName.includes(keyWord);
       });
     } else {
       this.getProfessors();
     }
   }
+
+  // getProfessorByFirstAndLastName(firstName: string, lastName:string) {
+  //   return this.professorService.getProfessorByFirstAndLastName(firstName,lastName).subscribe({
+  //     next: (data) =>{
+  //       this.professor = data;
+  //     },
+  //     error: (e) => {
+  //       if (e.status === 403) {
+  //         this.tokenStorageService.logout();
+  //       }
+  //     },
+  //   });
+  // }
 
   getProfessorById(professorId: number) {
     return this.professorService.getProfessorById(professorId).subscribe({
@@ -112,7 +126,9 @@ export class ProfessorsComponent implements OnInit{
       this.professorService
         .addProfessor(this.professorForm.value)
         .subscribe({
-          next: (data) => this.professorsList.push(data),
+          next: (data) =>{
+            this.getProfessors();
+          },
           error: (e) => {
             if (e.status === 403) {
               this.tokenStorageService.logout();

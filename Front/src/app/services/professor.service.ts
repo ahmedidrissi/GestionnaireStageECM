@@ -30,12 +30,12 @@ export class ProfessorService {
     );
   }
 
-  // getEntrepriseByBusinessName(businessName: string) {
-  //   return this.http.get(
-  //     `${this.baseUrl}/name=${businessName}`,
-  //     this.httpOptions
-  //   );
-  // }
+  getProfessorByFirstAndLastName(firstName: string , lastName:string) {
+    return this.http.get(
+      `${this.baseUrl}/name=${firstName}+${lastName}`,
+      this.httpOptions
+    );
+  }
 
   addProfessor(professor: any) {
     return this.http.post(`${this.baseUrl}/new`, professor, this.httpOptions);

@@ -50,7 +50,8 @@ public class ProfessorController {
     
     @PostMapping("/new")
     public void saveProfessor(@RequestBody ProfessorRequest professorRequest) {
-        Professor professor=new Professor(professorRequest.getFirstName(),
+        Professor professor=new Professor(
+                professorRequest.getFirstName(),
                 professorRequest.getLastName(),
                 professorRequest.getEmail(),
                 professorRequest.getGender(),
