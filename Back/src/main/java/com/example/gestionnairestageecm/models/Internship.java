@@ -25,7 +25,7 @@ public class Internship {
     @Column(name = "tuteur",nullable = false)
     private Long tutor;
     @Column(name = "entreprise",nullable = false)
-    private Long enterprise;
+    private Long company;
     @Column(name = "type_stage",nullable = false)
     private int internshipType;
     @Column(name = "annee_stage",nullable = false)
@@ -33,12 +33,12 @@ public class Internship {
     @Column(name = "appreciation")
     private String appreciation;
 
-    public Internship(int promo, String promoNumber, Long professor, Long tutor, Long enterprise, int internshipType, int year, String appreciation) {
+    public Internship(int promo, String promoNumber, Long professor, Long tutor, Long company, int internshipType, int year, String appreciation) {
         this.promo = promo;
         this.promoNumber = promoNumber;
         this.professor = professor;
         this.tutor = tutor;
-        this.enterprise = enterprise;
+        this.company = company;
         this.internshipType = internshipType;
         this.year = year;
         this.appreciation = appreciation;

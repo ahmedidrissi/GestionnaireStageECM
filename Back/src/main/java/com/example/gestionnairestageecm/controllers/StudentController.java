@@ -73,7 +73,7 @@ public class StudentController {
 
 
     @PutMapping("/update/id={studentId}")
-    public void updateStudent(@PathVariable Long studentId, @RequestBody Student newStudent) {
+    public void updateStudent(@PathVariable Long studentId, @RequestBody StudentRequest newStudent) {
         studentService.updateStudent(studentId, newStudent);
     }
 

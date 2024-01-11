@@ -25,7 +25,7 @@ public class InternshipService {
     }
 
     public List<Internship> getBySiretNumber(Long siretNumber){
-        return internshipRepository.findByEnterprise(siretNumber);
+        return internshipRepository.findByCompany(siretNumber);
     }
     public Internship saveInternship(Internship internship) {
         return internshipRepository.save(internship);
@@ -37,7 +37,7 @@ public class InternshipService {
         internship.setPromoNumber(newInternship.getPromoNumber());
         internship.setPromo(newInternship.getPromo());
         internship.setProfessor(newInternship.getProfessor());
-        internship.setEnterprise(newInternship.getEnterprise());
+        internship.setCompany(newInternship.getCompany());
         internship.setTutor(newInternship.getTutor());
         internship.setAppreciation(newInternship.getAppreciation());
         internship.setYear(newInternship.getYear());

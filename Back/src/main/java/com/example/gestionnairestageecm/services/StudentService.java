@@ -38,7 +38,7 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public Student updateStudent(Long studentId, Student newStudent) {
+    public Student updateStudent(Long studentId, StudentRequest newStudent) {
         Student student = studentRepository.findById(studentId).get();
         student.setFirstName(newStudent.getFirstName());
         student.setLastName(newStudent.getLastName());

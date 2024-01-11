@@ -35,7 +35,13 @@ public class PromoController {
     }
 
     @PostMapping("/new")
-    public Promo savePromo(@RequestBody Promo promo) {
+    public Promo savePromo(@RequestBody PromoRequest promoRequest) {
+        Promo promo = new Promo(
+                promoRequest.getYear(),
+                promoRequest.getProfessorId(),
+                promoRequest.getRegistredNumber(),
+                promoRequest.getReceiptsNumber()
+        );
         return promoService.savePromo(promo);
     }
 

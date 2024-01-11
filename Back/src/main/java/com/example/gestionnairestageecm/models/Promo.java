@@ -33,4 +33,11 @@ public class Promo {
 
     @Column(name = "nombre_reçus", nullable = false)
     private int receiptsNumber;
+
+    public Promo(int year, long professorId, int registredNumber, int receiptsNumber) {
+        this.year = year;
+        this.professorId = professorId;
+        this.registredNumber = registredNumber;
+        this.receiptsNumber = receiptsNumber;
+    }
 }

@@ -40,7 +40,17 @@ public class InternshipController{
     }
 
     @PostMapping("/new")
-    public void saveInternship(@RequestBody Internship internship) {
+    public void saveInternship(@RequestBody InternshipRequest internshipRequest) {
+        Internship internship = new Internship(
+                internshipRequest.getPromo(),
+                internshipRequest.getPromoNumber(),
+                internshipRequest.getProfessor(),
+                internshipRequest.getTutor(),
+                internshipRequest.getCompany(),
+                internshipRequest.getInternshipType(),
+                internshipRequest.getYear(),
+                internshipRequest.getAppreciation()
+        );
         internshipService.saveInternship(internship);
     }
 
