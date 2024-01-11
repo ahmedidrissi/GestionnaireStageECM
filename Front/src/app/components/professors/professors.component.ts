@@ -160,8 +160,8 @@ export class ProfessorsComponent implements OnInit{
     this.professorService.deleteProfessor(professorId).subscribe({
       next: (data) => {
         this.professorsList = this.professorsList.filter(
-          (entreprise: any) => {
-            return entreprise.professorId !== professorId;
+          (professor: any) => {
+            return professor.professorId !== professorId;
           }
         );
       },

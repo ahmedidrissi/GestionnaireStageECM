@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfessorsComponent } from './components/professors/professors.component';
 import { InternshipsComponent } from './components/internships/internships.component';
 import { StudentsComponent } from './components/students/students.component';
+import { PromosComponent } from './components/promos/promos.component';
 
 
 
@@ -16,4 +17,5 @@ export const routes: Routes = [
   { path: 'students', component: StudentsComponent },
   { path: 'professors', component: ProfessorsComponent},
   { path: 'internships', component: InternshipsComponent},
+  { path: 'promos', component: PromosComponent},
 ];
