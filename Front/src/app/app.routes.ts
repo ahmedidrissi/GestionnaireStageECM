@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
 import { ProfessorsComponent } from './components/professors/professors.component';
 import { InternshipsComponent } from './components/internships/internships.component';
 import { StudentsComponent } from './components/students/students.component';

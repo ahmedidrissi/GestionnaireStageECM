@@ -105,6 +105,7 @@
               formControlName="internshipType"
               required
             >
+              <option value="" disabled selected>--Choisir un type de stage--</option>
               <option value="11">Stage de 1A</option>
               <option value="21">1er Stage de 2A</option>
               <option value="22">2ème Stage de 2A</option>
@@ -156,7 +157,7 @@
             <button
               *ngIf="editMode"
               type="submit"
-              class="btn btn-success"
+              class="btn btn-primary"
               [disabled]="internshipsDatesForm.invalid"
               data-bs-dismiss="modal"
               aria-label="Close"

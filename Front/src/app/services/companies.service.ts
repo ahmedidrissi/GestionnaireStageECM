@@ -6,8 +6,8 @@ import { TokenStorageService } from './token-storage.service';
 @Injectable({
   providedIn: 'root',
 })
-export class EntreprisesService {
-  private baseUrl = AppComponent.baseUrl + '/entreprises';
+export class CompaniesService {
+  private baseUrl = AppComponent.baseUrl + '/companies';
   private httpOptions = {
     headers: new HttpHeaders({
       Authorization: 'Bearer ' + this.tokenStorageService.getToken(),
@@ -19,37 +19,37 @@ export class EntreprisesService {
     private tokenStorageService: TokenStorageService
   ) {}
 
-  getEntreprises() {
+  getCompanies() {
     return this.http.get(`${this.baseUrl}/list`, this.httpOptions);
   }
 
-  getEntrepriseBySiretNumber(siretNumber: number) {
+  getCompanyBySiretNumber(siretNumber: number) {
     return this.http.get(
       `${this.baseUrl}/siret=${siretNumber}`,
       this.httpOptions
     );
   }
 
-  getEntrepriseByBusinessName(businessName: string) {
+  getCompanyByBusinessName(businessName: string) {
     return this.http.get(
       `${this.baseUrl}/name=${businessName}`,
       this.httpOptions
     );
   }
 
-  addEntreprise(entreprise: any) {
-    return this.http.post(`${this.baseUrl}/new`, entreprise, this.httpOptions);
+  addCompany(company: any) {
+    return this.http.post(`${this.baseUrl}/new`, company, this.httpOptions);
   }
 
-  updateEntreprise(siretNumber: number, newEntreprise: any) {
+  updateCompany(siretNumber: number, newCompany: any) {
     return this.http.put(
       `${this.baseUrl}/update/siret=${siretNumber}`,
-      newEntreprise,
+      newCompany,
       this.httpOptions
     );
   }
 
-  deleteEntreprise(siretNumber: number) {
+  deleteCompany(siretNumber: number) {
     return this.http.delete(
       `${this.baseUrl}/delete/siret=${siretNumber}`,
       this.httpOptions

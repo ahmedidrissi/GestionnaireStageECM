@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { EntreprisesService } from '../../services/entreprises.service';
+import { CompaniesService } from '../../services/companies.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-entreprises',
+  selector: 'app-companies',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './entreprises.component.html',
-  styleUrl: './entreprises.component.css',
+  templateUrl: './companies.component.html',
+  styleUrl: './companies.component.css',
 })
-export class EntreprisesComponent implements OnInit {
-  entrepriseForm = new FormGroup({
+export class CompaniesComponent implements OnInit {
+  companyForm = new FormGroup({
     siretNumber: new FormControl(),
     legalForm: new FormControl(''),
     businessName: new FormControl(''),
@@ -41,26 +41,26 @@ export class EntreprisesComponent implements OnInit {
     'Email',
     'Actions',
   ];
-  entreprisesList: any[] = [];
+  companiesList: any[] = [];
   editMode = false;
   currentSiretNumber: number = 0;
 
   constructor(
-    private entreprisesService: EntreprisesService,
+    private companiesService: CompaniesService,
     private tokenStorageService: TokenStorageService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.getEntreprises();
+    this.getCompanies();
   }
 
-  getEntreprises() {
-    return this.entreprisesService.getEntreprises().subscribe({
+  getCompanies() {
+    return this.companiesService.getCompanies().subscribe({
       next: (data: any) => {
-        this.entreprisesList = data;
+        this.companiesList = data;
       },
-      error: (e) => {
+      error: (e: any) => {
         if (e.status === 403) {
           this.tokenStorageService.logout();
         }
@@ -71,20 +71,20 @@ export class EntreprisesComponent implements OnInit {
   handleSearch(event: any) {
     const keyWord = event.target.value.toLowerCase();
     if (keyWord) {
-      this.entreprisesList = this.entreprisesList.filter((entreprise: any) => {
+      this.companiesList = this.companiesList.filter((entreprise: any) => {
         return entreprise.businessName.toLowerCase().includes(keyWord);
       });
     } else {
-      this.getEntreprises();
+      this.getCompanies();
     }
   }
 
-  getEntrepriseBySiretNumber(siretNumber: number) {
-    return this.entreprisesService
-      .getEntrepriseBySiretNumber(siretNumber)
+  getCompanyBySiretNumber(siretNumber: number) {
+    return this.companiesService
+      .getCompanyBySiretNumber(siretNumber)
       .subscribe({
-        next: (data) => console.log(data),
-        error: (e) => {
+        next: (data: any) => console.log(data),
+        error: (e: any) => {
           if (e.status === 403) {
             this.tokenStorageService.logout();
           }
@@ -92,12 +92,12 @@ export class EntreprisesComponent implements OnInit {
       });
   }
 
-  getEntrepriseByBusinessName(businessName: string) {
-    return this.entreprisesService
-      .getEntrepriseByBusinessName(businessName)
+  getCompanyByBusinessName(businessName: string) {
+    return this.companiesService
+      .getCompanyByBusinessName(businessName)
       .subscribe({
-        next: (data) => console.log(data),
-        error: (e) => {
+        next: (data: any) => console.log(data),
+        error: (e: any) => {
           if (e.status === 403) {
             this.tokenStorageService.logout();
           }
@@ -105,50 +105,48 @@ export class EntreprisesComponent implements OnInit {
       });
   }
 
-  handleEntrepriseForm() {
+  handleCompanyForm() {
     if (this.editMode) {
-      this.updateEntreprise();
+      this.updateCompany();
     } else {
-      this.addEntreprise();
+      this.addCompany();
     }
   }
 
-  handleUpdateEntreprise(entreprise: any) {
+  handleUpdateCompany(entreprise: any) {
     this.editMode = true;
     this.currentSiretNumber = entreprise.siretNumber;
-    this.entrepriseForm.patchValue(entreprise);
+    this.companyForm.patchValue(entreprise);
   }
 
-  addEntreprise() {
-    if (this.entrepriseForm.valid) {
-      this.entreprisesService
-        .addEntreprise(this.entrepriseForm.value)
-        .subscribe({
-          next: (data) => {
-            this.getEntreprises();
-            this.entrepriseForm.reset();
-          },
-          error: (e) => {
-            if (e.status === 403) {
-              this.tokenStorageService.logout();
-            }
-          },
-        });
+  addCompany() {
+    if (this.companyForm.valid) {
+      this.companiesService.addCompany(this.companyForm.value).subscribe({
+        next: (data: any) => {
+          this.getCompanies();
+          this.companyForm.reset();
+        },
+        error: (e: any) => {
+          if (e.status === 403) {
+            this.tokenStorageService.logout();
+          }
+        },
+      });
     } else {
       console.log('invalid form');
     }
   }
 
-  updateEntreprise() {
-    this.entreprisesService
-      .updateEntreprise(this.currentSiretNumber, this.entrepriseForm.value)
+  updateCompany() {
+    this.companiesService
+      .updateCompany(this.currentSiretNumber, this.companyForm.value)
       .subscribe({
-        next: (data) => {
-          this.getEntreprises();
+        next: (data: any) => {
+          this.getCompanies();
           this.editMode = false;
-          this.entrepriseForm.reset();
+          this.companyForm.reset();
         },
-        error: (e) => {
+        error: (e: any) => {
           if (e.status === 403) {
             this.tokenStorageService.logout();
           }
@@ -156,12 +154,12 @@ export class EntreprisesComponent implements OnInit {
       });
   }
 
-  deleteEntreprise(siretNumber: number) {
-    this.entreprisesService.deleteEntreprise(siretNumber).subscribe({
-      next: (data) => {
-        this.getEntreprises();
+  deleteCompany(siretNumber: number) {
+    this.companiesService.deleteCompany(siretNumber).subscribe({
+      next: (data: any) => {
+        this.getCompanies();
       },
-      error: (e) => {
+      error: (e: any) => {
         if (e.status === 403) {
           this.tokenStorageService.logout();
         }

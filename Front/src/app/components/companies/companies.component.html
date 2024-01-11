@@ -38,32 +38,29 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let entreprise of entreprisesList">
-          <td>{{ entreprise.siretNumber }}</td>
-          <td>{{ entreprise.legalForm }}</td>
-          <td>{{ entreprise.businessName }}</td>
-          <td>{{ entreprise.address }}</td>
-          <td>{{ entreprise.city }}</td>
-          <td>{{ entreprise.postalCode }}</td>
-          <td>{{ entreprise.tutorPhoneNumber }}</td>
-          <td>{{ entreprise.fax }}</td>
-          <td>{{ entreprise.contact }}</td>
-          <td>{{ entreprise.contactPhoneNumber }}</td>
-          <td>{{ entreprise.email }}</td>
+        <tr *ngFor="let company of companiesList">
+          <td>{{ company.siretNumber }}</td>
+          <td>{{ company.legalForm }}</td>
+          <td>{{ company.businessName }}</td>
+          <td>{{ company.address }}</td>
+          <td>{{ company.city }}</td>
+          <td>{{ company.postalCode }}</td>
+          <td>{{ company.tutorPhoneNumber }}</td>
+          <td>{{ company.fax }}</td>
+          <td>{{ company.contact }}</td>
+          <td>{{ company.contactPhoneNumber }}</td>
+          <td>{{ company.email }}</td>
           <td>
             <div class="d-flex justify-content-around">
               <a
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#entrepriseModal"
-                (click)="handleUpdateEntreprise(entreprise)"
+                (click)="handleUpdateCompany(company)"
               >
                 <i class="bi bi-pencil-square text-primary"></i>
               </a>
-              <a
-                type="button"
-                (click)="deleteEntreprise(entreprise.siretNumber)"
-              >
+              <a type="button" (click)="deleteCompany(company.siretNumber)">
                 <i class="bi bi-trash text-danger"></i>
               </a>
             </div>
@@ -95,7 +92,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="entrepriseForm" (ngSubmit)="handleEntrepriseForm()">
+        <form [formGroup]="companyForm" (ngSubmit)="handleCompanyForm()">
           <div class="row">
             <div class="col-lg-6 col-12">
               <div class="form-group mb-3">
@@ -227,7 +224,7 @@
             *ngIf="!editMode"
             type="submit"
             class="btn btn-success"
-            [disabled]="entrepriseForm.invalid"
+            [disabled]="companyForm.invalid"
             data-bs-dismiss="modal"
             aria-label="Close"
           >
@@ -236,8 +233,8 @@
           <button
             *ngIf="editMode"
             type="submit"
-            class="btn btn-success"
-            [disabled]="entrepriseForm.invalid"
+            class="btn btn-primary"
+            [disabled]="companyForm.invalid"
             data-bs-dismiss="modal"
             aria-label="Close"
           >

@@ -17,19 +17,19 @@ import { StudentsService } from '../../services/etudiants.service';
 })
 export class StudentsComponent implements OnInit {
   studentForm = new FormGroup({
-    studentId: new FormControl(1234),
-    firstName: new FormControl('Emy'),
-    lastName: new FormControl('Di'),
-    email: new FormControl('test@gmail.com'),
-    gender: new FormControl('M'),
-    dateOfBirth: new FormControl('2002-02-01'),
-    address: new FormControl('1 rue du test'),
-    city: new FormControl('Test'),
-    postalCode: new FormControl(12345),
-    phoneNumber: new FormControl('0696957047'),
-    promo: new FormControl('2022'),
-    promoNumber: new FormControl('220'),
-    mention: new FormControl('Bien'),
+    studentId: new FormControl(),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+    gender: new FormControl(''),
+    dateOfBirth: new FormControl(''),
+    address: new FormControl(''),
+    city: new FormControl(''),
+    postalCode: new FormControl(),
+    phoneNumber: new FormControl(''),
+    promo: new FormControl(),
+    promoNumber: new FormControl(''),
+    mention: new FormControl(''),
   });
  
   displayedColumns: string[] = [

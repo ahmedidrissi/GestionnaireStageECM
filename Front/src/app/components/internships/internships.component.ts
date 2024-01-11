@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { EntreprisesComponent } from '../entreprises/entreprises.component';
+import { CompaniesComponent } from '../companies/companies.component';
 import { TutorsComponent } from '../tutors/tutors.component';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ import { InternshipsDatesComponent } from '../internships-dates/internships-date
   imports: [
     NavbarComponent,
     InternshipsDatesComponent,
-    EntreprisesComponent,
+    CompaniesComponent,
     TutorsComponent,
     SkillsComponent,
     CommonModule,
@@ -31,7 +31,7 @@ export class InternshipsComponent implements OnInit {
     promoNumber: new FormControl(''),
     professor: new FormControl(),
     tutor: new FormControl(),
-    enterprise: new FormControl(),
+    company: new FormControl(),
     internshipType: new FormControl(),
     year: new FormControl(),
     appreciation: new FormControl(''),
@@ -137,17 +137,15 @@ export class InternshipsComponent implements OnInit {
   }
 
   deleteInternship(internshipId: number) {
-    this.internshipsService
-      .deleteInternship(internshipId)
-      .subscribe({
-        next: (data) => {
-          this.getInternships();
-        },
-        error: (err) => {
-          if (err.status === 403) {
-            this.tokenStorageService.logout();
-          }
-        },
-      });
+    this.internshipsService.deleteInternship(internshipId).subscribe({
+      next: (data) => {
+        this.getInternships();
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
   }
 }

@@ -15,21 +15,21 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfessorsComponent implements OnInit{
   professorForm = new FormGroup({
-    firstName: new FormControl('SARL'),
-    lastName: new FormControl('Test'),
-    email: new FormControl('test@gmail.com'),
-    gender: new FormControl('male'),
-    address: new FormControl('1 rue du test'),
-    city: new FormControl('Test'),
-    postalCode: new FormControl(12345),
-    schoolPhoneNumber: new FormControl('0654321098'),
-    phoneNumber: new FormControl('0765432109'),
-    hiringDate: new FormControl('2020-01-01'),
-    leavingDate: new FormControl('2023-01-01'),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+    gender: new FormControl(''),
+    address: new FormControl(''),
+    city: new FormControl(''),
+    postalCode: new FormControl(),
+    schoolPhoneNumber: new FormControl(''),
+    phoneNumber: new FormControl(''),
+    hiringDate: new FormControl(''),
+    leavingDate: new FormControl(''),
   });
 
   displayedColumns: string[] = [
-    'Professeur ID',
+    'ID',
     'Prenom',
     'Nom',
     'Email',
@@ -46,7 +46,6 @@ export class ProfessorsComponent implements OnInit{
   professorsList: any[] = [];
   editMode = false;
   currentprofessorId: number = 0;
-  // professor: any;
 
   constructor(
     private professorService: ProfessorService,

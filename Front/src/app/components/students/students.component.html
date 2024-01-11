@@ -1,14 +1,14 @@
 <app-navbar></app-navbar>
 <div class="container p-lg-5 p-2">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>Liste des etudiants</h1>
+    <h1>Liste des étudiants</h1>
     <button
       type="button"
       class="btn btn-success"
       data-bs-toggle="modal"
       data-bs-target="#studentModal"
     >
-      Ajouter un etudiant
+      Ajouter un étudiant
     </button>
   </div>
   <div class="d-flex justify-content-end align-items-center">
@@ -16,8 +16,8 @@
       <input
         type="text"
         class="form-control"
-        placeholder="Rechercher un etudiant"
-        aria-label="Rechercher un etudiant"
+        placeholder="Rechercher un étudiant"
+        aria-label="Rechercher un étudiant"
         aria-describedby="button-addon2"
         (change)="handleSearch($event)"
         onchange="console.log('change')"
@@ -31,7 +31,7 @@
       </button>
     </div>
   </div>
-  <div class="etudiants d-flex justify-content-center align-items-center">
+  <div class="étudiants d-flex justify-content-center align-items-center">
     <table class="table table-striped table-hover">
       <thead>
         <tr>
@@ -85,7 +85,7 @@
     <div class="modal-content">
       <div class="modal-header bg-secondary text-white">
         <h5 class="modal-title" id="studentModalLabel">
-          {{ editMode ? "Modifier un etudiant" : "Ajouter un etudiant" }}
+          {{ editMode ? "Modifier un étudiant" : "Ajouter un étudiant" }}
         </h5>
         <button
           type="button"
@@ -99,13 +99,14 @@
           <div class="row">
             <div class="col-lg-6 col-12">
               <div class="form-group mb-3">
-                <label for="firstName">Prenom</label>
+                <label for="firstName">Prénom</label>
                 <input
                   type="text"
                   class="form-control"
                   id="firstName"
-                  placeholder="Prenom"
+                  placeholder="Prénom"
                   formControlName="firstName"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -116,27 +117,31 @@
                   id="lastName"
                   placeholder="Nom"
                   formControlName="lastName"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
                 <label for="email">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   id="email"
                   placeholder="Email"
                   formControlName="email"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
                 <label for="gender">Sexe</label>
                 <select
-                  class="form-control"
+                  class="form-select"
                   id="gender"
                   formControlName="gender"
+                  required
                 >
-                  <option value="masculin">Masculin</option>
-                  <option value="féminin">Féminin</option>
+                  <option value="" disabled selected>--Choisir un sexe--</option>
+                  <option value="M">Masculin</option>
+                  <option value="F">Féminin</option>
                 </select>
               </div>
               <div class="form-group mb-3">
@@ -147,7 +152,22 @@
                   id="dateOfBirth"
                   placeholder="date de naissance"
                   formControlName="dateOfBirth"
+                  required
                 />
+              </div>
+              <div class="form-group mb-3">
+                <label for="mention">Mention</label>
+                <select
+                  class="form-select"
+                  id="mention"
+                  formControlName="mention"
+                >
+                  <option value="" selected>--Choisir une mention--</option>
+                  <option value="passable">Passable</option>
+                  <option value="assez_bien">Assez bien</option>
+                  <option value="bien">Bien</option>
+                  <option value="tres_bien">Très bien</option>
+                </select>
               </div>
             </div>
             <div class="col-lg-6 col-12">
@@ -159,6 +179,7 @@
                   id="address"
                   placeholder="Adresse"
                   formControlName="address"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -169,16 +190,18 @@
                   id="city"
                   placeholder="Ville"
                   formControlName="city"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
                 <label for="postalCode">Code Postal</label>
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="postalCode"
                   placeholder="Code Postal"
                   formControlName="postalCode"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -189,6 +212,18 @@
                   id="phoneNumber"
                   placeholder="téléphone de l'étudiant"
                   formControlName="phoneNumber"
+                  required
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="promo">Promo</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="promo"
+                  placeholder="Promo"
+                  formControlName="promo"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -199,20 +234,8 @@
                   id="promoNumber"
                   placeholder="Numéro promo"
                   formControlName="promoNumber"
+                  required
                 />
-              </div>
-              <div class="form-group mb-3">
-                <label for="mention">Mention</label>
-                <select
-                  class="form-control"
-                  id="mention"
-                  formControlName="mention"
-                >
-                  <option value="passable">Passable</option>
-                  <option value="assez_bien">Assez bien</option>
-                  <option value="bien">Bien</option>
-                  <option value="tres_bien">Très bien</option>
-                </select>
               </div>
             </div>
           </div>
@@ -220,6 +243,7 @@
             *ngIf="!editMode"
             type="submit"
             class="btn btn-success"
+            [disabled]="!studentForm.valid"
             data-bs-dismiss="modal"
             aria-label="Close"
           >
@@ -228,7 +252,8 @@
           <button
             *ngIf="editMode"
             type="submit"
-            class="btn btn-success"
+            class="btn btn-primary"
+            [disabled]="!studentForm.valid"
             data-bs-dismiss="modal"
             aria-label="Close"
           >

@@ -45,7 +45,7 @@
           <td>{{ internship.promoNumber }}</td>
           <td>{{ internship.professor }}</td>
           <td>{{ internship.tutor }}</td>
-          <td>{{ internship.enterprise }}</td>
+          <td>{{ internship.company }}</td>
           <td>{{ internship.internshipType }}</td>
           <td>{{ internship.year }}</td>
           <td>{{ internship.appreciation }}</td>
@@ -72,7 +72,7 @@
     </table>
   </div>
   <app-internships-dates></app-internships-dates>
-  <app-entreprises></app-entreprises>
+  <app-companies></app-companies>
   <app-tutors></app-tutors>
   <app-skills></app-skills>
 </div>
@@ -148,12 +148,12 @@
             />
           </div>
           <div class="col-md-6">
-            <label for="enterprise" class="form-label">Entreprise</label>
+            <label for="company" class="form-label">Entreprise</label>
             <input
               type="number"
               class="form-control"
-              id="enterprise"
-              formControlName="enterprise"
+              id="company"
+              formControlName="company"
               placeholder="Entreprise"
               required
             />
@@ -169,7 +169,10 @@
               formControlName="internshipType"
               required
             >
-              <option value="11" >Stage de 1A</option>
+              <option value="" disabled selected>
+                --Choisir un type de stage--
+              </option>
+              <option value="11">Stage de 1A</option>
               <option value="21">1er Stage de 2A</option>
               <option value="22">2ème Stage de 2A</option>
               <option value="31">1er Stage de 3A</option>
@@ -211,7 +214,7 @@
             <button
               *ngIf="editMode"
               type="submit"
-              class="btn btn-success"
+              class="btn btn-primary"
               [disabled]="internshipForm.invalid"
               data-bs-dismiss="modal"
               aria-label="Close"

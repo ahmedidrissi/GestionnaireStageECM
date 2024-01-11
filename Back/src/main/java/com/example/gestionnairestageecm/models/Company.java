@@ -2,8 +2,6 @@ package com.example.gestionnairestageecm.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
@@ -11,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "entreprises")
-public class Entreprise {
+public class Company {
 
     @Id
     @Column(name = "numero_siret", nullable = false)

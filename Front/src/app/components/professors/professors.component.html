@@ -87,7 +87,7 @@
     <div class="modal-content">
       <div class="modal-header bg-secondary text-white">
         <h5 class="modal-title" id="professorModalLabel">
-          Ajouter une professor
+          Ajouter un professeur
         </h5>
         <button
           type="button"
@@ -101,13 +101,14 @@
           <div class="row">
             <div class="col-lg-6 col-12">
               <div class="form-group mb-3">
-                <label for="firstName">Prenom</label>
+                <label for="firstName">Prénom</label>
                 <input
                   type="text"
                   class="form-control"
                   id="firstName"
-                  placeholder="Prenom"
+                  placeholder="Prénom"
                   formControlName="firstName"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
@@ -118,27 +119,32 @@
                   id="lastName"
                   placeholder="Nom"
                   formControlName="lastName"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
                 <label for="email">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   id="email"
                   placeholder="Email"
                   formControlName="email"
+                  required
                 />
               </div>
               <div class="form-group mb-3">
                 <label for="gender">Sexe</label>
-                <input
-                  type="text"
-                  class="form-control"
+                <select
+                  class="form-select"
                   id="gender"
-                  placeholder="Sexe"
                   formControlName="gender"
-                />
+                  required
+                >
+                  <option value="" disabled selected>--Choisir un sexe--</option>
+                  <option value="M">Masculin</option>
+                  <option value="F">Féminin</option>
+                </select>
               </div>
               <div class="form-group mb-3">
                 <label for="address">Adresse</label>
@@ -226,7 +232,7 @@
           <button
             *ngIf="editMode"
             type="submit"
-            class="btn btn-success"
+            class="btn btn-primary"
             data-bs-dismiss="modal"
             aria-label="Close"
           >
