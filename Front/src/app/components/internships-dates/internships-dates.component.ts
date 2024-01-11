@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class InternshipsDatesComponent implements OnInit {
   internshipsDatesForm = new FormGroup({
-    internshipType: new FormControl(''),
+    internshipType: new FormControl(),
     year: new FormControl(),
     startDate: new FormControl(''),
     endDate: new FormControl(''),
@@ -75,7 +75,7 @@ export class InternshipsDatesComponent implements OnInit {
 
   handleUpdateInternshipDate(internshipDate: any) {
     this.editMode = true;
-    this.currentInternshipDateId = internshipDate.id;
+    this.currentInternshipDateId = internshipDate.internshipDateId;
     this.internshipsDatesForm.patchValue(internshipDate);
   }
 

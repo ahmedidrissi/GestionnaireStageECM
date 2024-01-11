@@ -29,10 +29,10 @@ export class InternshipsComponent implements OnInit {
   internshipForm = new FormGroup({
     promo: new FormControl(),
     promoNumber: new FormControl(''),
-    professor: new FormControl(''),
-    tutor: new FormControl(''),
-    enterprise: new FormControl(''),
-    internshipType: new FormControl(''),
+    professor: new FormControl(),
+    tutor: new FormControl(),
+    enterprise: new FormControl(),
+    internshipType: new FormControl(),
     year: new FormControl(),
     appreciation: new FormControl(''),
   });
@@ -52,7 +52,7 @@ export class InternshipsComponent implements OnInit {
 
   internshipsList: any[] = [];
   editMode = false;
-  currentInternshipNumber: number = 0;
+  currentInternshipId: number = 0;
 
   constructor(
     private internshipsService: InternshipsService,
@@ -101,7 +101,7 @@ export class InternshipsComponent implements OnInit {
 
   handleUpdateInternship(internship: any) {
     this.editMode = true;
-    this.currentInternshipNumber = internship.internshipNumber;
+    this.currentInternshipId = internship.internshipId;
     this.internshipForm.patchValue(internship);
   }
 
@@ -121,7 +121,7 @@ export class InternshipsComponent implements OnInit {
 
   updateInternship() {
     this.internshipsService
-      .updateInternship(this.currentInternshipNumber, this.internshipForm.value)
+      .updateInternship(this.currentInternshipId, this.internshipForm.value)
       .subscribe({
         next: (data) => {
           this.getInternships();
@@ -136,9 +136,9 @@ export class InternshipsComponent implements OnInit {
       });
   }
 
-  deleteInternship(internshipNumber: number) {
+  deleteInternship(internshipId: number) {
     this.internshipsService
-      .deleteInternship(internshipNumber)
+      .deleteInternship(internshipId)
       .subscribe({
         next: (data) => {
           this.getInternships();

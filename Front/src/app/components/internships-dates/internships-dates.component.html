@@ -57,7 +57,7 @@
               <a
                 type="button"
                 (click)="
-                  deleteInternshipDate(internshipDate.internshipDateNumber)
+                  deleteInternshipDate(internshipDate.internshipDateId)
                 "
               >
                 <i class="bi bi-trash text-danger"></i>
@@ -105,11 +105,11 @@
               formControlName="internshipType"
               required
             >
-              <option value="FIRST_YEAR">Stage de 1A</option>
-              <option value="SECOND_YEAR_1ST">1er Stage de 2A</option>
-              <option value="SECOND_YEAR_2ND">2ème Stage de 2A</option>
-              <option value="THIRD_YEAR_1ST">1er Stage de 3A</option>
-              <option value="THIRD_YEAR_2ND">2ème Stage de 3A</option>
+              <option value="11">Stage de 1A</option>
+              <option value="21">1er Stage de 2A</option>
+              <option value="22">2ème Stage de 2A</option>
+              <option value="31">1er Stage de 3A</option>
+              <option value="32">2ème Stage de 3A</option>
             </select>
           </div>
           <div class="col-md-6">

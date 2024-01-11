@@ -20,26 +20,25 @@ public class Internship {
     private int promo;
     @Column(name = "numero_promo",nullable = false)
     private String promoNumber;
-    @Column(name = "id_professeur",nullable = false)
-    private Long professorId;
-    @Column(name = "id_tuteur",nullable = false)
-    private Long tutorId;
-    @Column(name = "numero_de_siret",nullable = false)
-    private Long siretNumber;
+    @Column(name = "professeur",nullable = false)
+    private Long professor;
+    @Column(name = "tuteur",nullable = false)
+    private Long tutor;
+    @Column(name = "entreprise",nullable = false)
+    private Long enterprise;
     @Column(name = "type_stage",nullable = false)
-    @Enumerated(EnumType.STRING)
-    private InternshipType internshipType;
+    private int internshipType;
     @Column(name = "annee_stage",nullable = false)
     private int year;
     @Column(name = "appreciation")
     private String appreciation;
 
-    public Internship(int promo, String promoNumber, Long professorId, Long tutorId, Long siretNumber, InternshipType internshipType, int year, String appreciation) {
+    public Internship(int promo, String promoNumber, Long professor, Long tutor, Long enterprise, int internshipType, int year, String appreciation) {
         this.promo = promo;
         this.promoNumber = promoNumber;
-        this.professorId = professorId;
-        this.tutorId = tutorId;
-        this.siretNumber = siretNumber;
+        this.professor = professor;
+        this.tutor = tutor;
+        this.enterprise = enterprise;
         this.internshipType = internshipType;
         this.year = year;
         this.appreciation = appreciation;

@@ -24,9 +24,8 @@ public class InternshipDate {
     @Column(name = "date_stage_id", nullable = false)
     private Long internshipDateId;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "type_stage", nullable = false)
-    private InternshipType internshipType;
+    private int internshipType;
 
     @Column(name = "annee", nullable = false)
     private int year;
@@ -37,7 +36,7 @@ public class InternshipDate {
     @Column(name = "date_fin", nullable = false)
     private LocalDate endDate;
 
-    public InternshipDate(InternshipType internshipType, int year, LocalDate startDate, LocalDate endDate) {
+    public InternshipDate(int internshipType, int year, LocalDate startDate, LocalDate endDate) {
         this.internshipType = internshipType;
         this.year = year;
         this.startDate = startDate;

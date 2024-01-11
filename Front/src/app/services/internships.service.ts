@@ -22,9 +22,9 @@ export class InternshipsService {
     return this.http.get(`${this.baseUrl}/list`, this.httpOptions);
   }
 
-  getInternshipByInternshipNumber(internshipNumber: number) {
+  getInternshipByInternshipId(internshipId: number) {
     return this.http.get(
-      `${this.baseUrl}/number=${internshipNumber}`,
+      `${this.baseUrl}/id=${internshipId}`,
       this.httpOptions
     );
   }
@@ -33,17 +33,17 @@ export class InternshipsService {
     return this.http.post(`${this.baseUrl}/new`, internship, this.httpOptions);
   }
 
-  updateInternship(internshipNumber: number, newInternship: any) {
+  updateInternship(internshipId: number, newInternship: any) {
     return this.http.put(
-      `${this.baseUrl}/update/number=${internshipNumber}`,
+      `${this.baseUrl}/update/id=${internshipId}`,
       newInternship,
       this.httpOptions
     );
   }
 
-  deleteInternship(internshipNumber: number) {
+  deleteInternship(internshipId: number) {
     return this.http.delete(
-      `${this.baseUrl}/delete/number=${internshipNumber}`,
+      `${this.baseUrl}/delete/id=${internshipId}`,
       this.httpOptions
     );
   }

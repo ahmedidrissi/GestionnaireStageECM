@@ -11,8 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class InternshipDateRequest {
 
-    @Enumerated(EnumType.STRING)
-    private InternshipType internshipType;
+    private int internshipType;
     private int year;
     private LocalDate startDate;
     private LocalDate endDate;

@@ -40,7 +40,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let internship of internshipsList">
-          <td>{{ internship.internshipNumber }}</td>
+          <td>{{ internship.internshipId }}</td>
           <td>{{ internship.promo }}</td>
           <td>{{ internship.promoNumber }}</td>
           <td>{{ internship.professor }}</td>
@@ -61,7 +61,7 @@
               </a>
               <a
                 type="button"
-                (click)="deleteInternship(internship.internshipNumber)"
+                (click)="deleteInternship(internship.internshipId)"
               >
                 <i class="bi bi-trash text-danger"></i>
               </a>
@@ -128,7 +128,7 @@
           <div class="col-md-6">
             <label for="professor" class="form-label">Professeur</label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               id="professor"
               formControlName="professor"
@@ -139,7 +139,7 @@
           <div class="col-md-6">
             <label for="tutor" class="form-label">Tuteur</label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               id="tutor"
               formControlName="tutor"
@@ -150,7 +150,7 @@
           <div class="col-md-6">
             <label for="enterprise" class="form-label">Entreprise</label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               id="enterprise"
               formControlName="enterprise"
@@ -169,11 +169,11 @@
               formControlName="internshipType"
               required
             >
-              <option value="FIRST_YEAR">Stage de 1A</option>
-              <option value="SECOND_YEAR_1ST">1er Stage de 2A</option>
-              <option value="SECOND_YEAR_2ND">2ème Stage de 2A</option>
-              <option value="THIRD_YEAR_1ST">1er Stage de 3A</option>
-              <option value="THIRD_YEAR_2ND">2ème Stage de 3A</option>
+              <option value="11" >Stage de 1A</option>
+              <option value="21">1er Stage de 2A</option>
+              <option value="22">2ème Stage de 2A</option>
+              <option value="31">1er Stage de 3A</option>
+              <option value="32">2ème Stage de 3A</option>
             </select>
           </div>
           <div class="col-md-6">
