@@ -25,27 +25,27 @@ public class PromoController {
     }
 
     @GetMapping("/id={promoId}")
-    public Promo getPromoById(Long promoId) {
+    public Promo getPromoById(@PathVariable Long promoId) {
         return promoService.getPromoById(promoId);
     }
 
     @GetMapping("/year={year}")
-    public Promo getPromoByYear(int year) {
+    public Promo getPromoByYear(@PathVariable int year) {
         return promoService.getPromoByYear(year);
     }
 
     @PostMapping("/new")
-    public Promo savePromo(Promo promo) {
+    public Promo savePromo(@RequestBody Promo promo) {
         return promoService.savePromo(promo);
     }
 
     @PutMapping("/update/id={promoId}")
-    public Promo updatePromo(Long promoId, PromoRequest newPromo) {
+    public Promo updatePromo(@PathVariable Long promoId,@RequestBody PromoRequest newPromo) {
         return promoService.updatePromo(promoId, newPromo);
     }
 
     @DeleteMapping("/delete/id={promoId}")
-    public void deletePromo(Long promoId) {
+    public void deletePromo(@PathVariable Long promoId) {
         promoService.deletePromo(promoId);
     }
 }
