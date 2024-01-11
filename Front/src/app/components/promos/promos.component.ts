@@ -68,7 +68,7 @@ export class PromosComponent implements OnInit{
   }
 
   // getProfessorByFirstAndLastName(firstName: string, lastName:string) {
-  //   return this.professorService.getProfessorByFirstAndLastName(firstName,lastName).subscribe({
+  //   return this.professorsService.getProfessorByFirstAndLastName(firstName,lastName).subscribe({
   //     next: (data) =>{
   //       this.professor = data;
   //     },
