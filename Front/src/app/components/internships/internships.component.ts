@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CompaniesComponent } from '../companies/companies.component';
-import { TutorsComponent } from '../tutors/tutors.component';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
 import { InternshipsService } from '../../services/internships.service';
@@ -16,8 +14,6 @@ import { InternshipsDatesComponent } from '../internships-dates/internships-date
   imports: [
     NavbarComponent,
     InternshipsDatesComponent,
-    CompaniesComponent,
-    TutorsComponent,
     SkillsComponent,
     CommonModule,
     ReactiveFormsModule,

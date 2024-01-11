@@ -5,15 +5,21 @@ import { Router } from '@angular/router';
 import { ProfessorService } from '../../services/professor.service';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { PromosComponent } from '../promos/promos.component';
 
 @Component({
-  selector: 'app-professors',  
+  selector: 'app-professors',
   standalone: true,
-  imports: [NavbarComponent, ReactiveFormsModule, CommonModule],
+  imports: [
+    NavbarComponent,
+    ReactiveFormsModule,
+    CommonModule,
+    PromosComponent,
+  ],
   templateUrl: './professors.component.html',
   styleUrl: './professors.component.css',
 })
-export class ProfessorsComponent implements OnInit{
+export class ProfessorsComponent implements OnInit {
   professorForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -30,15 +36,15 @@ export class ProfessorsComponent implements OnInit{
 
   displayedColumns: string[] = [
     'ID',
-    'Prenom',
+    'Prénom',
     'Nom',
     'Email',
     'Sexe',
     'Adresse',
     'Ville',
     'Code Postal',
-    'Téléphone ecole',
-    'Téléphone du Contact',
+    'Téléphone école',
+    'Téléphone domicile',
     'Date Emboche',
     'Date Depart',
     'Actions',
@@ -122,18 +128,16 @@ export class ProfessorsComponent implements OnInit{
 
   addProfessor() {
     if (this.professorForm.valid) {
-      this.professorService
-        .addProfessor(this.professorForm.value)
-        .subscribe({
-          next: (data) =>{
-            this.getProfessors();
-          },
-          error: (e) => {
-            if (e.status === 403) {
-              this.tokenStorageService.logout();
-            }
-          },
-        });
+      this.professorService.addProfessor(this.professorForm.value).subscribe({
+        next: (data) => {
+          this.getProfessors();
+        },
+        error: (e) => {
+          if (e.status === 403) {
+            this.tokenStorageService.logout();
+          }
+        },
+      });
     } else {
       console.log('invalid form');
     }
@@ -158,11 +162,9 @@ export class ProfessorsComponent implements OnInit{
   deleteProfessor(professorId: number) {
     this.professorService.deleteProfessor(professorId).subscribe({
       next: (data) => {
-        this.professorsList = this.professorsList.filter(
-          (professor: any) => {
-            return professor.professorId !== professorId;
-          }
-        );
+        this.professorsList = this.professorsList.filter((professor: any) => {
+          return professor.professorId !== professorId;
+        });
       },
       error: (e) => {
         if (e.status === 403) {

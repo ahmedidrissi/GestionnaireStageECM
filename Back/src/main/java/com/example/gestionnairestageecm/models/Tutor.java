@@ -31,16 +31,21 @@ public class Tutor {
     @Column(name = "telephone_tuteur", nullable = false)
     private String tutorPhoneNumber;
 
-public Tutor (
-    String firstName,
-    String lastName,
-    String gender,
-    String tutorPhoneNumber
-){
-    this.firstName=firstName;
-    this.lastName=lastName;
-    this.gender=gender;
-    this.tutorPhoneNumber=tutorPhoneNumber;
-}
+    @Column(name = "entreprise", nullable = false)
+    private Long company;
+
+    public Tutor (
+        String firstName,
+        String lastName,
+        String gender,
+        String tutorPhoneNumber,
+        Long company
+    ){
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.gender=gender;
+        this.tutorPhoneNumber=tutorPhoneNumber;
+        this.company=company;
+    }
     
 }

@@ -39,7 +39,8 @@ public class TutorController {
                 tutorRequest.getFirstName(),
                 tutorRequest.getLastName(),
                 tutorRequest.getGender(),
-                tutorRequest.getTutorPhoneNumber()
+                tutorRequest.getTutorPhoneNumber(),
+                tutorRequest.getCompany()
         );
         tutorService.saveTutor(tutor);
     }

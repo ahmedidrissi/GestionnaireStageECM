@@ -38,6 +38,7 @@ public class TutorService {
         tutor.setLastName(newTutor.getLastName());
         tutor.setGender(newTutor.getGender());
         tutor.setTutorPhoneNumber(newTutor.getTutorPhoneNumber());
+        tutor.setCompany(newTutor.getCompany());
         return tutorRepository.save(tutor);
     }
 

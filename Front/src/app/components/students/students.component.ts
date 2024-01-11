@@ -34,10 +34,10 @@ export class StudentsComponent implements OnInit {
  
   displayedColumns: string[] = [
     'ID',
-    'Prenom',
+    'Prénom',
     'nom',
     'Email',
-    'Genre',
+    'Sexe',
     'Date de naissance',
     'Adresse',
     'Ville',

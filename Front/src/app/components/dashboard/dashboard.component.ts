@@ -7,7 +7,7 @@ import { PromosComponent } from '../promos/promos.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, ReactiveFormsModule,PromosComponent],
+  imports: [NavbarComponent, CommonModule, ReactiveFormsModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

@@ -1,6 +1,6 @@
 <div class="container p-lg-5 p-2">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>Liste des tuteurs</h1>
+    <h1>Liste des Tuteurs</h1>
     <button
       type="button"
       class="btn btn-success"
@@ -44,6 +44,7 @@
           <td>{{ tutor.lastName }}</td>
           <td>{{ tutor.gender }}</td>
           <td>{{ tutor.tutorPhoneNumber }}</td>
+          <td>{{ tutor.company }}</td>
           <td>
             <div class="d-flex justify-content-around">
               <a
@@ -111,8 +112,6 @@
                   required
                 />
               </div>
-            </div>
-            <div class="col-lg-6 col-12">
               <div class="form-group mb-3">
                 <label for="gender">Sexe</label>
                 <select
@@ -121,11 +120,15 @@
                   formControlName="gender"
                   required
                 >
-                  <option value="" disabled selected>--Choisir un sexe--</option>
+                  <option value="" disabled selected>
+                    --Choisir un sexe--
+                  </option>
                   <option value="M">Masculin</option>
                   <option value="F">Féminin</option>
                 </select>
               </div>
+            </div>
+            <div class="col-lg-6 col-12">
               <div class="form-group mb-3">
                 <label for="tutorPhoneNumber">Numéro de téléphone</label>
                 <input
@@ -134,6 +137,17 @@
                   id="tutorPhoneNumber"
                   formControlName="tutorPhoneNumber"
                   placeholder="Numéro de téléphone du tuteur"
+                  required
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="company">Entreprise</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="company"
+                  formControlName="company"
+                  placeholder="Numéro de SIRET de l'entreprise du tuteur"
                   required
                 />
               </div>

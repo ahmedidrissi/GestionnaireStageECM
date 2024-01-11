@@ -75,6 +75,7 @@
     </table>
   </div>
 </div>
+<app-promos></app-promos>
 
 <div
   class="modal fade"
@@ -166,6 +167,8 @@
                   formControlName="city"
                 />
               </div>
+            </div>
+            <div class="col-lg-6 col-12">
               <div class="form-group mb-3">
                 <label for="postalCode">Code Postal</label>
                 <input
@@ -176,32 +179,30 @@
                   formControlName="postalCode"
                 />
               </div>
-            </div>
-            <div class="col-lg-6 col-12">
               <div class="form-group mb-3">
-                <label for="schoolPhoneNumber">Téléphone d'ecole</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="schoolPhoneNumber"
-                  placeholder="Numéro de téléphone du tuteur"
-                  formControlName="schoolPhoneNumber"
-                />
-              </div>
-              <div class="form-group mb-3">
-                <label for="phoneNumber">Téléphone</label>
+                <label for="phoneNumber">Téléphone domicile</label>
                 <input
                   type="text"
                   class="form-control"
                   id="phoneNumber"
-                  placeholder="Numéro de téléphone"
+                  placeholder="Numéro de téléphone domicile"
                   formControlName="phoneNumber"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="schoolPhoneNumber">Téléphone école</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="schoolPhoneNumber"
+                  placeholder="Numéro de téléphone de l'école"
+                  formControlName="schoolPhoneNumber"
                 />
               </div>
               <div class="form-group mb-3">
                 <label for="hiringDate">Date d'emboche</label>
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
                   id="hiringDate"
                   placeholder="Date d'emboche"
@@ -209,12 +210,12 @@
                 />
               </div>
               <div class="form-group mb-3">
-                <label for="leavingDate">Date de depat </label>
+                <label for="leavingDate">Date de départ</label>
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
                   id="leavingDate"
-                  placeholder="Date de depart"
+                  placeholder="Date de départ"
                   formControlName="leavingDate"
                 />
               </div>

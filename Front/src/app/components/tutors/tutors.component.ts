@@ -18,6 +18,7 @@ export class TutorsComponent implements OnInit {
     lastName: new FormControl(''),
     gender: new FormControl(''),
     tutorPhoneNumber: new FormControl(''),
+    company: new FormControl(),
   });
 
   displayedColumns: string[] = [
@@ -26,6 +27,7 @@ export class TutorsComponent implements OnInit {
     'Nom',
     'Sexe',
     'Téléphone du Tuteur',
+    'Entreprise',
     'Actions'
   ];
 

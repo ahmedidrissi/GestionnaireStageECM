@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { CompaniesService } from '../../services/companies.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { TutorsComponent } from '../tutors/tutors.component';
 
 @Component({
   selector: 'app-companies',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [NavbarComponent, ReactiveFormsModule, CommonModule, TutorsComponent],
   templateUrl: './companies.component.html',
   styleUrl: './companies.component.css',
 })
