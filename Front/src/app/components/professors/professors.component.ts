@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
-import { ProfessorService } from '../../services/professor.service';
+import { ProfessorsService } from '../../services/professors.service';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { PromosComponent } from '../promos/promos.component';
@@ -54,7 +54,7 @@ export class ProfessorsComponent implements OnInit {
   currentprofessorId: number = 0;
 
   constructor(
-    private professorService: ProfessorService,
+    private professorsService: ProfessorsService,
     private tokenStorageService: TokenStorageService,
     private router: Router
   ) {}
@@ -64,7 +64,7 @@ export class ProfessorsComponent implements OnInit {
   }
 
   getProfessors() {
-    return this.professorService.getProfessors().subscribe({
+    return this.professorsService.getProfessors().subscribe({
       next: (data: any) => {
         this.professorsList = data;
       },
@@ -89,7 +89,7 @@ export class ProfessorsComponent implements OnInit {
   }
 
   // getProfessorByFirstAndLastName(firstName: string, lastName:string) {
-  //   return this.professorService.getProfessorByFirstAndLastName(firstName,lastName).subscribe({
+  //   return this.professorsService.getProfessorByFirstAndLastName(firstName,lastName).subscribe({
   //     next: (data) =>{
   //       this.professor = data;
   //     },
@@ -102,7 +102,7 @@ export class ProfessorsComponent implements OnInit {
   // }
 
   getProfessorById(professorId: number) {
-    return this.professorService.getProfessorById(professorId).subscribe({
+    return this.professorsService.getProfessorById(professorId).subscribe({
       next: (data) => console.log(data),
       error: (e) => {
         if (e.status === 403) {
@@ -128,7 +128,7 @@ export class ProfessorsComponent implements OnInit {
 
   addProfessor() {
     if (this.professorForm.valid) {
-      this.professorService.addProfessor(this.professorForm.value).subscribe({
+      this.professorsService.addProfessor(this.professorForm.value).subscribe({
         next: (data) => {
           this.getProfessors();
         },
@@ -144,7 +144,7 @@ export class ProfessorsComponent implements OnInit {
   }
 
   updateProfessor() {
-    this.professorService
+    this.professorsService
       .updateProfessor(this.currentprofessorId, this.professorForm.value)
       .subscribe({
         next: (data) => {
@@ -160,7 +160,7 @@ export class ProfessorsComponent implements OnInit {
   }
 
   deleteProfessor(professorId: number) {
-    this.professorService.deleteProfessor(professorId).subscribe({
+    this.professorsService.deleteProfessor(professorId).subscribe({
       next: (data) => {
         this.professorsList = this.professorsList.filter((professor: any) => {
           return professor.professorId !== professorId;

@@ -6,7 +6,7 @@ import { TokenStorageService } from './token-storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfessorService {
+export class ProfessorsService {
   private baseUrl = AppComponent.baseUrl + '/professors';
   private httpOptions = {
     headers: new HttpHeaders({

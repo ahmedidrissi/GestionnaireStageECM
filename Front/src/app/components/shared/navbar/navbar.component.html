@@ -1,48 +1,89 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container-fluid px-lg-5">
+<nav>
+  <div
+    class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+    style="width: 280px; height: 100vh;"
+  >
     <a class="navbar-brand" type="button" (click)="navigate('/')">
-      <h3 style="margin-top: 8px;">ECM</h3> 
+      <h3>ECM</h3>
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-lg-0">
-        <li class="nav-item">
-          <a *ngIf="isLogged" class="nav-link" type="button" (click)="navigate('/dashboard')">Tableau de bord</a>
-          <a *ngIf="!isLogged" class="nav-link" type="button" (click)="navigate('/')">Accueil</a>
-        </li>
-        <li *ngIf="isLogged" class="nav-item">
-          <a class="nav-link" type="button" (click)="navigate('/students')">Etudiants</a>
-        </li>
-        <li *ngIf="isLogged" class="nav-item">
-          <a class="nav-link" type="button" (click)="navigate('/professors')">Professeurs</a>
-        </li>
-        <li *ngIf="isLogged" class="nav-item">
-          <a class="nav-link" type="button" (click)="navigate('/internships')">Stages</a>
-        </li>
-        <li *ngIf="isLogged" class="nav-item">
-          <a class="nav-link" type="button" (click)="navigate('/companies')">Entreprises</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a *ngIf="!isLogged" class="nav-link" type="button" (click)="navigate('/authenticate')">
+    <hr />
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a
+          *ngIf="isLogged"
+          class="nav-link text-white"
+          type="button"
+          (click)="navigate('/dashboard')"
+          routerLink="/dashboard"
+          [routerLinkActive]="['active']"
+          >Tableau de bord</a
+        >
+        <a
+          *ngIf="!isLogged"
+          class="nav-link text-white"
+          type="button"
+          (click)="navigate('/')"
+          routerLink="/"
+          [routerLinkActive]="['active']"
+          >Accueil</a
+        >
+      </li>
+      <li *ngIf="isLogged" class="nav-item">
+        <a
+          class="nav-link text-white"
+          type="button"
+          (click)="navigate('/students')"
+          routerLink="/students"
+          [routerLinkActive]="['active']"
+          >Etudiants</a
+        >
+      </li>
+      <li *ngIf="isLogged" class="nav-item">
+        <a
+          class="nav-link text-white"
+          type="button"
+          (click)="navigate('/professors')"
+          routerLink="/professors"
+          [routerLinkActive]="['active']"
+          >Professeurs</a
+        >
+      </li>
+      <li *ngIf="isLogged" class="nav-item">
+        <a
+          class="nav-link text-white"
+          type="button"
+          (click)="navigate('/internships')"
+          routerLink="/internships"
+          [routerLinkActive]="['active']"
+          >Stages</a
+        >
+      </li>
+      <li *ngIf="isLogged" class="nav-item">
+        <a
+          class="nav-link text-white"
+          type="button"
+          (click)="navigate('/companies')"
+          routerLink="/companies"
+          [routerLinkActive]="['active']"
+          >Entreprises</a
+        >
+      </li>
+    </ul>
+    <hr />
+    <ul class="navbar-nav mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a
+          *ngIf="!isLogged"
+          class="nav-link"
+          type="button"
+          (click)="navigate('/authenticate')"
+        >
           <i class="bi bi-box-arrow-in-right me-1"></i> Connexion
-          </a>
-          <a *ngIf="isLogged" class="nav-link" type="button" (click)="logout()">
+        </a>
+        <a *ngIf="isLogged" class="nav-link" type="button" (click)="logout()">
           <i class="bi bi-box-arrow-in-left me-1"></i> Déconnexion
-          </a>
-        </li>
-      </ul>
-    </div>
+        </a>
+      </li>
+    </ul>
   </div>
 </nav>
