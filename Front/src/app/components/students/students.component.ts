@@ -4,7 +4,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { TokenStorageService } from '../../services/token-storage.service';
-import { StudentsService } from '../../services/students.service';
+import { StudentsService } from '../../services/etudiants.service';
+
 
 
 @Component({
@@ -30,9 +31,9 @@ export class StudentsComponent implements OnInit {
     promoNumber: new FormControl('220'),
     mention: new FormControl('Bien'),
   });
-
+ 
   displayedColumns: string[] = [
-    'studentId',
+    'ID',
     'Prenom',
     'nom',
     'Email',

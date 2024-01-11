@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.gestionnairestageecm.models.Student;
+import com.example.gestionnairestageecm.models.StudentRequest;
 import com.example.gestionnairestageecm.services.StudentService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,9 +50,26 @@ public class StudentController {
     }
 
     @PostMapping("/new")
-    public void saveStudent(@RequestBody Student student) {
-        studentService.saveStudent(student);
+    public void saveStudent(@RequestBody StudentRequest studentRequest) {
+       Student student = new Student(
+        studentRequest.getFirstName(),
+        studentRequest.getLastName(),
+        studentRequest.getEmail(),
+        studentRequest.getGender(),
+        studentRequest.getDateOfBirth(),
+        studentRequest.getAddress(),
+        studentRequest.getCity(),
+        studentRequest.getPostalCode(),
+        studentRequest.getPhoneNumber(),
+        studentRequest.getPromo(),
+        studentRequest.getPromoNumber(),
+        studentRequest.getMention()
+       );
+       studentService.saveStudent(student);
+
     }
+     
+    
 
 
     @PutMapping("/update/id={studentId}")
