@@ -23,14 +23,14 @@ import { InternshipsDatesComponent } from '../internships-dates/internships-date
 })
 export class InternshipsComponent implements OnInit {
   internshipForm = new FormGroup({
-    promo: new FormControl(),
-    promoNumber: new FormControl(''),
-    professor: new FormControl(),
-    tutor: new FormControl(),
-    company: new FormControl(),
-    internshipType: new FormControl(),
-    year: new FormControl(),
-    appreciation: new FormControl(''),
+    promo: new FormControl(2020),
+    promoNumber: new FormControl('13'),
+    professor: new FormControl(4321),
+    tutor: new FormControl(1234),
+    company: new FormControl(123456789),
+    internshipType: new FormControl(11),
+    year: new FormControl(2020),
+    appreciation: new FormControl('Bien'),
   });
 
   displayedColumns: string[] = [

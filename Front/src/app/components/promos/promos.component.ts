@@ -26,7 +26,7 @@ export class PromosComponent implements OnInit{
     'Annee',
     'Code du Professeur',
     'Nombre Inscrits',
-    'Nombre Recus',
+    'Nombre Reçus',
     'Actions',
   ];
   promoList: any[] = [];
