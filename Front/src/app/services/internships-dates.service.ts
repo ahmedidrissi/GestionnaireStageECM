@@ -6,44 +6,49 @@ import { TokenStorageService } from './token-storage.service';
 @Injectable({
   providedIn: 'root',
 })
-export class InternshipsService {
-  private baseUrl = AppComponent.baseUrl + '/internships';
+export class InternshipsDatesService {
+  private baseUrl = AppComponent.baseUrl + '/internships-dates';
   private httpOptions = {
     headers: new HttpHeaders({
       Authorization: 'Bearer ' + this.tokenStorageService.getToken(),
     }),
   };
+
   constructor(
     private http: HttpClient,
     private tokenStorageService: TokenStorageService
   ) {}
 
-  getInternships() {
+  getInternshipsDates() {
     return this.http.get(`${this.baseUrl}/list`, this.httpOptions);
   }
 
-  getInternshipByInternshipId(internshipId: number) {
+  getInternshipDateById(internshipDateId: number) {
     return this.http.get(
-      `${this.baseUrl}/id=${internshipId}`,
+      `${this.baseUrl}/id=${internshipDateId}`,
       this.httpOptions
     );
   }
 
-  addInternship(internship: any) {
-    return this.http.post(`${this.baseUrl}/new`, internship, this.httpOptions);
+  addInternshipDate(internshipDate: any) {
+    return this.http.post(
+      `${this.baseUrl}/new`,
+      internshipDate,
+      this.httpOptions
+    );
   }
 
-  updateInternship(internshipId: number, newInternship: any) {
+  updateInternshipDate(internshipDateId: number, newInternshipDate: any) {
     return this.http.put(
-      `${this.baseUrl}/update/id=${internshipId}`,
-      newInternship,
+      `${this.baseUrl}/update/id=${internshipDateId}`,
+      newInternshipDate,
       this.httpOptions
     );
   }
 
-  deleteInternship(internshipId: number) {
+  deleteInternshipDate(internshipDateId: number) {
     return this.http.delete(
-      `${this.baseUrl}/delete/id=${internshipId}`,
+      `${this.baseUrl}/delete/id=${internshipDateId}`,
       this.httpOptions
     );
   }

@@ -87,45 +87,56 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="tutorForm" (ngSubmit)="handleTutorForm()">
-          <div class="form-group mb-3">
-            <label for="firstName">Prénom</label>
-            <input
-              type="text"
-              class="form-control"
-              id="firstName"
-              formControlName="firstName"
-              placeholder="Prénom"
-            />
-          </div>
-          <div class="form-group mb-3">
-            <label for="lastName">Nom</label>
-            <input
-              type="text"
-              class="form-control"
-              id="lastName"
-              formControlName="lastName"
-              placeholder="Nom"
-            />
-          </div>
-          <div class="form-group mb-3">
-            <label for="gender">Sexe</label>
-            <input
-              type="text"
-              class="form-control"
-              id="gender"
-              formControlName="gender"
-              placeholder="Sexe"
-            />
-          </div>
-          <div class="form-group mb-3">
-            <label for="tutorPhoneNumber">Numéro de téléphone</label>
-            <input
-              type="text"
-              class="form-control"
-              id="tutorPhoneNumber"
-              formControlName="tutorPhoneNumber"
-              placeholder="Numéro de téléphone du tuteur"
-            />
+          <div class="row">
+            <div class="col-lg-6 col-12">
+              <div class="form-group mb-3">
+                <label for="firstName">Prénom</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName"
+                  formControlName="firstName"
+                  placeholder="Prénom"
+                  required
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="lastName">Nom</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastName"
+                  formControlName="lastName"
+                  placeholder="Nom"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="form-group mb-3">
+                <label for="gender">Sexe</label>
+                <select
+                  class="form-select"
+                  id="gender"
+                  formControlName="gender"
+                  required
+                >
+                  <option value="M">Masculin</option>
+                  <option value="F">Féminin</option>
+                </select>
+              </div>
+              <div class="form-group mb-3">
+                <label for="tutorPhoneNumber">Numéro de téléphone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="tutorPhoneNumber"
+                  formControlName="tutorPhoneNumber"
+                  placeholder="Numéro de téléphone du tuteur"
+                  required
+                />
+              </div>
+            </div>
           </div>
           <button
             *ngIf="!editMode"

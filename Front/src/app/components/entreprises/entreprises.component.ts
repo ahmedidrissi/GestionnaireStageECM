@@ -14,17 +14,17 @@ import { Router } from '@angular/router';
 })
 export class EntreprisesComponent implements OnInit {
   entrepriseForm = new FormGroup({
-    siretNumber: new FormControl(123456789),
-    legalForm: new FormControl('SARL'),
-    businessName: new FormControl('Test'),
-    address: new FormControl('1 rue du test'),
-    city: new FormControl('Test'),
-    postalCode: new FormControl(12345),
-    tutorPhoneNumber: new FormControl('0654321098'),
-    fax: new FormControl('0543210987'),
-    contact: new FormControl('Omar'),
-    contactPhoneNumber: new FormControl('0765432109'),
-    email: new FormControl('test@gmail.com'),
+    siretNumber: new FormControl(),
+    legalForm: new FormControl(''),
+    businessName: new FormControl(''),
+    address: new FormControl(''),
+    city: new FormControl(''),
+    postalCode: new FormControl(),
+    tutorPhoneNumber: new FormControl(''),
+    fax: new FormControl(''),
+    contact: new FormControl(''),
+    contactPhoneNumber: new FormControl(''),
+    email: new FormControl(''),
   });
 
   displayedColumns: string[] = [
@@ -124,7 +124,10 @@ export class EntreprisesComponent implements OnInit {
       this.entreprisesService
         .addEntreprise(this.entrepriseForm.value)
         .subscribe({
-          next: (data) => this.entreprisesList.push(data),
+          next: (data) => {
+            this.getEntreprises();
+            this.entrepriseForm.reset();
+          },
           error: (e) => {
             if (e.status === 403) {
               this.tokenStorageService.logout();
@@ -143,6 +146,7 @@ export class EntreprisesComponent implements OnInit {
         next: (data) => {
           this.getEntreprises();
           this.editMode = false;
+          this.entrepriseForm.reset();
         },
         error: (e) => {
           if (e.status === 403) {
@@ -155,11 +159,7 @@ export class EntreprisesComponent implements OnInit {
   deleteEntreprise(siretNumber: number) {
     this.entreprisesService.deleteEntreprise(siretNumber).subscribe({
       next: (data) => {
-        this.entreprisesList = this.entreprisesList.filter(
-          (entreprise: any) => {
-            return entreprise.siretNumber !== siretNumber;
-          }
-        );
+        this.getEntreprises();
       },
       error: (e) => {
         if (e.status === 403) {

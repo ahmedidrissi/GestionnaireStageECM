@@ -40,15 +40,15 @@
       </thead>
       <tbody>
         <tr *ngFor="let internship of internshipsList">
-          <td>{{ internship.internshipNumber }}</td>
-            <td>{{ internship.promo }}</td>
-            <td>{{ internship.promoNumber }}</td>
-            <td>{{ internship.professor }}</td>
-            <td>{{ internship.tutor }}</td>
-            <td>{{ internship.enterprise }}</td>
-            <td>{{ internship.type }}</td>
-            <td>{{ internship.year }}</td>
-            <td>{{ internship.appreciation }}</td>
+          <td>{{ internship.internshipId }}</td>
+          <td>{{ internship.promo }}</td>
+          <td>{{ internship.promoNumber }}</td>
+          <td>{{ internship.professor }}</td>
+          <td>{{ internship.tutor }}</td>
+          <td>{{ internship.enterprise }}</td>
+          <td>{{ internship.internshipType }}</td>
+          <td>{{ internship.year }}</td>
+          <td>{{ internship.appreciation }}</td>
           <td>
             <div class="d-flex justify-content-around">
               <a
@@ -61,7 +61,7 @@
               </a>
               <a
                 type="button"
-                (click)="deleteInternship(internship.internshipNumber)"
+                (click)="deleteInternship(internship.internshipId)"
               >
                 <i class="bi bi-trash text-danger"></i>
               </a>
@@ -71,7 +71,156 @@
       </tbody>
     </table>
   </div>
+  <app-internships-dates></app-internships-dates>
   <app-entreprises></app-entreprises>
   <app-tutors></app-tutors>
   <app-skills></app-skills>
+</div>
+
+<div
+  class="modal fade"
+  id="internshipModal"
+  tabindex="-1"
+  aria-labelledby="internshipModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title" id="internshipModalLabel">
+          {{ editMode ? "Modifier un stage" : "Ajouter un stage" }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          class="row g-3"
+          [formGroup]="internshipForm"
+          (ngSubmit)="handleInternshipForm()"
+        >
+          <div class="col-md-6">
+            <label for="promo" class="form-label">Promo</label>
+            <input
+              type="number"
+              class="form-control"
+              id="promo"
+              formControlName="promo"
+              placeholder="Promo"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="promoNumber" class="form-label">Numéro de promo</label>
+            <input
+              type="text"
+              class="form-control"
+              id="promoNumber"
+              formControlName="promoNumber"
+              placeholder="Numéro de promo"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="professor" class="form-label">Professeur</label>
+            <input
+              type="number"
+              class="form-control"
+              id="professor"
+              formControlName="professor"
+              placeholder="Professeur"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="tutor" class="form-label">Tuteur</label>
+            <input
+              type="number"
+              class="form-control"
+              id="tutor"
+              formControlName="tutor"
+              placeholder="Tuteur"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="enterprise" class="form-label">Entreprise</label>
+            <input
+              type="number"
+              class="form-control"
+              id="enterprise"
+              formControlName="enterprise"
+              placeholder="Entreprise"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="internshipType" class="form-label">
+              Type de stage
+            </label>
+            <select
+              id="internshipType"
+              class="form-select"
+              aria-label="Type de stage"
+              formControlName="internshipType"
+              required
+            >
+              <option value="11" >Stage de 1A</option>
+              <option value="21">1er Stage de 2A</option>
+              <option value="22">2ème Stage de 2A</option>
+              <option value="31">1er Stage de 3A</option>
+              <option value="32">2ème Stage de 3A</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="year" class="form-label">Année</label>
+            <input
+              type="number"
+              class="form-control"
+              id="year"
+              formControlName="year"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="appreciation" class="form-label">Appréciation</label>
+            <input
+              type="text"
+              class="form-control"
+              id="appreciation"
+              formControlName="appreciation"
+              placeholder="Appréciation"
+              required
+            />
+          </div>
+          <div class="col-12">
+            <button
+              *ngIf="!editMode"
+              type="submit"
+              class="btn btn-success"
+              [disabled]="internshipForm.invalid"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Ajouter
+            </button>
+            <button
+              *ngIf="editMode"
+              type="submit"
+              class="btn btn-success"
+              [disabled]="internshipForm.invalid"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Modifier
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

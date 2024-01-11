@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface InternshipRepository extends JpaRepository<Internship,Long> {
-    Optional<Internship> findByProfessorIdAndTutorId(Long ProfessorId,Long TutorId);
-    List<Internship> findBySiretNumber(Long siretNumber);
+    Optional<Internship> findByProfessorAndTutor(Long professor,Long tutor);
+    List<Internship> findByEnterprise(Long enterprise);
 }
