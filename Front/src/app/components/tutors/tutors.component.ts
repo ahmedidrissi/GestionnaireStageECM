@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TutorsService } from '../../services/tutors.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
+import { CompaniesService } from '../../services/companies.service';
 
 @Component({
   selector: 'app-tutors',
@@ -32,23 +33,39 @@ export class TutorsComponent implements OnInit {
   ];
 
   tutorsList: any[] = [];
+  companiesList: any[] = [];
   editMode = false;
   currentTutorNumber: number = 0;
 
   constructor(
     private tutorsService: TutorsService,
+    private companiesService: CompaniesService,
     private tokenStorageService: TokenStorageService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getTutors();
+    this.getCompanies();
   }
 
   getTutors() {
     return this.tutorsService.getTutors().subscribe({
       next: (data: any) => {
         this.tutorsList = data;
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
+  }
+
+  getCompanies() {
+    return this.companiesService.getCompanies().subscribe({
+      next: (data: any) => {
+        this.companiesList = data;
       },
       error: (err) => {
         if (err.status === 403) {

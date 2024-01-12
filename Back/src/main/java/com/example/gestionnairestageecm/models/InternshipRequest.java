@@ -13,9 +13,9 @@ public class InternshipRequest {
 
     private int promo;
     private String promoNumber;
-    private Long professor;
-    private Long tutor;
-    private Long company;
+    private Long professorId;
+    private Long tutorNumber;
+    private Long siretNumber;
     private int internshipType;
     private int year;
     private String appreciation;

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Skill {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numero_competence", nullable = false)
     private Long skillNumber;
 

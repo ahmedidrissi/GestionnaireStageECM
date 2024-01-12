@@ -44,9 +44,9 @@ public class InternshipController{
         Internship internship = new Internship(
                 internshipRequest.getPromo(),
                 internshipRequest.getPromoNumber(),
-                internshipRequest.getProfessor(),
-                internshipRequest.getTutor(),
-                internshipRequest.getCompany(),
+                internshipRequest.getProfessorId(),
+                internshipRequest.getTutorNumber(),
+                internshipRequest.getSiretNumber(),
                 internshipRequest.getInternshipType(),
                 internshipRequest.getYear(),
                 internshipRequest.getAppreciation()

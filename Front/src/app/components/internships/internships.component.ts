@@ -7,6 +7,11 @@ import { Router } from '@angular/router';
 import { InternshipsService } from '../../services/internships.service';
 import { SkillsComponent } from '../skills/skills.component';
 import { InternshipsDatesComponent } from '../internships-dates/internships-dates.component';
+import { ProfessorsService } from '../../services/professors.service';
+import { CompaniesService } from '../../services/companies.service';
+import { StudentsService } from '../../services/students.service';
+import { TutorsService } from '../../services/tutors.service';
+import { PromoService } from '../../services/promo.service';
 
 @Component({
   selector: 'app-internships',
@@ -23,22 +28,26 @@ import { InternshipsDatesComponent } from '../internships-dates/internships-date
 })
 export class InternshipsComponent implements OnInit {
   internshipForm = new FormGroup({
-    promo: new FormControl(2020),
-    promoNumber: new FormControl('13'),
-    professor: new FormControl(4321),
-    tutor: new FormControl(1234),
-    company: new FormControl(123456789),
-    internshipType: new FormControl(11),
-    year: new FormControl(2020),
-    appreciation: new FormControl('Bien'),
+    promo: new FormControl(),
+    promoNumber: new FormControl(),
+    professorId: new FormControl(),
+    tutorNumber: new FormControl(),
+    siretNumber: new FormControl(),
+    internshipType: new FormControl(),
+    year: new FormControl(),
+    appreciation: new FormControl(''),
   });
 
   displayedColumns: string[] = [
     'ID',
     'Promotion',
-    "Numéro d'Étudiant",
+    'Numéro Promotion',
+    'Etudiant',
+    'Professeur ID',
     'Professeur',
+    'Tuteur ID',
     'Tuteur',
+    'Numéro SIRET',
     'Entreprise',
     'Type de Stage',
     'Année',
@@ -47,23 +56,158 @@ export class InternshipsComponent implements OnInit {
   ];
 
   internshipsList: any[] = [];
+  promosList: any[] = [];
+  studentsList: any[] = [];
+  professorsList: any[] = [];
+  companiesList: any[] = [];
+  tutorsList: any[] = [];
   editMode = false;
   currentInternshipId: number = 0;
 
   constructor(
     private internshipsService: InternshipsService,
+    private promosService: PromoService,
+    private studentsService: StudentsService,
+    private professorsService: ProfessorsService,
+    private companiesService: CompaniesService,
+    private tutorsService: TutorsService,
     private tokenStorageService: TokenStorageService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getInternships();
+    this.getPromos();
+    this.getStudents();
+    this.getProfessors();
+    this.getCompanies();
+    this.getTutors();
+    console.log(this.professorsList);
+    
   }
 
   getInternships() {
     this.internshipsService.getInternships().subscribe({
       next: (data: any) => {
         this.internshipsList = data;
+        this.internshipsList.forEach((internship: any) => {
+          this.studentsService
+            .getStudentByPromoAndPromoNumber(
+              internship.promo,
+              internship.promoNumber
+            )
+            .subscribe({
+              next: (data: any) => {
+                internship.student = data.firstName + ' ' + data.lastName;
+              },
+              error: (err) => {
+                if (err.status === 403) {
+                  this.tokenStorageService.logout();
+                }
+              },
+            });
+          this.professorsService
+            .getProfessorById(internship.professorId)
+            .subscribe({
+              next: (data: any) => {
+                internship.professor = data.firstName + ' ' + data.lastName;
+              },
+              error: (err) => {
+                if (err.status === 403) {
+                  this.tokenStorageService.logout();
+                }
+              },
+            });
+          this.companiesService
+            .getCompanyBySiretNumber(internship.siretNumber)
+            .subscribe({
+              next: (data: any) => {
+                internship.company = data.businessName;
+              },
+              error: (err) => {
+                if (err.status === 403) {
+                  this.tokenStorageService.logout();
+                }
+              },
+            });
+          this.tutorsService
+            .getTutorByTutorNumber(internship.tutorNumber)
+            .subscribe({
+              next: (data: any) => {
+                internship.tutor = data.firstName + ' ' + data.lastName;
+              },
+              error: (err) => {
+                if (err.status === 403) {
+                  this.tokenStorageService.logout();
+                }
+              },
+            });
+        });
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
+  }
+
+  getPromos() {
+    this.promosService.getPromos().subscribe({
+      next: (data: any) => {
+        this.promosList = data;
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
+  }
+
+  getStudents() {
+    this.studentsService.getStudents().subscribe({
+      next: (data: any) => {
+        this.studentsList = data;
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
+  }
+
+  getProfessors() {
+    this.professorsService.getProfessors().subscribe({
+      next: (data: any) => {
+        this.professorsList = data;
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
+  }
+
+  getCompanies() {
+    this.companiesService.getCompanies().subscribe({
+      next: (data: any) => {
+        this.companiesList = data;
+      },
+      error: (err) => {
+        if (err.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
+  }
+
+  getTutors() {
+    this.tutorsService.getTutors().subscribe({
+      next: (data: any) => {
+        this.tutorsList = data;
       },
       error: (err) => {
         if (err.status === 403) {

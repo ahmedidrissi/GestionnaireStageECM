@@ -15,5 +15,5 @@ export class AppComponent {
   
   public static baseUrl: string = 'http://localhost:8081/api/v1';
 
-  title = 'Front';
+  title = 'ECM';
 }

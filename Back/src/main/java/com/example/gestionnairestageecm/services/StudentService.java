@@ -34,6 +34,10 @@ public class StudentService {
         return studentRepository.findByFirstNameAndLastName(firstName, lastName).get();
     }
 
+    public Student getStudentByPromoAndPromoNumber(int promo, String promoNumber) {
+        return  studentRepository.findByPromoAndPromoNumber(promo, promoNumber).get();
+    }
+
     public Student saveStudent(Student student) {
         return studentRepository.save(student);
     }

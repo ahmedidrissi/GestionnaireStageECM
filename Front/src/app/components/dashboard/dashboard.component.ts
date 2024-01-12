@@ -3,7 +3,7 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PromosComponent } from '../promos/promos.component';
-import { StudentsService } from '../../services/etudiants.service';
+import { StudentsService } from '../../services/students.service';
 import { ProfessorsService } from '../../services/professors.service';
 import { InternshipsService } from '../../services/internships.service';
 import { CompaniesService } from '../../services/companies.service';
@@ -13,10 +13,9 @@ import { CompaniesService } from '../../services/companies.service';
   standalone: true,
   imports: [NavbarComponent, CommonModule, ReactiveFormsModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent implements OnInit {
-
   totalStudents: number = 0;
   totalProfessors: number = 0;
   totalInternships: number = 0;
@@ -26,7 +25,7 @@ export class DashboardComponent implements OnInit {
     private studentsService: StudentsService,
     private professorsService: ProfessorsService,
     private internshipsService: InternshipsService,
-    private companiesService: CompaniesService,
+    private companiesService: CompaniesService
   ) {}
 
   ngOnInit(): void {
@@ -79,5 +78,4 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-
 }

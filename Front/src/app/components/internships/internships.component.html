@@ -45,8 +45,12 @@
               <td>{{ internship.internshipId }}</td>
               <td>{{ internship.promo }}</td>
               <td>{{ internship.promoNumber }}</td>
+              <td>{{ internship.student }}</td>
+              <td>{{ internship.professorId }}</td>
               <td>{{ internship.professor }}</td>
+              <td>{{ internship.tutorNumber }}</td>
               <td>{{ internship.tutor }}</td>
+              <td>{{ internship.siretNumber }}</td>
               <td>{{ internship.company }}</td>
               <td>{{ internship.internshipType }}</td>
               <td>{{ internship.year }}</td>
@@ -109,58 +113,103 @@
         >
           <div class="col-md-6">
             <label for="promo" class="form-label">Promo</label>
-            <input
-              type="number"
-              class="form-control"
+            <select
               id="promo"
+              class="form-select"
+              aria-label="Promo"
               formControlName="promo"
-              placeholder="Promo"
               required
-            />
+            >
+              <option value="" disabled selected>
+                --Choisir une promo--
+              </option>
+              <option
+                *ngFor="let promo of promosList"
+                [value]="promo.year"
+              >
+                {{ promo.year }}
+              </option>
+            </select>
           </div>
           <div class="col-md-6">
-            <label for="promoNumber" class="form-label">Numéro de promo</label>
-            <input
-              type="text"
-              class="form-control"
+            <label for="promoNumber" class="form-label">Etudiant</label>
+            <select
               id="promoNumber"
+              class="form-select"
+              aria-label="Numéro de promo"
               formControlName="promoNumber"
-              placeholder="Numéro de promo"
               required
-            />
+            >
+              <option value="" disabled selected>
+                --Choisir un étudiant--
+              </option>
+              <option
+                *ngFor="let student of studentsList"
+                [value]="student.promoNumber"
+              >
+                {{ student.firstName }} {{ student.lastName }}
+              </option>
+            </select>
           </div>
           <div class="col-md-6">
-            <label for="professor" class="form-label">Professeur</label>
-            <input
-              type="number"
-              class="form-control"
-              id="professor"
-              formControlName="professor"
-              placeholder="Professeur"
+            <label for="ProfesseurId" class="form-label">Professeur</label>
+            <select
+              id="professorId"
+              class="form-select"
+              aria-label="Professeur ID"
+              formControlName="professorId"
               required
-            />
+            >
+              <option value="" disabled selected>
+                --Choisir un professeur--
+              </option>
+              <option
+                *ngFor="let professor of professorsList"
+                [value]="professor.professorId"
+              >
+                {{ professor.firstName }} {{ professor.lastName }}
+              </option>
+            </select>
           </div>
           <div class="col-md-6">
-            <label for="tutor" class="form-label">Tuteur</label>
-            <input
-              type="number"
-              class="form-control"
-              id="tutor"
-              formControlName="tutor"
-              placeholder="Tuteur"
+            <label for="tutorNumber" class="form-label">Tuteur</label>
+            <select
+              id="tutorNumber"
+              class="form-select"
+              aria-label="Numéro de tuteur"
+              formControlName="tutorNumber"
               required
-            />
+            >
+              <option value="" disabled selected>
+                --Choisir un tuteur--
+              </option>
+              <option
+                *ngFor="let tutor of tutorsList"
+                [value]="tutor.tutorNumber"
+              >
+                {{ tutor.firstName }} {{ tutor.lastName }}
+              </option>
+            </select>
           </div>
           <div class="col-md-6">
-            <label for="company" class="form-label">Entreprise</label>
-            <input
-              type="number"
-              class="form-control"
-              id="company"
-              formControlName="company"
-              placeholder="Entreprise"
+            <label for="siretNumber" class="form-label">Entreprise</label>
+            <select
+              id="siretNumber"
+              class="form-select"
+              aria-label="Numéro de SIRET"
+              formControlName="siretNumber"
               required
-            />
+            >
+              <option value="" disabled selected>
+                --Choisir une entreprise--
+              </option>
+              <option
+                *ngFor="let company of companiesList"
+                [value]="company.siretNumber"
+              >
+                {{ company.businessName }}
+              </option>
+            </select>
           </div>
           <div class="col-md-6">
             <label for="internshipType" class="form-label">

@@ -49,6 +49,11 @@ public class StudentController {
         return studentService.getStudentByFirstNameAndLastName(firstName, lastName);
     }
 
+    @GetMapping("/promo={promo}&promoNumber={promoNumber}")
+    public Student getStudentByPromoAndPromoNumber(@PathVariable int promo, @PathVariable String promoNumber) {
+        return studentService.getStudentByPromoAndPromoNumber(promo, promoNumber);
+    }
+
     @PostMapping("/new")
     public void saveStudent(@RequestBody StudentRequest studentRequest) {
        Student student = new Student(

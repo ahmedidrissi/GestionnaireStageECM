@@ -5,15 +5,16 @@ import { Router } from '@angular/router';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { PromoService } from '../../services/promo.service';
+import { ProfessorsService } from '../../services/professors.service';
 
 @Component({
-  selector: 'app-promos',  
+  selector: 'app-promos',
   standalone: true,
   imports: [NavbarComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './promos.component.html',
   styleUrl: './promos.component.css',
 })
-export class PromosComponent implements OnInit{
+export class PromosComponent implements OnInit {
   promoForm = new FormGroup({
     year: new FormControl(2020),
     professorId: new FormControl(1),
@@ -23,30 +24,59 @@ export class PromosComponent implements OnInit{
 
   displayedColumns: string[] = [
     'ID',
-    'Annee',
-    'Code du Professeur',
+    'Année',
+    'Professeur Id',
+    'Professeur',
     'Nombre Inscrits',
     'Nombre Reçus',
     'Actions',
   ];
   promoList: any[] = [];
+  professorsList: any[] = [];
   editMode = false;
   currentpromoId: number = 0;
 
   constructor(
     private promoService: PromoService,
+    private professorsService: ProfessorsService,
     private tokenStorageService: TokenStorageService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getPromos();
+    this.getProfessors();
   }
 
   getPromos() {
     return this.promoService.getPromos().subscribe({
       next: (data: any) => {
         this.promoList = data;
+        this.promoList.forEach((promo: any) => {
+          this.professorsService.getProfessorById(promo.professorId).subscribe({
+            next: (data: any) => {
+              promo.professor = data.firstName + ' ' + data.lastName; 
+            },
+            error: (e) => {
+              if (e.status === 403) {
+                this.tokenStorageService.logout();
+              }
+            },
+          });
+        });
+      },
+      error: (e) => {
+        if (e.status === 403) {
+          this.tokenStorageService.logout();
+        }
+      },
+    });
+  }
+
+  getProfessors() {
+    return this.professorsService.getProfessors().subscribe({
+      next: (data: any) => {
+        this.professorsList = data;
       },
       error: (e) => {
         if (e.status === 403) {
@@ -107,18 +137,16 @@ export class PromosComponent implements OnInit{
 
   addPromo() {
     if (this.promoForm.valid) {
-      this.promoService
-        .addPromo(this.promoForm.value)
-        .subscribe({
-          next: (data) =>{
-            this.getPromos();
-          },
-          error: (e) => {
-            if (e.status === 403) {
-              this.tokenStorageService.logout();
-            }
-          },
-        });
+      this.promoService.addPromo(this.promoForm.value).subscribe({
+        next: (data) => {
+          this.getPromos();
+        },
+        error: (e) => {
+          if (e.status === 403) {
+            this.tokenStorageService.logout();
+          }
+        },
+      });
     } else {
       console.log('invalid form');
     }
@@ -143,11 +171,9 @@ export class PromosComponent implements OnInit{
   deletePromo(promoId: number) {
     this.promoService.deletePromo(promoId).subscribe({
       next: (data) => {
-        this.promoList = this.promoList.filter(
-          (promo: any) => {
-            return promo.promoId !== promoId;
-          }
-        );
+        this.promoList = this.promoList.filter((promo: any) => {
+          return promo.promoId !== promoId;
+        });
       },
       error: (e) => {
         if (e.status === 403) {

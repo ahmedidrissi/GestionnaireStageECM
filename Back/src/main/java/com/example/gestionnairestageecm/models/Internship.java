@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "stages")
 public class Internship {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_stage",nullable = false)
     private Long internshipId;
     @Column(name = "promo",nullable = false)
@@ -21,11 +21,11 @@ public class Internship {
     @Column(name = "numero_promo",nullable = false)
     private String promoNumber;
     @Column(name = "professeur",nullable = false)
-    private Long professor;
+    private Long professorId;
     @Column(name = "tuteur",nullable = false)
-    private Long tutor;
+    private Long tutorNumber;
     @Column(name = "entreprise",nullable = false)
-    private Long company;
+    private Long siretNumber;
     @Column(name = "type_stage",nullable = false)
     private int internshipType;
     @Column(name = "annee_stage",nullable = false)
@@ -33,12 +33,12 @@ public class Internship {
     @Column(name = "appreciation")
     private String appreciation;
 
-    public Internship(int promo, String promoNumber, Long professor, Long tutor, Long company, int internshipType, int year, String appreciation) {
+    public Internship(int promo, String promoNumber, Long professorId, Long tutorNumber, Long siretNumber, int internshipType, int year, String appreciation) {
         this.promo = promo;
         this.promoNumber = promoNumber;
-        this.professor = professor;
-        this.tutor = tutor;
-        this.company = company;
+        this.professorId = professorId;
+        this.tutorNumber = tutorNumber;
+        this.siretNumber = siretNumber;
         this.internshipType = internshipType;
         this.year = year;
         this.appreciation = appreciation;

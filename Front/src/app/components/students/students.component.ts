@@ -4,9 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { TokenStorageService } from '../../services/token-storage.service';
-import { StudentsService } from '../../services/etudiants.service';
-
-
+import { StudentsService } from '../../services/students.service';
 
 @Component({
   selector: 'app-students',
@@ -31,7 +29,7 @@ export class StudentsComponent implements OnInit {
     promoNumber: new FormControl(''),
     mention: new FormControl(''),
   });
- 
+
   displayedColumns: string[] = [
     'ID',
     'Prénom',
@@ -118,7 +116,7 @@ export class StudentsComponent implements OnInit {
         next: (data: any) => {
           this.getStudents();
         },
-        error: (e: { status: number; }) => {
+        error: (e: { status: number }) => {
           if (e.status === 403) {
             this.tokenStorageService.logout();
           }
@@ -128,7 +126,7 @@ export class StudentsComponent implements OnInit {
       console.log('invalid form');
     }
   }
- 
+
   updateStudent() {
     this.studentsService
       .updateStudent(this.currentstudentId, this.studentForm.value)
@@ -137,7 +135,7 @@ export class StudentsComponent implements OnInit {
           this.getStudents();
           this.editMode = false;
         },
-        error: (e: { status: number; }) => {
+        error: (e: { status: number }) => {
           if (e.status === 403) {
             this.tokenStorageService.logout();
           }
@@ -152,7 +150,7 @@ export class StudentsComponent implements OnInit {
           return student.studentId !== studentId;
         });
       },
-      error: (e: { status: number; }) => {
+      error: (e: { status: number }) => {
         if (e.status === 403) {
           this.tokenStorageService.logout();
         }

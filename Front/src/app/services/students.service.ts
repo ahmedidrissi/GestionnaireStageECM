@@ -27,25 +27,32 @@ export class StudentsService {
     return this.http.get(`${this.baseUrl}/list`, this.httpOptions);
   }
 
-  getStudentById(StudentId: String) {
-    return this.http.get(this.baseUrl + '/id=' + StudentId, this.httpOptions);
+  getStudentById(studentId: number) {
+    return this.http.get(this.baseUrl + '/id=' + studentId, this.httpOptions);
+  }
+
+  getStudentByPromoAndPromoNumber(promo: number, promoNumber: string) {
+    return this.http.get(
+      `${this.baseUrl}/promo=${promo}&promoNumber=${promoNumber}`,
+      this.httpOptions
+    );
   }
 
   addStudent(student: any) {
     return this.http.post(this.baseUrl + '/new', student, this.httpOptions);
   }
 
-  updateStudent(StudentId: number, newStudent: any) {
+  updateStudent(studentId: number, newStudent: any) {
     return this.http.put(
-      this.baseUrl + '/update/id=' + StudentId,
+      this.baseUrl + '/update/id=' + studentId,
       newStudent,
       this.httpOptions
     );
   }
 
-  deleteStudent(StudentId: number) {
+  deleteStudent(studentId: number) {
     return this.http.delete(
-      `${this.baseUrl}/delete/id= ${StudentId}`,
+      `${this.baseUrl}/delete/id= ${studentId}`,
       this.httpOptions
     );
   }

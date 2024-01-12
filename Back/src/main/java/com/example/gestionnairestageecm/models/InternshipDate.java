@@ -20,7 +20,7 @@ import lombok.*;
 public class InternshipDate {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "date_stage_id", nullable = false)
     private Long internshipDateId;
 
