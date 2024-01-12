@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InternshipsDatesService } from '../../services/internships-dates.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
+import { log } from 'console';
 
 @Component({
   selector: 'app-internships-dates',
@@ -23,6 +24,7 @@ export class InternshipsDatesComponent implements OnInit {
   displayedColumns: string[] = [
     'ID',
     'Type de Stage',
+    'Nombre de Semaines',
     'Année',
     'Date de Début',
     'Date de Fin',
@@ -30,6 +32,13 @@ export class InternshipsDatesComponent implements OnInit {
   ];
 
   internshipsDatesList: any[] = [];
+  numberOfWeeksPerType: any[] = [
+    { internshipType: '11', numberOfWeeks: 4 },
+    { internshipType: '21', numberOfWeeks: 4 },
+    { internshipType: '22', numberOfWeeks: 8 },
+    { internshipType: '31', numberOfWeeks: 2 },
+    { internshipType: '32', numberOfWeeks: 12 },
+  ];
   editMode = false;
   currentInternshipDateId: number = 0;
 
@@ -47,6 +56,12 @@ export class InternshipsDatesComponent implements OnInit {
     this.internshipsDatesService.getInternshipsDates().subscribe({
       next: (internshipsDatesList: any) => {
         this.internshipsDatesList = internshipsDatesList;
+        this.internshipsDatesList.forEach((internshipDate) => {
+          internshipDate.numberOfWeeks = this.numberOfWeeksPerType.find(
+            (numberOfWeeks) =>
+              numberOfWeeks.internshipType === internshipDate.internshipType.toString()
+          ).numberOfWeeks;
+        });
       },
       error: (err) => {
         console.log(err);
@@ -80,17 +95,35 @@ export class InternshipsDatesComponent implements OnInit {
   }
 
   addInternshipDate() {
-    this.internshipsDatesService
-      .addInternshipDate(this.internshipsDatesForm.value)
-      .subscribe({
-        next: (data) => {
-          this.getInternshipsDates();
-          this.internshipsDatesForm.reset();
-        },
-        error: (err) => {
-          console.log(err);
-        },
+    if (this.internshipsDatesForm.valid) {
+      const startDate = new Date(
+        this.internshipsDatesForm.value.startDate!
+      ).getTime();
+      const numberOfWeeks = this.numberOfWeeksPerType.find(
+        (numberOfWeeks) =>
+          numberOfWeeks.internshipType ===
+          this.internshipsDatesForm.value.internshipType
+      );
+      const endDate = new Date(
+        startDate + numberOfWeeks!.numberOfWeeks * 7 * 24 * 60 * 60 * 1000
+      );
+      this.internshipsDatesForm.patchValue({
+        endDate: endDate.toISOString().slice(0, 10),
       });
+      setTimeout(() => {
+        this.internshipsDatesService
+          .addInternshipDate(this.internshipsDatesForm.value)
+          .subscribe({
+            next: (data) => {
+              this.getInternshipsDates();
+              this.internshipsDatesForm.reset();
+            },
+            error: (err) => {
+              console.log(err);
+            },
+          });
+      }, 300);
+    }
   }
 
   updateInternshipDate() {

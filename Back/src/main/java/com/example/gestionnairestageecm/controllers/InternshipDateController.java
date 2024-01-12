@@ -38,6 +38,7 @@ public class InternshipDateController {
                 internshipDateRequest.getStartDate(),
                 internshipDateRequest.getEndDate()
         );
+        System.out.println(internshipDate);
         internshipDateService.saveInternshipDate(internshipDate);
     }
 

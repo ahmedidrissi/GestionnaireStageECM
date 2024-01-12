@@ -81,9 +81,7 @@ export class InternshipsComponent implements OnInit {
     this.getStudents();
     this.getProfessors();
     this.getCompanies();
-    this.getTutors();
-    console.log(this.professorsList);
-    
+    this.getTutors();    
   }
 
   getInternships() {

@@ -44,6 +44,7 @@
         <tr *ngFor="let internshipDate of internshipsDatesList">
           <td>{{ internshipDate.internshipDateId }}</td>
           <td>{{ internshipDate.internshipType }}</td>
+          <td>{{ internshipDate.numberOfWeeks }}</td>
           <td>{{ internshipDate.year }}</td>
           <td>{{ internshipDate.startDate }}</td>
           <td>{{ internshipDate.endDate }}</td>
@@ -133,16 +134,6 @@
               class="form-control"
               id="startDate"
               formControlName="startDate"
-              required
-            />
-          </div>
-          <div class="col-md-6">
-            <label for="endDate" class="form-label">Date de fin</label>
-            <input
-              type="date"
-              class="form-control"
-              id="endDate"
-              formControlName="endDate"
               required
             />
           </div>
