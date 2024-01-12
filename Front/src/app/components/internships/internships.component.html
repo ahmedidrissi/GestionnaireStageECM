@@ -33,7 +33,10 @@
           </button>
         </div>
       </div>
-      <div class="stages d-flex justify-content-center align-items-center">
+      <div
+        class="stages d-flex justify-content-center align-items-center"
+        style="overflow-x: auto; width: 100%"
+      >
         <table class="table table-striped table-hover">
           <thead>
             <tr>
@@ -120,13 +123,8 @@
               formControlName="promo"
               required
             >
-              <option value="" disabled selected>
-                --Choisir une promo--
-              </option>
-              <option
-                *ngFor="let promo of promosList"
-                [value]="promo.year"
-              >
+              <option value="" disabled selected>--Choisir une promo--</option>
+              <option *ngFor="let promo of promosList" [value]="promo.year">
                 {{ promo.year }}
               </option>
             </select>
@@ -180,9 +178,7 @@
               formControlName="tutorNumber"
               required
             >
-              <option value="" disabled selected>
-                --Choisir un tuteur--
-              </option>
+              <option value="" disabled selected>--Choisir un tuteur--</option>
               <option
                 *ngFor="let tutor of tutorsList"
                 [value]="tutor.tutorNumber"
