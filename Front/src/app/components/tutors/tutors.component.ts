@@ -19,7 +19,7 @@ export class TutorsComponent implements OnInit {
     lastName: new FormControl(''),
     gender: new FormControl(''),
     tutorPhoneNumber: new FormControl(''),
-    company: new FormControl(),
+    siretNumber: new FormControl()
   });
 
   displayedColumns: string[] = [
@@ -28,8 +28,9 @@ export class TutorsComponent implements OnInit {
     'Nom',
     'Sexe',
     'Téléphone du Tuteur',
+    'Numéro SIRET',
     'Entreprise',
-    'Actions'
+    'Actions',
   ];
 
   tutorsList: any[] = [];
@@ -53,6 +54,20 @@ export class TutorsComponent implements OnInit {
     return this.tutorsService.getTutors().subscribe({
       next: (data: any) => {
         this.tutorsList = data;
+        this.tutorsList.forEach((tutor: any) => {
+          this.companiesService
+            .getCompanyBySiretNumber(tutor.siretNumber)
+            .subscribe({
+              next: (company: any) => {
+                tutor.company = company.businessName;
+              },
+              error: (e) => {
+                if (e.status === 403) {
+                  this.tokenStorageService.logout();
+                }
+              },
+            });
+        });
       },
       error: (err) => {
         if (err.status === 403) {

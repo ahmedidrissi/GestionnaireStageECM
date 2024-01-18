@@ -47,6 +47,7 @@
           <td>{{ tutor.lastName }}</td>
           <td>{{ tutor.gender }}</td>
           <td>{{ tutor.tutorPhoneNumber }}</td>
+          <td>{{ tutor.siretNumber }}</td>
           <td>{{ tutor.company }}</td>
           <td>
             <div class="d-flex justify-content-around">
@@ -144,12 +145,12 @@
                 />
               </div>
               <div class="form-group mb-3">
-                <label for="company">Entreprise</label>
+                <label for="siretNumber">Entreprise</label>
                 <select
                   class="form-select"
                   aria-label="Default select example"
-                  id="company"
-                  formControlName="company"
+                  id="siretNumber"
+                  formControlName="siretNumber"
                   required
                 >
                   <option value="" disabled selected>
