@@ -5,11 +5,12 @@ import { TutorsService } from '../../services/tutors.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
 import { CompaniesService } from '../../services/companies.service';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-tutors',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [NavbarComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './tutors.component.html',
   styleUrl: './tutors.component.css',
 })

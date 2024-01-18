@@ -18,8 +18,6 @@ import { PromoService } from '../../services/promo.service';
   standalone: true,
   imports: [
     NavbarComponent,
-    InternshipsDatesComponent,
-    SkillsComponent,
     CommonModule,
     ReactiveFormsModule,
   ],

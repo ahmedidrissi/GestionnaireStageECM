@@ -4,12 +4,12 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InternshipsDatesService } from '../../services/internships-dates.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { Router } from '@angular/router';
-import { log } from 'console';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-internships-dates',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, NavbarComponent],
   templateUrl: './internships-dates.component.html',
   styleUrl: './internships-dates.component.css',
 })
