@@ -38,7 +38,7 @@ public class TutorService {
         tutor.setLastName(newTutor.getLastName());
         tutor.setGender(newTutor.getGender());
         tutor.setTutorPhoneNumber(newTutor.getTutorPhoneNumber());
-        tutor.setCompany(newTutor.getCompany());
+        tutor.setSiretNumber(newTutor.getSiretNumber());
         return tutorRepository.save(tutor);
     }
 

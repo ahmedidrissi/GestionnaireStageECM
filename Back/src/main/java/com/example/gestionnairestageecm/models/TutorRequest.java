@@ -11,5 +11,6 @@ public class TutorRequest {
     private String lastName;
     private String gender;
     private String tutorPhoneNumber;
-    private Long company;
+    private Long siretNumber;
+
 }

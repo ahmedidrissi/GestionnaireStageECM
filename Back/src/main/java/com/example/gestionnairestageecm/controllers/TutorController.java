@@ -40,7 +40,7 @@ public class TutorController {
                 tutorRequest.getLastName(),
                 tutorRequest.getGender(),
                 tutorRequest.getTutorPhoneNumber(),
-                tutorRequest.getCompany()
+                tutorRequest.getSiretNumber()
         );
         tutorService.saveTutor(tutor);
     }

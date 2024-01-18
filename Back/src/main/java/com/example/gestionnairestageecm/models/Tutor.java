@@ -31,21 +31,23 @@ public class Tutor {
     @Column(name = "telephone_tuteur", nullable = false)
     private String tutorPhoneNumber;
 
-    @Column(name = "entreprise", nullable = false)
-    private Long company;
+    @Column(name = "numero_siret", nullable = false)
+    private Long siretNumber;
+
 
     public Tutor (
         String firstName,
         String lastName,
         String gender,
         String tutorPhoneNumber,
-        Long company
+        Long siretNumber
     ){
         this.firstName=firstName;
         this.lastName=lastName;
         this.gender=gender;
         this.tutorPhoneNumber=tutorPhoneNumber;
-        this.company=company;
+        this.siretNumber=siretNumber;
+
     }
     
 }
